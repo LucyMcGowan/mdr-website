@@ -108,7 +108,7 @@ More info
 :::
 
    
-<div class="lines right">
+::: {.lines .right}
 <span></span>
 <span></span>
 <span></span>
@@ -129,7 +129,7 @@ More info
 <span></span>
 <span></span>
 <span></span>  
-</div>
+:::
 
 ::: {.lines .left}
 <span></span>
