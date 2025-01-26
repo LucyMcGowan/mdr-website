@@ -1,0 +1,160 @@
+---
+title: ""
+format: 
+  html:
+    css: mdr.css
+    include-after-body:
+      text: <script type="text/javascript" src="card-animation.js"></script>
+---
+<br> <br> <br> <br> <br> <br>
+
+
+<center>
+
+
+::: {.deck}
+
+::: {.vertical-lines}
+:::
+
+::: {.vertical-lines}
+:::
+
+::: {.card style="--i: 0;"}
+
+::: {.tab}
+Card 1
+:::
+
+::: {.card--front}
+
+## Card 1
+
+:::
+
+::: {.card--back}  
+## Back of Card 1
+
+More info
+:::
+
+:::
+
+::: {.card style="--i: 1;"}
+::: {.tab}
+Card 2
+:::
+
+::: {.card--front}
+
+# Card 2
+
+:::
+
+::: {.card--back}  
+## Back of Card 2
+More info
+:::
+:::
+
+::: {.card style="--i: 2;"}
+::: {.tab}
+Card 3
+:::
+
+::: {.card--front}
+
+# Card 3
+
+:::
+
+::: {.card--back}  
+## Back of Card 3
+More info
+:::
+:::
+    
+::: {.card style="--i: 3;"}
+::: {.tab}
+Card 4
+:::
+
+::: {.card--front}
+
+# Card 4
+
+:::
+
+::: {.card--back .active}  
+## Back of Card 4
+More info
+:::
+:::
+    
+::: {.card style="--i: 4;"}
+::: {.tab}
+Card 5
+:::
+
+::: {.card--front}
+
+# Card 5
+
+:::
+
+::: {.card--back}  
+## Back of Card 5
+More info
+:::
+:::
+
+   
+<div class="lines right">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span> 
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>  
+</div>
+
+::: {.lines .left}
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+:::
+
+:::
+</center>
+
+<br> <br> <br> <br> <br> <br>
+
