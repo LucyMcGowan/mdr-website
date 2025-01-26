@@ -6,7 +6,6 @@ format:
     include-after-body:
       text: <script type="text/javascript" src="card-animation.js"></script>
 ---
-<br> <br> <br> <br> <br> <br>
 
 
 <center>
@@ -156,5 +155,4 @@ More info
 :::
 </center>
 
-<br> <br> <br> <br> <br> <br>
 
