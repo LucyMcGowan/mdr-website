@@ -4,7 +4,6 @@
   body {
     min-height: 100vh;
     background: #030303;
-    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,6 +11,7 @@
   }
 
   .deck {
+    margin: 100px !important;
     width: 350px;
     height: 250px;
     position: relative;
