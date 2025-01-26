@@ -11,7 +11,8 @@
   }
 
   .deck {
-    margin: 100px !important;
+    margin-top: 100px !important;
+    margin-bottom: 100px !important;
     width: 350px;
     height: 250px;
     position: relative;
