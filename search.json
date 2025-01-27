@@ -18,14 +18,14 @@
     "href": "analysis-innie-sentiment/index.html",
     "title": "",
     "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by [the Severance wiki]https://severance.wiki/). I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the sentiment lexicon compiled by Bing Liu and collaborators. I calculated a sentiment score by taking the positive - negative scores, higher scores indicate the episode was more positive. It looks like the innies are TWO TIMES more positive, in terms of language, compared to the outies. wow.\nSelecting by n\n\n\n\n\n\n\n\n\n\nSelecting by n"
+    "text": "Selecting by n\n\n\n\n\n\n\n\n\n\nSelecting by n"
   },
   {
     "objectID": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
     "href": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
     "title": "",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by [the Severance wiki]https://severance.wiki/). I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the sentiment lexicon compiled by Bing Liu and collaborators. I calculated a sentiment score by taking the positive - negative scores, higher scores indicate the episode was more positive. It looks like the innies are TWO TIMES more positive, in terms of language, compared to the outies. wow."
+    "section": "Sentiment analysis, innies vs outies",
+    "text": "Sentiment analysis, innies vs outies\nThis analysis was made possible by the mdr R package, which used data originally compiled by [the Severance wiki]https://severance.wiki/). I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the sentiment lexicon compiled by Bing Liu and collaborators. I calculated a sentiment score by taking the positive - negative scores, higher scores indicate the episode was more positive. It looks like the innies are TWO TIMES more positive, in terms of language, compared to the outies. wow."
   },
   {
     "objectID": "about/index.html",
