@@ -29,7 +29,7 @@ hi
 
 ## Welcome
 
-this website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.
+this website analyzes data from the Severance TV show. please enjoy all analyses equally.
 
 :::
 
