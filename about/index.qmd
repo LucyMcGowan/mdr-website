@@ -1,0 +1,17 @@
+---
+format: html
+---
+
+<center>
+
+::: {.text}
+
+## About
+
+This website was build by [Lucy D'Agostino McGowan](https://lucymcgowan.com).
+
+![](../images/id-card.png)
+
+:::
+
+</center>

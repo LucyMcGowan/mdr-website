@@ -1,2 +1,25 @@
 project:
   type: website
+
+website:
+  page-footer:
+    left:
+      - text: 'home >'
+        href: '../'
+    right:
+      - text: LDM
+        href: https://lucymcgowan.com
+      - icon: github
+        href: https://github.com/lucymcgowan/mdr-website
+      - text: "{{< fa brands bluesky >}}"
+        href: https://bsky.app/profile/joelnitta.com
+format:
+  html:
+    fontcolor: '#CFE0E1'
+    backgroundcolor: '#030303'
+    linkcolor: '#38A6B7' # lex letter
+    mainfont: 'Noto Sans Mono'
+    theme: mdr.scss
+
+execute:
+  freeze: true

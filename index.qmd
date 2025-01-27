@@ -22,19 +22,22 @@ format:
 ::: {.card style="--i: 0;"}
 
 ::: {.tab}
-Card 1
+hi
 :::
 
 ::: {.card--front}
 
-## Card 1
+## Welcome
+
+this website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.
 
 :::
 
 ::: {.card--back}  
-## Back of Card 1
+## Welcome
 
-More info
+this website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.
+
 :::
 
 :::
@@ -58,52 +61,64 @@ More info
 
 ::: {.card style="--i: 2;"}
 ::: {.tab}
-Card 3
+smile
 :::
 
 ::: {.card--front}
 
-# Card 3
+## Sentiment Analysis
+
+Who is happier, the innies or outies: a text analysis (SPOILER: it's the innies, by a factor of 2!). [Read More >](analysis-innie-sentiment)
+
 
 :::
 
 ::: {.card--back}  
-## Back of Card 3
-More info
+## Sentiment Analysis
+
+Who is happier, the innies or outies: a text analysis (SPOILER: it's the innies, by a factor of 2!). [Read More >](analysis-innie-sentiment)
 :::
 :::
     
 ::: {.card style="--i: 3;"}
 ::: {.tab}
-Card 4
+dings
 :::
 
 ::: {.card--front}
 
-# Card 4
+## Elevator Ding Analysis
+
+`C#`, `G`, or `Bb`? the pitch alone tells the story. [Read More >](analysis-elevator-dings)
 
 :::
 
 ::: {.card--back}  
-## Back of Card 4
-More info
+## Elevator Ding Analysis
+
+`C#`, `G`, or `Bb`? the pitch alone tells the story. [Read More >](analysis-elevator-dings)
+
 :::
 :::
     
 ::: {.card style="--i: 4;"}
 ::: {.tab}
-Card 5
+about
 :::
 
 ::: {.card--front}
 
-# Card 5
+## about
 
+This site was built by Lucy D. 
+
+[Read More >](about)
 :::
 
 ::: {.card--back}  
-## Back of Card 5
-More info
+
+{{ include about/index.qmd }}
+
 :::
 :::
 

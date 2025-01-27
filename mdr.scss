@@ -1,0 +1,16 @@
+/*-- scss:defaults --*/
+$footer-bg: #030303;
+$footer-fg: #CFE0E1;
+
+/*-- scss:rules --*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap');
+
+.text {
+  font-family: "Noto Sans Mono";
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px !important;
+  margin-bottom: 100px !important;
+  width: 350px;
+  position: relative;
+}

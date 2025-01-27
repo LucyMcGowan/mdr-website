@@ -1,0 +1,59 @@
+---
+format: html
+---
+
+<center>
+
+::: text
+
+## Elevator Ding Analysis
+
+This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) R package, which used data originally compiled by [Sam_Badi on Reddit](https://www.reddit.com/r/SeveranceAppleTVPlus/comments/w8imx3/a_complete_analysis_of_all_of_the_ding_sounds/). The data consists of all elevator dings in the Severance episodes along with the episode number, time stamp, pitch of the ding, and the action associated. Examining the plot below, we see across all dings the `G` is associated with both innie and outies going to sleep, the  `C#` is consistently associated with both innies and outies waking up, and in general a `Bb` plays when they enter the elevator, however there are a few `B♮` thrown in there at the beginning of episode 5.
+
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-width: 15
+library(mdr)
+library(ggplot2)
+library(ggiraph)
+
+set.seed(266) # on irving
+
+df <- elevator_dings |>
+  dplyr::mutate(time_in_minutes = as.numeric(time) / 3600) |>
+  dplyr::mutate(episode_time = episode + time_in_minutes / 100) |>
+  dplyr::filter(!is.na(pitch), !is.na(io))
+
+
+p <- ggplot(df, aes(x = episode_time, y = pitch, color = io, shape = action,
+                    tooltip = glue::glue("S{season}E{episode}, {hms::as_hms(time)}<br>{character}<br>{io}<br>{action}"))) +
+  geom_jitter_interactive(size = 10, alpha = 0.8, height = 0, width = 0.1) +
+  scale_shape_manual(values = c("enters" = 16, "sleeps" = 17, "wakes up" = 15)) +
+  scale_color_manual(values = c("blue", "red")) +
+  guides(
+    shape = guide_legend(override.aes = list(color = "#CFE0E1"))
+  ) +
+  scale_x_continuous("Episode and Time",
+                     breaks = unique(df$episode),
+                     labels = unique(df$episode)) +
+  labs(
+    y = "Pitch",
+    color = "",
+    shape = "Action"
+  ) +
+  theme_mdr() +
+  theme(
+    text = element_text(size = 20),
+    axis.title = element_text(size = 20),
+    axis.title.y = element_text(angle = 0),
+    axis.text = element_text(size = 20),
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 20))  
+
+ggiraph::girafe(ggobj = p)
+```
+
+</center>

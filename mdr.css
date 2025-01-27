@@ -1,15 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap');
 
-
-  body {
-    min-height: 100vh;
-    background: #030303;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Noto Sans Mono", sans-serif;
-  }
-
   .deck {
     margin-top: 100px !important;
     margin-bottom: 100px !important;
@@ -20,7 +10,6 @@
     filter: drop-shadow(0 0 10px #000);
   }
 
-  /* Stack the cards slightly offset */
   .deck .card {
     position: absolute;
     width: 100%;
@@ -35,9 +24,13 @@
     z-index: calc(100 - var(--i));
   }
 
-  /* Front and back of the cards */
   .deck .card .card--front,
   .deck .card .card--back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     color: #CFE0E1;
     backface-visibility: hidden;
   }
@@ -56,7 +49,7 @@
     padding: 2px;
     background-color: #CFE0E1;
     top: -30px;
-    transform: translateX(calc(var(--i, 0) * 50px));
+    transform: translateX(calc(var(--i, 0) * 60px));
     width: 70px;
     height: 30px;
     border: 3px solid #030303;
