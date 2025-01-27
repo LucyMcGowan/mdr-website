@@ -32,7 +32,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
@@ -95,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
 
 <center>
 <section id="elevator-ding-analysis" class="level2 text">
-<h2 class="anchored" data-anchor-id="elevator-ding-analysis">Elevator Ding Analysis</h2>
+<h2 data-anchor-id="elevator-ding-analysis">Elevator Ding Analysis</h2>
 <p>This analysis was made possible by the <a href="https://lucymcgowan.github.io/mdr">mdr</a> R package, which used data originally compiled by <a href="https://www.reddit.com/r/SeveranceAppleTVPlus/comments/w8imx3/a_complete_analysis_of_all_of_the_ding_sounds/">Sam_Badi on Reddit</a>. The data consists of all elevator dings in the Severance episodes along with the episode number, time stamp, pitch of the ding, and the action associated. Examining the plot below, we see across all dings the <code>G</code> is associated with both innie and outies going to sleep, the <code>C#</code> is consistently associated with both innies and outies waking up, and in general a <code>Bb</code> plays when they enter the elevator, however there are a few <code>B♮</code> thrown in there at the beginning of episode 5.</p>
 </section>
 <div class="cell">
@@ -129,13 +128,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     

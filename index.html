@@ -32,7 +32,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
@@ -99,11 +98,11 @@ ul.task-list li input[type="checkbox"] {
 <p>hi</p>
 </div>
 <section id="welcome" class="level2 card--front">
-<h2 class="anchored" data-anchor-id="welcome">Welcome</h2>
+<h2 data-anchor-id="welcome">welcome</h2>
 <p>this website analyzes data from the Severance TV show. please enjoy all analyses equally.</p>
 </section>
 <section id="welcome-1" class="level2 card--back">
-<h2 class="anchored" data-anchor-id="welcome-1">Welcome</h2>
+<h2 data-anchor-id="welcome-1">welcome</h2>
 <p>this website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.</p>
 </section>
 </div>
@@ -112,11 +111,11 @@ ul.task-list li input[type="checkbox"] {
 <p>R</p>
 </div>
 <section id="check-out-our-r-package" class="level2 card--front">
-<h2 class="anchored" data-anchor-id="check-out-our-r-package">Check out our R package</h2>
+<h2 data-anchor-id="check-out-our-r-package">check out our R package</h2>
 <p><a href="https://lucymcgowan.github.io/mdr/index.html">mdr</a></p>
 </section>
 <section id="check-out-our-r-package-1" class="level2 card--back">
-<h2 class="anchored" data-anchor-id="check-out-our-r-package-1">Check out our R package</h2>
+<h2 data-anchor-id="check-out-our-r-package-1">check out our R package</h2>
 <p><a href="https://lucymcgowan.github.io/mdr/index.html">mdr</a></p>
 </section>
 </div>
@@ -125,15 +124,13 @@ ul.task-list li input[type="checkbox"] {
 <p>smile</p>
 </div>
 <section id="sentiment-analysis" class="level2 card--front">
-<h2 class="anchored" data-anchor-id="sentiment-analysis">Sentiment Analysis</h2>
-<p>Who is happier, the innies or outies: a text analysis<br>
-<em><code>(SPOILER: it's the innies, by a factor of 2!)</code></em><br>
+<h2 data-anchor-id="sentiment-analysis">sentiment analysis</h2>
+<p>Who is happier: the innies or outies?<br>
 <a href="analysis-innie-sentiment">Read More &gt;</a></p>
 </section>
 <section id="sentiment-analysis-1" class="level2 card--back">
-<h2 class="anchored" data-anchor-id="sentiment-analysis-1">Sentiment Analysis</h2>
-<p>Who is happier, the innies or outies: a text analysis<br>
-<em><code>(SPOILER: it's the innies, by a factor of 2!)</code></em><br>
+<h2 data-anchor-id="sentiment-analysis-1">sentiment analysis</h2>
+<p>Who is happier: the innies or outies?<br>
 <a href="analysis-innie-sentiment">Read More &gt;</a></p>
 </section>
 </div>
@@ -142,12 +139,14 @@ ul.task-list li input[type="checkbox"] {
 <p>dings</p>
 </div>
 <section id="elevator-ding-analysis" class="level2 card--front">
-<h2 class="anchored" data-anchor-id="elevator-ding-analysis">Elevator Ding Analysis</h2>
-<p><code>C#</code>, <code>G</code>, or <code>Bb</code>? the pitch alone tells the story. <a href="analysis-elevator-dings">Read More &gt;</a></p>
+<h2 data-anchor-id="elevator-ding-analysis">elevator ding analysis</h2>
+<p><code>C#</code>, <code>G</code>, or <code>Bb</code>? the pitch alone tells the story.<br>
+<a href="analysis-elevator-dings">Read More &gt;</a></p>
 </section>
 <section id="elevator-ding-analysis-1" class="level2 card--back">
-<h2 class="anchored" data-anchor-id="elevator-ding-analysis-1">Elevator Ding Analysis</h2>
-<p><code>C#</code>, <code>G</code>, or <code>Bb</code>? the pitch alone tells the story. <a href="analysis-elevator-dings">Read More &gt;</a></p>
+<h2 data-anchor-id="elevator-ding-analysis-1">elevator ding analysis</h2>
+<p><code>C#</code>, <code>G</code>, or <code>Bb</code>? the pitch alone tells the story.<br>
+<a href="analysis-elevator-dings">Read More &gt;</a></p>
 </section>
 </div>
 <div class="card" style="--i: 4;">
@@ -155,7 +154,7 @@ ul.task-list li input[type="checkbox"] {
 <p>about</p>
 </div>
 <section id="about" class="level2 card--front">
-<h2 class="anchored" data-anchor-id="about">about</h2>
+<h2 data-anchor-id="about">about</h2>
 <p>This site was built by Lucy D.</p>
 <p><a href="about">Read More &gt;</a></p>
 </section>
@@ -195,13 +194,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     
