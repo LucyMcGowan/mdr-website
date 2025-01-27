@@ -2,6 +2,8 @@
 format: html
 ---
 
+<cemter>
+
 ::: text
 
 ## Sentiment analysis, innies vs outies
@@ -97,4 +99,4 @@ word_freq |>
 
 
 ```
-
+</center>
