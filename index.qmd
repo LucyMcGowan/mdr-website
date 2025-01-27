@@ -44,18 +44,21 @@ this website analyzes data from the Severance TV show. please enjoy all cards an
 
 ::: {.card style="--i: 1;"}
 ::: {.tab}
-Card 2
+R
 :::
 
 ::: {.card--front}
 
-# Card 2
+## Check out our R package
+
+[mdr](https://lucymcgowan.github.io/mdr/index.html)
 
 :::
 
 ::: {.card--back}  
-## Back of Card 2
-More info
+## Check out our R package
+
+[mdr](https://lucymcgowan.github.io/mdr/index.html)
 :::
 :::
 
