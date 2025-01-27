@@ -21,6 +21,7 @@ format:
     linkcolor: '#38A6B7' # lex letter
     mainfont: 'Noto Sans Mono'
     theme: mdr.scss
+    anchor-sections: false
 
 execute:
   freeze: true

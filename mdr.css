@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap');
 
+h2 {
+  letter-spacing: 0.1em;
+}
+
   .deck {
     margin-top: 100px !important;
     margin-bottom: 100px !important;
@@ -7,7 +11,7 @@
     height: 250px;
     position: relative;
     perspective: 1200px;
-    filter: drop-shadow(0 0 10px #000);
+    filter: drop-shadow(0 0 10px #515151);
   }
 
   .deck .card {
@@ -19,7 +23,7 @@
     transition: transform 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
     transform-origin: 50% 100%;
     transform-style: preserve-3d;
-    transform: translateY(calc(-4px - var(--i) * 10px)) rotateX(0deg);
+    transform: translateY(calc(-4px - var(--i) * 10px));
     background-color: #030303;
     z-index: calc(100 - var(--i));
   }
@@ -29,18 +33,28 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 95%;
     height: 100%;
+    letter-spacing: 0.05em;
     color: #CFE0E1;
     backface-visibility: hidden;
+    overflow-y: auto;
   }
 
   .deck .card .card--back {
     transform: rotateY(180deg);
+    color: #52595A;
+  }
+
+  .deck .card .card--back a,
+  .deck .card .card--back code {
+    color: #52595A;
+    background-color: #030303;
   }
 
   .deck .card.active {
-    color: #515151 !important;
     transform: translateY(4px) rotateX(-180deg);
     z-index: calc(100 + var(--i)) !important;
   }
@@ -68,13 +82,6 @@
   }
 
 
-  @keyframes rotate {
-    10%, 100% {
-      transform: rotate(0deg);
-    }
-  }
-
-/* Style for the lines container */
 .deck .lines {
   position: absolute;
   top: 75%;

@@ -27,14 +27,14 @@ hi
 
 ::: {.card--front}
 
-## Welcome
+## welcome
 
 this website analyzes data from the Severance TV show. please enjoy all analyses equally.
 
 :::
 
 ::: {.card--back}  
-## Welcome
+## welcome
 
 this website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.
 
@@ -49,14 +49,14 @@ R
 
 ::: {.card--front}
 
-## Check out our R package
+## check out our R package
 
 [mdr](https://lucymcgowan.github.io/mdr/index.html)
 
 :::
 
 ::: {.card--back}  
-## Check out our R package
+## check out our R package
 
 [mdr](https://lucymcgowan.github.io/mdr/index.html)
 :::
@@ -69,21 +69,21 @@ smile
 
 ::: {.card--front}
 
-## Sentiment Analysis
+## sentiment analysis
 
-Who is happier, the innies or outies: a text analysis  
-*`(SPOILER: it's the innies, by a factor of 2!)`*  
+Who is happier: the innies or outies?    
 [Read More >](analysis-innie-sentiment)
 
 
 :::
 
 ::: {.card--back}  
-## Sentiment Analysis
+## sentiment analysis
 
-Who is happier, the innies or outies: a text analysis  
-*`(SPOILER: it's the innies, by a factor of 2!)`*  
+Who is happier: the innies or outies?    
 [Read More >](analysis-innie-sentiment)
+
+
 :::
 :::
     
@@ -94,16 +94,19 @@ dings
 
 ::: {.card--front}
 
-## Elevator Ding Analysis
+## elevator ding analysis
 
-`C#`, `G`, or `Bb`? the pitch alone tells the story. [Read More >](analysis-elevator-dings)
+`C#`, `G`, or `Bb`? the pitch alone tells the story.  
+[Read More >](analysis-elevator-dings)
 
 :::
 
-::: {.card--back}  
-## Elevator Ding Analysis
+::: {.card--back} 
 
-`C#`, `G`, or `Bb`? the pitch alone tells the story. [Read More >](analysis-elevator-dings)
+## elevator ding analysis
+
+`C#`, `G`, or `Bb`? the pitch alone tells the story.  
+[Read More >](analysis-elevator-dings)
 
 :::
 :::
