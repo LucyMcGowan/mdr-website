@@ -25,7 +25,7 @@
     "href": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
     "title": "MDR",
     "section": "Sentiment analysis, innies vs outies",
-    "text": "Sentiment analysis, innies vs outies\nThis analysis was made possible by the mdr R package, which used data originally compiled by [the Severance wiki]https://severance.wiki/). I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the sentiment lexicon compiled by Bing Liu and collaborators. I calculated a sentiment score by taking the positive - negative scores, higher scores indicate the episode was more positive. It looks like the innies are TWO TIMES more positive, in terms of language, compared to the outies. wow."
+    "text": "Sentiment analysis, innies vs outies\nThis analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the sentiment lexicon compiled by Bing Liu and collaborators. I calculated a sentiment score by taking the positive - negative scores, higher scores indicate the episode was more positive. It looks like the innies are TWO TIMES more positive, in terms of language, compared to the outies. wow."
   },
   {
     "objectID": "about/index.html",
