@@ -8,7 +8,7 @@ format: html
 
 ## Sentiment analysis, innies vs outies
 
-This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) R package, which used data originally compiled by [the Severance wiki]https://severance.wiki/). I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using [the sentiment lexicon compiled by Bing Liu and collaborators](https://juliasilge.github.io/tidytext/reference/sentiments.html). I calculated a sentiment score by taking the positive - negative scores, higher scores indicate the episode was more positive. It looks like the innies are `TWO TIMES` more positive, in terms of language, compared to the outies. wow.
+This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) R package, which used data originally compiled by [the Severance wiki](https://severance.wiki/). I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using [the sentiment lexicon compiled by Bing Liu and collaborators](https://juliasilge.github.io/tidytext/reference/sentiments.html). I calculated a sentiment score by taking the positive - negative scores, higher scores indicate the episode was more positive. It looks like the innies are `TWO TIMES` more positive, in terms of language, compared to the outies. wow.
 
 :::
 
@@ -58,7 +58,7 @@ sentiment_summary |>
 
 ::: text
 
-Now lets look at some word frequency by episode. I pulled out the top 10 words per sentiment (and show some ties). 
+Now lets look at some word frequency by episode. I pulled out the top 5 words per sentiment (and show some ties). 
 
 :::
 
