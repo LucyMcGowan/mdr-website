@@ -40,6 +40,7 @@
   }
 
   .deck .card.active {
+    color: #515151 !important;
     transform: translateY(4px) rotateX(-180deg);
     z-index: calc(100 + var(--i)) !important;
   }
