@@ -73,7 +73,7 @@ word_freq |>
   top_n(5) |>
   ggplot(aes(x = reorder(word, n), y = n, fill = sentiment)) +
   geom_bar(stat = "identity", show.legend = FALSE, alpha = 0.8) +
-  scale_fill_manual(values = c("blue", "red")) +
+  scale_fill_manual(values = c("red", "blue")) +
   coord_flip() +
   facet_wrap(~sentiment, scales = "free") +
   labs(title = "Top Words in Each Sentiment (S2E1)", 
@@ -86,7 +86,7 @@ word_freq |>
   group_by(sentiment) |>
   top_n(5) |>
   ggplot(aes(x = reorder(word, n), y = n, fill = sentiment)) +
-  scale_fill_manual(values = c("blue", "red")) +
+  scale_fill_manual(values = c("red", "blue")) +
   geom_bar(stat = "identity", show.legend = FALSE, alpha = 0.8) +
   coord_flip() +
   facet_wrap(~sentiment, scales = "free") +

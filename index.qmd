@@ -71,7 +71,9 @@ smile
 
 ## Sentiment Analysis
 
-Who is happier, the innies or outies: a text analysis (SPOILER: it's the innies, by a factor of 2!). [Read More >](analysis-innie-sentiment)
+Who is happier, the innies or outies: a text analysis  
+*`(SPOILER: it's the innies, by a factor of 2!)`*  
+[Read More >](analysis-innie-sentiment)
 
 
 :::
@@ -79,7 +81,9 @@ Who is happier, the innies or outies: a text analysis (SPOILER: it's the innies,
 ::: {.card--back}  
 ## Sentiment Analysis
 
-Who is happier, the innies or outies: a text analysis (SPOILER: it's the innies, by a factor of 2!). [Read More >](analysis-innie-sentiment)
+Who is happier, the innies or outies: a text analysis  
+*`(SPOILER: it's the innies, by a factor of 2!)`*  
+[Read More >](analysis-innie-sentiment)
 :::
 :::
     
