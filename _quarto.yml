@@ -13,7 +13,7 @@ website:
       - icon: github
         href: https://github.com/lucymcgowan/mdr-website
       - text: "{{< fa brands bluesky >}}"
-        href: https://bsky.app/profile/joelnitta.com
+        href: https://bsky.app/profile/lucystats.bsky.social
 format:
   html:
     fontcolor: '#CFE0E1'
