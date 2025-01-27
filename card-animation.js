@@ -54,6 +54,23 @@ window.addEventListener('load', function () {
   deck.classList.remove('flipping');
   }, 2000);
 }, delay);
-delay += 500; // Delay between animations for each card
+delay += 500;
 }
+setTimeout(() => {
+  delay = 500;
+
+  for (let i = 2; i >= 0; i--) {
+    const card = cards[i];
+    setTimeout(() => {
+      card.classList.remove('active');
+      const deck = document.querySelector('.deck');
+      deck.classList.add('flipping');
+
+      setTimeout(() => {
+        deck.classList.remove('flipping');
+      }, 2000);
+    }, delay);
+    delay += 500;
+  }
+}, 500);
 });

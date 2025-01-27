@@ -23,23 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c4afa60a4816ef5ce9b51c0aa103cc3a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-8ea72dc5fed832574809a9c94082fbbb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c4afa60a4816ef5ce9b51c0aa103cc3a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -69,7 +69,6 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="mdr.css">
 </head>
 
 <body class="fullcontent">
@@ -86,87 +85,44 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<center>
-<div class="deck">
-<div class="vertical-lines">
-
-</div>
-<div class="vertical-lines">
-
-</div>
-<div class="card" style="--i: 0;">
-<div class="tab">
-<p>hi</p>
-</div>
-<section id="welcome" class="level2 card--front">
-<h2 class="anchored" data-anchor-id="welcome">Welcome</h2>
-<p>this website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.</p>
+<section id="sentiment-analysis-innies-vs-outies" class="level2 text">
+<h2 class="anchored" data-anchor-id="sentiment-analysis-innies-vs-outies">Sentiment analysis, innies vs outies</h2>
+<p>This analysis was made possible by the <a href="https://lucymcgowan.github.io/mdr">mdr</a> R package, which used data originally compiled by [the Severance wiki]https://severance.wiki/). I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using <a href="https://juliasilge.github.io/tidytext/reference/sentiments.html">the sentiment lexicon compiled by Bing Liu and collaborators</a>. I calculated a sentiment score by taking the positive - negative scores, higher scores indicate the episode was more positive. It looks like the innies are <code>TWO TIMES</code> more positive, in terms of language, compared to the outies. wow.</p>
 </section>
-<section id="welcome-1" class="level2 card--back">
-<h2 class="anchored" data-anchor-id="welcome-1">Welcome</h2>
-<p>this website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.</p>
-</section>
-</div>
-<div class="card" style="--i: 1;">
-<div class="tab">
-<p>R</p>
-</div>
-<section id="check-out-our-r-package" class="level2 card--front">
-<h2 class="anchored" data-anchor-id="check-out-our-r-package">Check out our R package</h2>
-<p><a href="https://lucymcgowan.github.io/mdr/index.html">mdr</a></p>
-</section>
-<section id="check-out-our-r-package-1" class="level2 card--back">
-<h2 class="anchored" data-anchor-id="check-out-our-r-package-1">Check out our R package</h2>
-<p><a href="https://lucymcgowan.github.io/mdr/index.html">mdr</a></p>
-</section>
-</div>
-<div class="card" style="--i: 2;">
-<div class="tab">
-<p>smile</p>
-</div>
-<section id="sentiment-analysis" class="level2 card--front">
-<h2 class="anchored" data-anchor-id="sentiment-analysis">Sentiment Analysis</h2>
-<p>Who is happier, the innies or outies: a text analysis (SPOILER: it’s the innies, by a factor of 2!). <a href="analysis-innie-sentiment">Read More &gt;</a></p>
-</section>
-<section id="sentiment-analysis-1" class="level2 card--back">
-<h2 class="anchored" data-anchor-id="sentiment-analysis-1">Sentiment Analysis</h2>
-<p>Who is happier, the innies or outies: a text analysis (SPOILER: it’s the innies, by a factor of 2!). <a href="analysis-innie-sentiment">Read More &gt;</a></p>
-</section>
-</div>
-<div class="card" style="--i: 3;">
-<div class="tab">
-<p>dings</p>
-</div>
-<section id="elevator-ding-analysis" class="level2 card--front">
-<h2 class="anchored" data-anchor-id="elevator-ding-analysis">Elevator Ding Analysis</h2>
-<p><code>C#</code>, <code>G</code>, or <code>Bb</code>? the pitch alone tells the story. <a href="analysis-elevator-dings">Read More &gt;</a></p>
-</section>
-<section id="elevator-ding-analysis-1" class="level2 card--back">
-<h2 class="anchored" data-anchor-id="elevator-ding-analysis-1">Elevator Ding Analysis</h2>
-<p><code>C#</code>, <code>G</code>, or <code>Bb</code>? the pitch alone tells the story. <a href="analysis-elevator-dings">Read More &gt;</a></p>
-</section>
-</div>
-<div class="card" style="--i: 4;">
-<div class="tab">
-<p>about</p>
-</div>
-<section id="about" class="level2 card--front">
-<h2 class="anchored" data-anchor-id="about">about</h2>
-<p>This site was built by Lucy D.</p>
-<p><a href="about">Read More &gt;</a></p>
-</section>
-<div class="card--back">
-<p>{{ include about/index.qmd }}</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<div class="lines right">
-<p><span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span></p>
 </div>
-<div class="lines left">
-<p><span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span> <span></span></p>
+<div class="text">
+<p>Now lets look at some word frequency by episode. I pulled out the top 10 words per sentiment (and show some ties).</p>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Selecting by n</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-</center>
+<div class="cell-output cell-output-stderr">
+<pre><code>Selecting by n</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 
@@ -594,7 +550,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="./../">
+    <a class="nav-link" href="../../">
 <p>home &gt;</p>
 </a>
   </li>  
@@ -625,7 +581,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script type="text/javascript" src="card-animation.js"></script>
 
 
 

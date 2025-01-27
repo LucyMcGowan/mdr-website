@@ -1,44 +1,114 @@
 [
   {
+    "objectID": "analysis-elevator-dings/index.html",
+    "href": "analysis-elevator-dings/index.html",
+    "title": "",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by Sam_Badi on Reddit. The data consists of all elevator dings in the Severance episodes along with the episode number, time stamp, pitch of the ding, and the action associated. Examining the plot below, we see across all dings the G is associated with both innie and outies going to sleep, the C# is consistently associated with both innies and outies waking up, and in general a Bb plays when they enter the elevator, however there are a few B♮ thrown in there at the beginning of episode 5."
+  },
+  {
+    "objectID": "analysis-elevator-dings/index.html#elevator-ding-analysis",
+    "href": "analysis-elevator-dings/index.html#elevator-ding-analysis",
+    "title": "",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by Sam_Badi on Reddit. The data consists of all elevator dings in the Severance episodes along with the episode number, time stamp, pitch of the ding, and the action associated. Examining the plot below, we see across all dings the G is associated with both innie and outies going to sleep, the C# is consistently associated with both innies and outies waking up, and in general a Bb plays when they enter the elevator, however there are a few B♮ thrown in there at the beginning of episode 5."
+  },
+  {
+    "objectID": "analysis-innie-sentiment/index.html",
+    "href": "analysis-innie-sentiment/index.html",
+    "title": "",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by [the Severance wiki]https://severance.wiki/). I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the sentiment lexicon compiled by Bing Liu and collaborators. I calculated a sentiment score by taking the positive - negative scores, higher scores indicate the episode was more positive. It looks like the innies are TWO TIMES more positive, in terms of language, compared to the outies. wow.\nSelecting by n\n\n\n\n\n\n\n\n\n\nSelecting by n"
+  },
+  {
+    "objectID": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
+    "href": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
+    "title": "",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by [the Severance wiki]https://severance.wiki/). I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the sentiment lexicon compiled by Bing Liu and collaborators. I calculated a sentiment score by taking the positive - negative scores, higher scores indicate the episode was more positive. It looks like the innies are TWO TIMES more positive, in terms of language, compared to the outies. wow."
+  },
+  {
+    "objectID": "about/index.html",
+    "href": "about/index.html",
+    "title": "",
+    "section": "",
+    "text": "This website was build by Lucy D’Agostino McGowan."
+  },
+  {
+    "objectID": "about/index.html#about",
+    "href": "about/index.html#about",
+    "title": "",
+    "section": "",
+    "text": "This website was build by Lucy D’Agostino McGowan."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Card 2",
+    "title": "",
     "section": "",
-    "text": "Card 1\n\n\n\n\n\n\nMore info\n\n\n\n\nCard 2\n\n\n\n\n\n\nMore info\n\n\n\n\nCard 3\n\n\n\n\n\n\nMore info\n\n\n\n\nCard 4\n\n\n\n\n\n\nMore info\n\n\n\n\nCard 5\n\n\n\n\n\n\nMore info"
+    "text": "hi\n\n\n\nthis website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.\n\n\n\nthis website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nsmile\n\n\n\nWho is happier, the innies or outies: a text analysis (SPOILER: it’s the innies, by a factor of 2!). Read More &gt;\n\n\n\nWho is happier, the innies or outies: a text analysis (SPOILER: it’s the innies, by a factor of 2!). Read More &gt;\n\n\n\n\ndings\n\n\n\nC#, G, or Bb? the pitch alone tells the story. Read More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story. Read More &gt;\n\n\n\n\nabout\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n{{ include about/index.qmd }}"
   },
   {
-    "objectID": "index.html#back-of-card-1",
-    "href": "index.html#back-of-card-1",
-    "title": "Card 2",
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "",
     "section": "",
-    "text": "More info"
+    "text": "this website analyzes data from the Severance TV show. please enjoy all cards and analyses equally."
   },
   {
-    "objectID": "index.html#back-of-card-2",
-    "href": "index.html#back-of-card-2",
-    "title": "Card 2",
+    "objectID": "index.html#welcome-1",
+    "href": "index.html#welcome-1",
+    "title": "",
     "section": "",
-    "text": "More info"
+    "text": "this website analyzes data from the Severance TV show. please enjoy all cards and analyses equally."
   },
   {
-    "objectID": "index.html#back-of-card-3",
-    "href": "index.html#back-of-card-3",
-    "title": "Card 2",
+    "objectID": "index.html#check-out-our-r-package",
+    "href": "index.html#check-out-our-r-package",
+    "title": "",
     "section": "",
-    "text": "More info"
+    "text": "mdr"
   },
   {
-    "objectID": "index.html#back-of-card-4",
-    "href": "index.html#back-of-card-4",
-    "title": "Card 2",
+    "objectID": "index.html#check-out-our-r-package-1",
+    "href": "index.html#check-out-our-r-package-1",
+    "title": "",
     "section": "",
-    "text": "More info"
+    "text": "mdr"
   },
   {
-    "objectID": "index.html#back-of-card-5",
-    "href": "index.html#back-of-card-5",
-    "title": "Card 2",
+    "objectID": "index.html#sentiment-analysis",
+    "href": "index.html#sentiment-analysis",
+    "title": "",
     "section": "",
-    "text": "More info"
+    "text": "Who is happier, the innies or outies: a text analysis (SPOILER: it’s the innies, by a factor of 2!). Read More &gt;"
+  },
+  {
+    "objectID": "index.html#sentiment-analysis-1",
+    "href": "index.html#sentiment-analysis-1",
+    "title": "",
+    "section": "",
+    "text": "Who is happier, the innies or outies: a text analysis (SPOILER: it’s the innies, by a factor of 2!). Read More &gt;"
+  },
+  {
+    "objectID": "index.html#elevator-ding-analysis",
+    "href": "index.html#elevator-ding-analysis",
+    "title": "",
+    "section": "",
+    "text": "C#, G, or Bb? the pitch alone tells the story. Read More &gt;"
+  },
+  {
+    "objectID": "index.html#elevator-ding-analysis-1",
+    "href": "index.html#elevator-ding-analysis-1",
+    "title": "",
+    "section": "",
+    "text": "C#, G, or Bb? the pitch alone tells the story. Read More &gt;"
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "",
+    "section": "",
+    "text": "This site was built by Lucy D.\nRead More &gt;"
   }
 ]
