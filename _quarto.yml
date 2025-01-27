@@ -5,7 +5,7 @@ website:
   page-footer:
     left:
       - text: 'home >'
-        href: '../'
+        href: '/'
     right:
       - text: LDM
         href: https://lucymcgowan.com
