@@ -1,0 +1,78 @@
+---
+format: html
+---
+
+<center>
+
+::: text
+
+## When did employees join Lumon?
+
+This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A [Linkedin ad campaign](https://www.linkedin.com/posts/lumon-industries_ad-activity-6900481932296114177-8rlD) mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly's start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values. 
+
+Please enjoy all predictions equally.
+
+:::
+
+</center>
+
+```{r}
+#| code-fold: true
+#| message: false
+#| warning: false
+#| fig-align: center
+#| fig-width: 9
+
+library(mdr)
+library(tidyverse)
+library(ggiraph)
+
+preds <- tibble(id_numeric = 8039:8988)
+
+preds$joined_predicted <- lm(joined ~ I(id_numeric^30), badges) |>
+  predict(newdata = preds)
+
+p <- ggplot(badges, 
+            aes(x = id_numeric,
+                y = joined_predicted,
+                tooltip = glue::glue("test"))) +
+  geom_point_interactive(aes(tooltip = glue::glue("{name}<br>employee code: {id}<br>predicted start: {round(joined_predicted / 365, 1)} years ago")),
+                         color = "#6AF307",
+                         size = 3) +
+  geom_line(data = preds, aes(y = joined_predicted), color = "white",
+            linetype = "dashed") + 
+  scale_y_continuous(
+    breaks = badges$joined_predicted,
+    labels = badges$name[order(badges$joined_predicted, decreasing = TRUE)],
+    sec.axis = sec_axis(~ ., breaks = badges$joined_predicted,
+                        labels = round(badges$joined_predicted / 365, 1),
+                        name = "Predicted Start (Years Ago)")
+  ) +
+  scale_x_continuous(
+    breaks = badges$id_numeric,
+    labels = function(x) glue::glue("08-{substr(x, 2, 4)}")
+  ) +
+  labs(x = "Employee Code", y = "") +
+  annotate("label", x = 8907, y = 365*2,
+           size = 3,
+           label = "~2 years\nsource: S1E1 (40:39)",
+           hjust = 1,
+           fill = "#CFE0E1",
+           family = "mono") +
+  annotate("label", x = 8430, y = 365*9,
+           size = 3,
+           label = "~9 years\nsource: Linkedin",
+           hjust = 1,
+           fill = "#CFE0E1",
+           family = "mono") +
+  theme_mdr() +
+  theme(
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  )
+
+ggiraph::girafe(ggobj = p)
+
+```
+
+

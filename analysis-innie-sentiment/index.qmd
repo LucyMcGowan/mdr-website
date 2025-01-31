@@ -53,7 +53,6 @@ sentiment_summary |>
   theme(
     legend.position = "none" 
   )
-
 ```
 
 ::: text

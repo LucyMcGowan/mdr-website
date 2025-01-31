@@ -22,7 +22,7 @@ format:
 ::: {.card style="--i: 0;"}
 
 ::: {.tab}
-hi
+{{< fa home >}}
 :::
 
 ::: {.card--front}
@@ -34,6 +34,7 @@ this website analyzes data from the Severance TV show. please enjoy all analyses
 :::
 
 ::: {.card--back}  
+
 ## welcome
 
 this website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.
@@ -44,52 +45,57 @@ this website analyzes data from the Severance TV show. please enjoy all cards an
 
 ::: {.card style="--i: 1;"}
 ::: {.tab}
-R
+A
 :::
 
 ::: {.card--front}
 
-## check out our R package
+## about
 
-[mdr](https://lucymcgowan.github.io/mdr/index.html)
+This site was built by Lucy D. 
 
+[Read More >](about)
 :::
 
 ::: {.card--back}  
-## check out our R package
 
-[mdr](https://lucymcgowan.github.io/mdr/index.html)
+## about
+
+This site was built by Lucy D. 
+
+[Read More >](about)
+
 :::
 :::
 
 ::: {.card style="--i: 2;"}
 ::: {.tab}
-smile
+B
 :::
 
 ::: {.card--front}
 
-## sentiment analysis
+## badge analysis
 
-Who is happier: the innies or outies?    
-[Read More >](analysis-innie-sentiment)
+This analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.
 
-
+[Read More >](analysis-badges)
 :::
 
 ::: {.card--back}  
-## sentiment analysis
 
-Who is happier: the innies or outies?    
-[Read More >](analysis-innie-sentiment)
+## badge analysis
 
+This analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.
+
+[Read More >](analysis-badges)
 
 :::
 :::
-    
+
 ::: {.card style="--i: 3;"}
 ::: {.tab}
-dings
+D
 :::
 
 ::: {.card--front}
@@ -110,27 +116,61 @@ dings
 
 :::
 :::
-    
+
 ::: {.card style="--i: 4;"}
 ::: {.tab}
-about
+R
 :::
 
 ::: {.card--front}
 
-## about
+## check out our R package
 
-This site was built by Lucy D. 
+[mdr](https://lucymcgowan.github.io/mdr/index.html)
 
-[Read More >](about)
 :::
 
 ::: {.card--back}  
 
-{{ include about/index.qmd }}
+## check out our R package
+
+[mdr](https://lucymcgowan.github.io/mdr/index.html)
+:::
+:::
+    
+    
+::: {.card style="--i: 5;"}
+::: {.tab}
+S
+:::
+
+::: {.card--front}
+
+## sentiment analysis
+
+Who is happier: the innies or outies?    
+[Read More >](analysis-innie-sentiment)
+
+
+:::
+
+::: {.card--back}  
+
+## sentiment analysis
+
+Who is happier: the innies or outies?    
+[Read More >](analysis-innie-sentiment)
+
 
 :::
 :::
+
+
+
+
+
+    
+
 
    
 ::: {.lines .right}
