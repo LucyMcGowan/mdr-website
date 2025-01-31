@@ -42,11 +42,25 @@
     "text": "This website was build by Lucy D’Agostino McGowan."
   },
   {
+    "objectID": "analysis-badges/index.html",
+    "href": "analysis-badges/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally.\nCode\nlibrary(mdr)\nlibrary(tidyverse)\nlibrary(ggiraph)\n\npreds &lt;- tibble(id_numeric = 8039:8988)\n\npreds$joined_predicted &lt;- lm(joined ~ I(id_numeric^30), badges) |&gt;\n  predict(newdata = preds)\n\np &lt;- ggplot(badges, \n            aes(x = id_numeric,\n                y = joined_predicted,\n                tooltip = glue::glue(\"test\"))) +\n  geom_point_interactive(aes(tooltip = glue::glue(\"{name}&lt;br&gt;employee code: {id}&lt;br&gt;predicted start: {round(joined_predicted / 365, 1)} years ago\")),\n                         color = \"#6AF307\",\n                         size = 3) +\n  geom_line(data = preds, aes(y = joined_predicted), color = \"white\",\n            linetype = \"dashed\") + \n  scale_y_continuous(\n    breaks = badges$joined_predicted,\n    labels = badges$name[order(badges$joined_predicted, decreasing = TRUE)],\n    sec.axis = sec_axis(~ ., breaks = badges$joined_predicted,\n                        labels = round(badges$joined_predicted / 365, 1),\n                        name = \"Predicted Start (Years Ago)\")\n  ) +\n  scale_x_continuous(\n    breaks = badges$id_numeric,\n    labels = function(x) glue::glue(\"08-{substr(x, 2, 4)}\")\n  ) +\n  labs(x = \"Employee Code\", y = \"\") +\n  annotate(\"label\", x = 8907, y = 365*2,\n           size = 3,\n           label = \"~2 years\\nsource: S1E1 (40:39)\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  annotate(\"label\", x = 8430, y = 365*9,\n           size = 3,\n           label = \"~9 years\\nsource: Linkedin\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  theme_mdr() +\n  theme(\n    panel.grid.minor = element_blank(),\n    axis.text.x = element_text(angle = 45, hjust = 1)\n  )\n\nggiraph::girafe(ggobj = p)"
+  },
+  {
+    "objectID": "analysis-badges/index.html#when-did-employees-join-lumon",
+    "href": "analysis-badges/index.html#when-did-employees-join-lumon",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "MDR",
     "section": "",
-    "text": "hi\n\n\n\nthis website analyzes data from the Severance TV show. please enjoy all analyses equally.\n\n\n\nthis website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nsmile\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\n\ndings\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nabout\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n{{ include about/index.qmd }}"
+    "text": "this website analyzes data from the Severance TV show. please enjoy all analyses equally.\n\n\n\nthis website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.\n\n\n\n\nA\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\n\nB\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\n\nD\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nS\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;"
   },
   {
     "objectID": "index.html#welcome",
@@ -61,6 +75,48 @@
     "title": "MDR",
     "section": "",
     "text": "this website analyzes data from the Severance TV show. please enjoy all cards and analyses equally."
+  },
+  {
+    "objectID": "index.html#about",
+    "href": "index.html#about",
+    "title": "MDR",
+    "section": "",
+    "text": "This site was built by Lucy D.\nRead More &gt;"
+  },
+  {
+    "objectID": "index.html#about-1",
+    "href": "index.html#about-1",
+    "title": "MDR",
+    "section": "",
+    "text": "This site was built by Lucy D.\nRead More &gt;"
+  },
+  {
+    "objectID": "index.html#badge-analysis",
+    "href": "index.html#badge-analysis",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;"
+  },
+  {
+    "objectID": "index.html#badge-analysis-1",
+    "href": "index.html#badge-analysis-1",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;"
+  },
+  {
+    "objectID": "index.html#elevator-ding-analysis",
+    "href": "index.html#elevator-ding-analysis",
+    "title": "MDR",
+    "section": "",
+    "text": "C#, G, or Bb? the pitch alone tells the story.\nRead More &gt;"
+  },
+  {
+    "objectID": "index.html#elevator-ding-analysis-1",
+    "href": "index.html#elevator-ding-analysis-1",
+    "title": "MDR",
+    "section": "",
+    "text": "C#, G, or Bb? the pitch alone tells the story.\nRead More &gt;"
   },
   {
     "objectID": "index.html#check-out-our-r-package",
@@ -89,26 +145,5 @@
     "title": "MDR",
     "section": "",
     "text": "Who is happier: the innies or outies?\nRead More &gt;"
-  },
-  {
-    "objectID": "index.html#elevator-ding-analysis",
-    "href": "index.html#elevator-ding-analysis",
-    "title": "MDR",
-    "section": "",
-    "text": "C#, G, or Bb? the pitch alone tells the story.\nRead More &gt;"
-  },
-  {
-    "objectID": "index.html#elevator-ding-analysis-1",
-    "href": "index.html#elevator-ding-analysis-1",
-    "title": "MDR",
-    "section": "",
-    "text": "C#, G, or Bb? the pitch alone tells the story.\nRead More &gt;"
-  },
-  {
-    "objectID": "index.html#about",
-    "href": "index.html#about",
-    "title": "MDR",
-    "section": "",
-    "text": "This site was built by Lucy D.\nRead More &gt;"
   }
 ]
