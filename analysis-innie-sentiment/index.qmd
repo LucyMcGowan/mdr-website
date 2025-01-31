@@ -8,7 +8,7 @@ format: html
 
 ## Sentiment analysis, innies vs outies
 
-This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) R package, which used data originally compiled by [the Severance wiki](https://severance.wiki/). I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using [the sentiment lexicon compiled by Bing Liu and collaborators](https://juliasilge.github.io/tidytext/reference/sentiments.html). I calculated a sentiment score by taking the positive - negative scores, higher scores indicate the episode was more positive. It looks like the innies are `TWO TIMES` more positive, in terms of language, compared to the outies. wow.
+This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) R package, which used data originally compiled by [the Severance wiki](https://severance.wiki/). I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (`-0.26`) and the outies a positive score (`0.26`). We can look at the distribution.
 
 :::
 
@@ -20,39 +20,31 @@ library(tidyverse)
 library(tidytext)
 library(mdr)
 
-s2e1_transcript$episode <- 1
-s2e2_transcript$episode <- 2
-
-combined_df <- bind_rows(s2e1_transcript, s2e2_transcript)
-
-
-sentiment_data <- combined_df |>
-  unnest_tokens(word, text) |>
-  inner_join(get_sentiments("bing"), by = "word") 
+sentiment_data <- transcripts |>
+  filter(season == 2, grepl("Mark|Dylan|Helly|Irving", speaker)) |>
+  unnest_tokens(word, dialogue) |>
+  inner_join(get_sentiments("afinn"), by = "word") 
 
 sentiment_summary <- sentiment_data |>
   group_by(episode) |>
-  count(sentiment) |>
-  spread(sentiment, n, fill = 0) |>
-  mutate(sentiment_score = positive - negative)
+  summarise(sentiment = mean(value))
 
-sentiment_summary |> 
-  ggplot(aes(x = factor(episode), y = sentiment_score, fill = as.factor(episode))) + 
-  geom_bar(stat = "identity") +
-  scale_x_discrete(
-    breaks = c("1", "2"),  # Specify the breaks as character values (episode numbers)
-    labels = c("S2E1", "S2E2")  # Custom labels for the x-axis
-  ) +
-  scale_fill_manual(values = c("#CFE0E1", "#CFE0E1")) +
+sentiment_data %>%
+  group_by(episode, value) |>
+  count() |>
+  ungroup() |>
+  group_by(episode) |>
+  mutate(total_words = sum(n),  
+         percentage = (n / total_words)) |>
+  ungroup()|>
+ggplot(aes(x = value, y = percentage, fill = factor(episode))) +
+  geom_bar(stat = "identity", position = "dodge", alpha = 0.7) + 
+  scale_y_continuous(labels = scales::percent) +
   theme_mdr() +
-  labs(
-    title = "Sentiment Analysis of S2E1 and S2E2 Transcripts", 
-    x = "", 
-    y = "Sentiment Score (Positive - Negative)"
-  ) +
-  theme(
-    legend.position = "none" 
-  )
+  scale_fill_manual(values = c("blue", "red")) +
+  labs(y = "",
+       x = "sentiment value",
+       fill = "Episode")
 ```
 
 ::: text
@@ -65,6 +57,7 @@ Now lets look at some word frequency by episode. I pulled out the top 5 words pe
 ```{r}
 #| echo: false
 word_freq <- sentiment_data |>
+  mutate(sentiment = ifelse(value > 0, "positive", "negative")) |>
   count(word, sentiment, episode, sort = TRUE) |>
   ungroup()
 
