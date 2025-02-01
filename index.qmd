@@ -30,7 +30,7 @@ format:
 ## welcome
 
 we analyse data from the Severance TV show. please enjoy all analyses equally. 
-[get your Lumon badge here](join-us)
+[get your Lumon badge here >](join-us)
 
 :::
 
@@ -39,7 +39,7 @@ we analyse data from the Severance TV show. please enjoy all analyses equally.
 ## welcome
 
 we analyse data from the Severance TV show. please enjoy all analyses equally. 
-[get your Lumon badge here](join-us)
+[get your Lumon badge here >](join-us)
 :::
 
 :::
