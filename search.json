@@ -18,21 +18,21 @@
     "href": "index.html",
     "title": "MDR",
     "section": "",
-    "text": "this website analyzes data from the Severance TV show. please enjoy all analyses equally.\n\n\n\nthis website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.\n\n\n\n\nA\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\n\nB\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\n\nD\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nF\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nS\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;"
+    "text": "we analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here\n\n\n\nwe analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here\n\n\n\n\nA\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\n\nB\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\n\nD\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nF\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nS\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;"
   },
   {
     "objectID": "index.html#welcome",
     "href": "index.html#welcome",
     "title": "MDR",
     "section": "",
-    "text": "this website analyzes data from the Severance TV show. please enjoy all analyses equally."
+    "text": "we analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here"
   },
   {
     "objectID": "index.html#welcome-1",
     "href": "index.html#welcome-1",
     "title": "MDR",
     "section": "",
-    "text": "this website analyzes data from the Severance TV show. please enjoy all cards and analyses equally."
+    "text": "we analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here"
   },
   {
     "objectID": "index.html#about",
@@ -119,18 +119,18 @@
     "text": "Who is happier: the innies or outies?\nRead More &gt;"
   },
   {
-    "objectID": "analysis-badges/index.html",
-    "href": "analysis-badges/index.html",
+    "objectID": "analysis-innie-sentiment/index.html",
+    "href": "analysis-innie-sentiment/index.html",
     "title": "MDR",
     "section": "",
-    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally.\nCode\nlibrary(mdr)\nlibrary(tidyverse)\nlibrary(ggiraph)\n\npreds &lt;- tibble(id_numeric = 8039:8988)\n\npreds$joined_predicted &lt;- lm(joined ~ I(id_numeric^30), badges) |&gt;\n  predict(newdata = preds)\n\np &lt;- ggplot(badges, \n            aes(x = id_numeric,\n                y = joined_predicted,\n                tooltip = glue::glue(\"test\"))) +\n  geom_point_interactive(aes(tooltip = glue::glue(\"{name}&lt;br&gt;employee code: {id}&lt;br&gt;predicted start: {round(joined_predicted / 365, 1)} years ago\")),\n                         color = \"#6AF307\",\n                         size = 3) +\n  geom_line(data = preds, aes(y = joined_predicted), color = \"white\",\n            linetype = \"dashed\") + \n  scale_y_continuous(\n    breaks = badges$joined_predicted,\n    labels = badges$name[order(badges$joined_predicted, decreasing = TRUE)],\n    sec.axis = sec_axis(~ ., breaks = badges$joined_predicted,\n                        labels = round(badges$joined_predicted / 365, 1),\n                        name = \"Predicted Start (Years Ago)\")\n  ) +\n  scale_x_continuous(\n    breaks = badges$id_numeric,\n    labels = function(x) glue::glue(\"08-{substr(x, 2, 4)}\")\n  ) +\n  labs(x = \"Employee Code\", y = \"\") +\n  annotate(\"label\", x = 8907, y = 365*2,\n           size = 3,\n           label = \"~2 years\\nsource: S1E1 (40:39)\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  annotate(\"label\", x = 8430, y = 365*9,\n           size = 3,\n           label = \"~9 years\\nsource: Linkedin\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  theme_mdr() +\n  theme(\n    panel.grid.minor = element_blank(),\n    axis.text.x = element_text(angle = 45, hjust = 1)\n  )\n\nggiraph::girafe(ggobj = p)"
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution.\n\n\n\n\n\n\n\n\n\n\n\nNow lets look at some word frequency by episode. I pulled out the top 5 words per sentiment (and show some ties).\n\n\n\nSelecting by n\n\n\n\n\n\n\n\n\n\nSelecting by n"
   },
   {
-    "objectID": "analysis-badges/index.html#when-did-employees-join-lumon",
-    "href": "analysis-badges/index.html#when-did-employees-join-lumon",
+    "objectID": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
+    "href": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
     "title": "MDR",
     "section": "",
-    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally."
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution."
   },
   {
     "objectID": "about/index.html",
@@ -147,18 +147,32 @@
     "text": "This website was build by Lucy D’Agostino McGowan."
   },
   {
-    "objectID": "analysis-innie-sentiment/index.html",
-    "href": "analysis-innie-sentiment/index.html",
+    "objectID": "analysis-badges/index.html",
+    "href": "analysis-badges/index.html",
     "title": "MDR",
     "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution.\n\n\n\n\n\n\n\n\n\n\n\nNow lets look at some word frequency by episode. I pulled out the top 5 words per sentiment (and show some ties).\n\n\n\nSelecting by n\n\n\n\n\n\n\n\n\n\nSelecting by n"
+    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally.\nCode\nlibrary(mdr)\nlibrary(tidyverse)\nlibrary(ggiraph)\n\npreds &lt;- tibble(id_numeric = 8039:8988)\n\npreds$joined_predicted &lt;- lm(joined ~ I(id_numeric^30), badges) |&gt;\n  predict(newdata = preds)\n\np &lt;- ggplot(badges, \n            aes(x = id_numeric,\n                y = joined_predicted,\n                tooltip = glue::glue(\"test\"))) +\n  geom_point_interactive(aes(tooltip = glue::glue(\"{name}&lt;br&gt;employee code: {id}&lt;br&gt;predicted start: {round(joined_predicted / 365, 1)} years ago\")),\n                         color = \"#6AF307\",\n                         size = 3) +\n  geom_line(data = preds, aes(y = joined_predicted), color = \"white\",\n            linetype = \"dashed\") + \n  scale_y_continuous(\n    breaks = badges$joined_predicted,\n    labels = badges$name[order(badges$joined_predicted, decreasing = TRUE)],\n    sec.axis = sec_axis(~ ., breaks = badges$joined_predicted,\n                        labels = round(badges$joined_predicted / 365, 1),\n                        name = \"Predicted Start (Years Ago)\")\n  ) +\n  scale_x_continuous(\n    breaks = badges$id_numeric,\n    labels = function(x) glue::glue(\"08-{substr(x, 2, 4)}\")\n  ) +\n  labs(x = \"Employee Code\", y = \"\") +\n  annotate(\"label\", x = 8907, y = 365*2,\n           size = 3,\n           label = \"~2 years\\nsource: S1E1 (40:39)\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  annotate(\"label\", x = 8430, y = 365*9,\n           size = 3,\n           label = \"~9 years\\nsource: Linkedin\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  theme_mdr() +\n  theme(\n    panel.grid.minor = element_blank(),\n    axis.text.x = element_text(angle = 45, hjust = 1)\n  )\n\nggiraph::girafe(ggobj = p)"
   },
   {
-    "objectID": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
-    "href": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
+    "objectID": "analysis-badges/index.html#when-did-employees-join-lumon",
+    "href": "analysis-badges/index.html#when-did-employees-join-lumon",
     "title": "MDR",
     "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution."
+    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally."
+  },
+  {
+    "objectID": "join-us/index.html",
+    "href": "join-us/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "Care to join us? Get your badge here:"
+  },
+  {
+    "objectID": "join-us/index.html#join-us",
+    "href": "join-us/index.html#join-us",
+    "title": "MDR",
+    "section": "",
+    "text": "Care to join us? Get your badge here:"
   },
   {
     "objectID": "analysis-feeling-over-time/index.html",
