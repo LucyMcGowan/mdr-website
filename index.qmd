@@ -29,7 +29,8 @@ format:
 
 ## welcome
 
-this website analyzes data from the Severance TV show. please enjoy all analyses equally.
+we analyse data from the Severance TV show. please enjoy all analyses equally. 
+[get your Lumon badge here](join-us)
 
 :::
 
@@ -37,8 +38,8 @@ this website analyzes data from the Severance TV show. please enjoy all analyses
 
 ## welcome
 
-this website analyzes data from the Severance TV show. please enjoy all cards and analyses equally.
-
+we analyse data from the Severance TV show. please enjoy all analyses equally. 
+[get your Lumon badge here](join-us)
 :::
 
 :::
@@ -142,6 +143,7 @@ This analysis creates a little sentiment profile for each episode.
 
 :::
 :::
+
 
 ::: {.card style="--i: 5;"}
 ::: {.tab}

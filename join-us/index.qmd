@@ -1,0 +1,21 @@
+---
+format: html
+---
+
+<center>
+
+::: text
+
+## Join us
+
+Care to join us? Get your badge here: 
+
+:::
+
+<iframe src="https://lucy.shinyapps.io/mdr-badge-generator/" 
+        width="100%" 
+        height="600px" 
+        style="border: none;">
+</iframe>
+
+</center>
