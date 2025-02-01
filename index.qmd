@@ -119,6 +119,32 @@ D
 
 ::: {.card style="--i: 4;"}
 ::: {.tab}
+F
+:::
+
+::: {.card--front}
+
+## how we're feeling
+
+This analysis creates a little sentiment profile for each episode.
+
+[Read More >](analysis-feeling-over-time)
+
+:::
+
+::: {.card--back} 
+
+## how we're feeling
+
+This analysis creates a little sentiment profile for each episode.
+
+[Read More >](analysis-feeling-over-time)
+
+:::
+:::
+
+::: {.card style="--i: 5;"}
+::: {.tab}
 R
 :::
 
@@ -139,7 +165,7 @@ R
 :::
     
     
-::: {.card style="--i: 5;"}
+::: {.card style="--i: 6;"}
 ::: {.tab}
 S
 :::

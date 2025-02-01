@@ -41,7 +41,7 @@ ggplot(aes(x = value, y = percentage, fill = factor(episode))) +
   geom_bar(stat = "identity", position = "dodge", alpha = 0.7) + 
   scale_y_continuous(labels = scales::percent) +
   theme_mdr() +
-  scale_fill_manual(values = c("blue", "red")) +
+  scale_fill_manual(values = c("#5BA9D0", "#C15C58")) +
   labs(y = "",
        x = "sentiment value",
        fill = "Episode")
@@ -67,11 +67,11 @@ word_freq |>
   top_n(5) |>
   ggplot(aes(x = reorder(word, n), y = n, fill = sentiment)) +
   geom_bar(stat = "identity", show.legend = FALSE, alpha = 0.8) +
-  scale_fill_manual(values = c("red", "blue")) +
+  scale_fill_manual(values = c("#C15C58", "#5BA9D0")) +
   coord_flip() +
   facet_wrap(~sentiment, scales = "free") +
   labs(title = "Top Words in Each Sentiment (S2E1)", 
-       x = "Word", 
+       x = "", 
        y = "Frequency") +
   theme_mdr() 
 
@@ -80,12 +80,12 @@ word_freq |>
   group_by(sentiment) |>
   top_n(5) |>
   ggplot(aes(x = reorder(word, n), y = n, fill = sentiment)) +
-  scale_fill_manual(values = c("red", "blue")) +
+  scale_fill_manual(values = c("#C15C58", "#5BA9D0")) +
   geom_bar(stat = "identity", show.legend = FALSE, alpha = 0.8) +
   coord_flip() +
   facet_wrap(~sentiment, scales = "free") +
   labs(title = "Top Words in Each Sentiment (S2E2)", 
-       x = "Word", 
+       x = "", 
        y = "Frequency") +
   theme_mdr() 
 
