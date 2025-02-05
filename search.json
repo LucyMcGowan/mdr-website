@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "MDR",
     "section": "",
-    "text": "we analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\nwe analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\n\nA\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\n\nB\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\n\nD\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nF\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nS\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;"
+    "text": "we analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\nwe analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\n\nA\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\n\nB\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\n\nD\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nF\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nS\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\n\nW\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;"
   },
   {
     "objectID": "index.html#welcome",
@@ -119,6 +119,20 @@
     "text": "Who is happier: the innies or outies?\nRead More &gt;"
   },
   {
+    "objectID": "index.html#whos-talking",
+    "href": "index.html#whos-talking",
+    "title": "MDR",
+    "section": "",
+    "text": "Check out these episode profiles color coded by who is speaking Read More &gt;"
+  },
+  {
+    "objectID": "index.html#whos-talking-1",
+    "href": "index.html#whos-talking-1",
+    "title": "MDR",
+    "section": "",
+    "text": "Check out these episode profiles color coded by who is speaking Read More &gt;"
+  },
+  {
     "objectID": "analysis-innie-sentiment/index.html",
     "href": "analysis-innie-sentiment/index.html",
     "title": "MDR",
@@ -131,6 +145,20 @@
     "title": "MDR",
     "section": "",
     "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution."
+  },
+  {
+    "objectID": "analysis-whos-talking/index.html",
+    "href": "analysis-whos-talking/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. For each episode we count the number of words each of the four main characters (Mark, Helly, Dylan, and Irving) speak for in each minute and visualize them below. Click on the tabs to switch episodes.\n\n\nS1E1S1E2S1E3S1E4S1E5S1E6S1E7S1E8S1E9S2E1S2E2S2E3"
+  },
+  {
+    "objectID": "analysis-whos-talking/index.html#whos-talking",
+    "href": "analysis-whos-talking/index.html#whos-talking",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. For each episode we count the number of words each of the four main characters (Mark, Helly, Dylan, and Irving) speak for in each minute and visualize them below. Click on the tabs to switch episodes."
   },
   {
     "objectID": "about/index.html",
