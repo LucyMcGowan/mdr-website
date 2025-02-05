@@ -193,6 +193,32 @@ Who is happier: the innies or outies?
 :::
 :::
 
+::: {.card style="--i: 7;"}
+::: {.tab}
+W
+:::
+
+::: {.card--front}
+
+## who's talking?
+
+Check out these episode profiles color coded by who is speaking 
+[Read More >](analysis-whos-talking)
+
+
+:::
+
+::: {.card--back}  
+
+## who's talking?
+
+Check out these episode profiles color coded by who is speaking 
+[Read More >](analysis-whos-talking)
+
+
+:::
+:::
+
 
 
 

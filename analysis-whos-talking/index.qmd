@@ -1,0 +1,202 @@
+---
+format: html
+---
+
+<center>
+::: text
+
+## Who's talking?
+
+This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) R package, which used data originally compiled by [the Severance wiki](https://severance.wiki/). For each episode we count the number of words each of the four main characters (Mark, Helly, Dylan, and Irving) speak for in each minute and visualize them below. Click on the tabs to switch episodes.
+:::
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+library(tidyverse)
+library(tidytext)
+library(ggiraph)
+library(mdr)
+
+make_plot <- function(input) {
+data <- transcripts |>
+  mutate(speaker = case_when(
+         grepl("Cobel", speaker) ~ "Cobel",
+         speaker == "Mark W" ~ "Mark W",
+         grepl("Mark", speaker) ~ "Mark",
+         grepl("Helly", speaker) ~ "Helly",
+         speaker == "Dylan’s son" ~ "Dylan’s son",
+         grepl("Dylan", speaker) ~ "Dylan",
+         grepl("Irv", speaker) ~ "Irving",
+         grepl("Devon", speaker) ~ "Devon",
+         grepl("Ricken", speaker) ~ "Ricken",
+         grepl("Milchick", speaker) ~ "Milchick",
+         grepl("Burt", speaker) ~ "Burt",
+         grepl("Petey", speaker) ~ "Petey",
+         grepl("Casey | Gemma", speaker) ~ "Ms. Casey",
+         grepl("Reghabi", speaker) ~ "Reghabi",
+         TRUE ~ "other"
+  ),
+  id = glue::glue("Season {season} Episode {episode}")) |>
+  filter(id == input) |>
+  filter(speaker %in% c("Mark", "Helly", "Dylan", "Irving")) |>
+  unnest_tokens(word, dialogue) |>
+  mutate(minute = minute(timestamp)) |>
+  group_by(id, minute, speaker) |>
+  summarise(value = n(), .groups = 'drop') 
+
+ ggplot(data, aes(tooltip = glue::glue("{minute} min<br>{speaker}: {value} words"))) +
+  geom_bar_interactive(aes(x = minute, y = value, fill = speaker), 
+           stat = "identity") +
+  scale_fill_manual(values = c("#EBCF00", "#A25056", "#00957E",  "#2358A8")) +
+  theme_mdr() +
+  theme(
+    legend.position = "bottom",
+    axis.text = element_blank(),
+    axis.title = element_blank(),
+    panel.grid = element_blank(),
+    axis.line = element_blank(),
+    plot.margin = unit(c(0, -0.63, 0, -0.63), "cm")
+  ) +
+  coord_radial(inner.radius = 0.2) +
+  labs(fill = "")
+}
+```
+
+::: {.panel-tabset}
+
+## S1E1
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 9
+p <- make_plot("Season 1 Episode 1")
+ggiraph::girafe(ggobj = p)
+
+```
+
+## S1E2
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 9
+
+p <- make_plot("Season 1 Episode 2")
+ggiraph::girafe(ggobj = p)
+```
+
+## S1E3
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 9
+
+p <- make_plot("Season 1 Episode 3")
+ggiraph::girafe(ggobj = p)
+```
+
+## S1E4
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 9
+
+p <- make_plot("Season 1 Episode 4")
+ggiraph::girafe(ggobj = p)
+```
+
+## S1E5
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 9
+
+p <- make_plot("Season 1 Episode 5")
+ggiraph::girafe(ggobj = p)
+```
+
+## S1E6
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 9
+
+p <- make_plot("Season 1 Episode 6")
+ggiraph::girafe(ggobj = p)
+```
+
+## S1E7
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 9
+
+p <- make_plot("Season 1 Episode 7")
+ggiraph::girafe(ggobj = p)
+```
+
+## S1E8
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 9
+
+p <- make_plot("Season 1 Episode 8")
+ggiraph::girafe(ggobj = p)
+```
+
+## S1E9
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 9
+
+p <- make_plot("Season 1 Episode 9")
+ggiraph::girafe(ggobj = p)
+```
+
+## S2E1
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 9
+
+p <- make_plot("Season 2 Episode 1")
+ggiraph::girafe(ggobj = p)
+```
+
+## S2E2
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 9
+
+p <- make_plot("Season 2 Episode 2")
+ggiraph::girafe(ggobj = p)
+```
+
+## S2E3
+
+```{r}
+#| echo: false
+#| fig-width: 8
+#| fig-height: 9
+
+p <- make_plot("Season 2 Episode 3")
+ggiraph::girafe(ggobj = p)
+```
+:::
+
+</center>
