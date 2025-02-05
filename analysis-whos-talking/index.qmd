@@ -46,8 +46,9 @@ data <- transcripts |>
   group_by(id, minute, speaker) |>
   summarise(value = n(), .groups = 'drop') 
 
- ggplot(data, aes(tooltip = glue::glue("{minute} min<br>{speaker}: {value} words"))) +
-  geom_bar_interactive(aes(x = minute, y = value, fill = speaker), 
+ ggplot(data) +
+  geom_bar_interactive(aes(x = minute, y = value, fill = speaker,
+                           tooltip = glue::glue("{minute} min<br>{speaker}: {value} words")), 
            stat = "identity") +
   scale_fill_manual(values = c("#EBCF00", "#A25056", "#00957E",  "#2358A8")) +
   theme_mdr() +
@@ -72,7 +73,14 @@ data <- transcripts |>
 #| echo: false
 #| fig-width: 8
 #| fig-height: 9
-p <- make_plot("Season 1 Episode 1")
+
+img <- data.frame(x = 0, y = 0, image = "s1e1.png")
+
+p <- make_plot("Season 1 Episode 1") + 
+    ggimage::geom_image(data = img, 
+                        aes(x = x, y = y, image = image),
+                        size = 0.15, nudge_x = -2, nudge_y = -45)
+
 ggiraph::girafe(ggobj = p)
 
 ```
@@ -84,7 +92,12 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 9
 
-p <- make_plot("Season 1 Episode 2")
+img <- data.frame(x = 0, y = 0, image = "s1e2.png")
+
+p <- make_plot("Season 1 Episode 2") + 
+    ggimage::geom_image(data = img, 
+                        aes(x = x, y = y, image = image),
+                        size = 0.15, nudge_x = -2, nudge_y = -58)
 ggiraph::girafe(ggobj = p)
 ```
 
@@ -95,7 +108,12 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 9
 
-p <- make_plot("Season 1 Episode 3")
+img <- data.frame(x = 0, y = 0, image = "s1e3.png")
+
+p <- make_plot("Season 1 Episode 3") + 
+    ggimage::geom_image(data = img, 
+                        aes(x = x, y = y, image = image),
+                        size = 0.15, nudge_x = -2, nudge_y = -50)
 ggiraph::girafe(ggobj = p)
 ```
 
@@ -106,7 +124,12 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 9
 
-p <- make_plot("Season 1 Episode 4")
+img <- data.frame(x = 0, y = 0, image = "s1e4.png")
+
+p <- make_plot("Season 1 Episode 4") + 
+    ggimage::geom_image(data = img, 
+                        aes(x = x, y = y, image = image),
+                        size = 0.15, nudge_x = -2, nudge_y = -55)
 ggiraph::girafe(ggobj = p)
 ```
 
@@ -117,7 +140,12 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 9
 
-p <- make_plot("Season 1 Episode 5")
+img <- data.frame(x = 0, y = 0, image = "s1e5.png")
+
+p <- make_plot("Season 1 Episode 5") + 
+    ggimage::geom_image(data = img, 
+                        aes(x = x, y = y, image = image),
+                        size = 0.15, nudge_x = -2, nudge_y = -32)
 ggiraph::girafe(ggobj = p)
 ```
 
@@ -128,7 +156,12 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 9
 
-p <- make_plot("Season 1 Episode 6")
+img <- data.frame(x = 0, y = 0, image = "s1e6.png")
+
+p <- make_plot("Season 1 Episode 6") + 
+    ggimage::geom_image(data = img, 
+                        aes(x = x, y = y, image = image),
+                        size = 0.15, nudge_x = -2, nudge_y = -38)
 ggiraph::girafe(ggobj = p)
 ```
 
@@ -139,7 +172,12 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 9
 
-p <- make_plot("Season 1 Episode 7")
+img <- data.frame(x = 0, y = 0, image = "s1e7.png")
+
+p <- make_plot("Season 1 Episode 7") + 
+    ggimage::geom_image(data = img, 
+                        aes(x = x, y = y, image = image),
+                        size = 0.15, nudge_x = -2, nudge_y = -45)
 ggiraph::girafe(ggobj = p)
 ```
 
@@ -150,7 +188,12 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 9
 
-p <- make_plot("Season 1 Episode 8")
+img <- data.frame(x = 0, y = 0, image = "s1e8.png")
+
+p <- make_plot("Season 1 Episode 8") + 
+    ggimage::geom_image(data = img, 
+                        aes(x = x, y = y, image = image),
+                        size = 0.15, nudge_x = -2, nudge_y = -28)
 ggiraph::girafe(ggobj = p)
 ```
 
@@ -161,7 +204,12 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 9
 
-p <- make_plot("Season 1 Episode 9")
+img <- data.frame(x = 0, y = 0, image = "s1e9.png")
+
+p <- make_plot("Season 1 Episode 9") + 
+    ggimage::geom_image(data = img, 
+                        aes(x = x, y = y, image = image),
+                        size = 0.15, nudge_x = -2, nudge_y = -45)
 ggiraph::girafe(ggobj = p)
 ```
 
@@ -172,7 +220,12 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 9
 
-p <- make_plot("Season 2 Episode 1")
+img <- data.frame(x = 0, y = 0, image = "s2e1.png")
+
+p <- make_plot("Season 2 Episode 1") + 
+    ggimage::geom_image(data = img, 
+                        aes(x = x, y = y, image = image),
+                        size = 0.15, nudge_x = -2, nudge_y = -45)
 ggiraph::girafe(ggobj = p)
 ```
 
@@ -182,8 +235,12 @@ ggiraph::girafe(ggobj = p)
 #| echo: false
 #| fig-width: 8
 #| fig-height: 9
+img <- data.frame(x = 0, y = 0, image = "s2e2.png")
 
-p <- make_plot("Season 2 Episode 2")
+p <- make_plot("Season 2 Episode 2") + 
+    ggimage::geom_image(data = img, 
+                        aes(x = x, y = y, image = image),
+                        size = 0.15, nudge_x = -2, nudge_y = -35)
 ggiraph::girafe(ggobj = p)
 ```
 
@@ -194,7 +251,12 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 9
 
-p <- make_plot("Season 2 Episode 3")
+img <- data.frame(x = 0, y = 0, image = "s2e3.png")
+
+p <- make_plot("Season 2 Episode 3") + 
+    ggimage::geom_image(data = img, 
+                        aes(x = x, y = y, image = image),
+                        size = 0.15, nudge_x = -2, nudge_y = -33) 
 ggiraph::girafe(ggobj = p)
 ```
 :::
