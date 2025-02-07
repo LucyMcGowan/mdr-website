@@ -19,9 +19,12 @@ This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) 
 library(tidyverse)
 library(tidytext)
 library(mdr)
+library(textclean)
 
 sentiment_data <- transcripts |>
-  filter(season == 2, grepl("Mark|Dylan|Helly|Irving", speaker)) |>
+  filter(season == 2, episode %in% c(1, 2), grepl("Mark|Dylan|Helly|Irving", speaker)) |>
+  mutate(
+    dialogue = replace_contraction(dialogue)) |>
   unnest_tokens(word, dialogue) |>
   inner_join(get_sentiments("afinn"), by = "word") 
 
@@ -29,7 +32,7 @@ sentiment_summary <- sentiment_data |>
   group_by(episode) |>
   summarise(sentiment = mean(value))
 
-sentiment_data %>%
+sentiment_data |>
   group_by(episode, value) |>
   count() |>
   ungroup() |>
@@ -37,7 +40,7 @@ sentiment_data %>%
   mutate(total_words = sum(n),  
          percentage = (n / total_words)) |>
   ungroup()|>
-ggplot(aes(x = value, y = percentage, fill = factor(episode))) +
+  ggplot(aes(x = value, y = percentage, fill = factor(episode))) +
   geom_bar(stat = "identity", position = "dodge", alpha = 0.7) + 
   scale_y_continuous(labels = scales::percent) +
   theme_mdr() +
@@ -56,6 +59,8 @@ Now lets look at some word frequency by episode. I pulled out the top 5 words pe
 
 ```{r}
 #| echo: false
+#| message: false
+#| warning: false
 word_freq <- sentiment_data |>
   mutate(sentiment = ifelse(value > 0, "positive", "negative")) |>
   count(word, sentiment, episode, sort = TRUE) |>

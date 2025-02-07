@@ -144,8 +144,35 @@ This analysis creates a little sentiment profile for each episode.
 :::
 :::
 
-
 ::: {.card style="--i: 5;"}
+::: {.tab}
+H
+:::
+
+::: {.card--front}
+
+## helly or helena?
+
+Who is really on the severed floor?
+[Read More >](analysis-helly-or-helena)
+
+
+:::
+
+::: {.card--back}  
+
+## helly or helena?
+
+Who is really on the severed floor?
+[Read More >](analysis-helly-or-helena)
+
+
+:::
+:::
+
+
+
+::: {.card style="--i: 6;"}
 ::: {.tab}
 R
 :::
@@ -167,7 +194,7 @@ R
 :::
     
     
-::: {.card style="--i: 6;"}
+::: {.card style="--i: 7;"}
 ::: {.tab}
 S
 :::
@@ -193,7 +220,7 @@ Who is happier: the innies or outies?
 :::
 :::
 
-::: {.card style="--i: 7;"}
+::: {.card style="--i: 8;"}
 ::: {.tab}
 W
 :::
