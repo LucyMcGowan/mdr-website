@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "MDR",
     "section": "",
-    "text": "we analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\nwe analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\n\nA\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\n\nB\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\n\nD\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nF\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nS\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\n\nW\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;"
+    "text": "we analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\nwe analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\n\nA\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\n\nB\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\n\nD\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nF\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\n\nH\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nS\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\n\nW\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;"
   },
   {
     "objectID": "index.html#welcome",
@@ -91,6 +91,20 @@
     "text": "This analysis creates a little sentiment profile for each episode.\nRead More &gt;"
   },
   {
+    "objectID": "index.html#helly-or-helena",
+    "href": "index.html#helly-or-helena",
+    "title": "MDR",
+    "section": "",
+    "text": "Who is really on the severed floor? Read More &gt;"
+  },
+  {
+    "objectID": "index.html#helly-or-helena-1",
+    "href": "index.html#helly-or-helena-1",
+    "title": "MDR",
+    "section": "",
+    "text": "Who is really on the severed floor? Read More &gt;"
+  },
+  {
     "objectID": "index.html#check-out-our-r-package",
     "href": "index.html#check-out-our-r-package",
     "title": "MDR",
@@ -133,46 +147,18 @@
     "text": "Check out these episode profiles color coded by who is speaking Read More &gt;"
   },
   {
-    "objectID": "analysis-innie-sentiment/index.html",
-    "href": "analysis-innie-sentiment/index.html",
+    "objectID": "join-us/index.html",
+    "href": "join-us/index.html",
     "title": "MDR",
     "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution.\n\n\n\n\n\n\n\n\n\n\n\nNow lets look at some word frequency by episode. I pulled out the top 5 words per sentiment (and show some ties).\n\n\n\nSelecting by n\n\n\n\n\n\n\n\n\n\nSelecting by n"
+    "text": "Care to join us? Get your own badge here:\n\n\n\n\nGenerate your own analyses and submit a pull request here."
   },
   {
-    "objectID": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
-    "href": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
+    "objectID": "join-us/index.html#join-us",
+    "href": "join-us/index.html#join-us",
     "title": "MDR",
     "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution."
-  },
-  {
-    "objectID": "analysis-whos-talking/index.html",
-    "href": "analysis-whos-talking/index.html",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. For each episode we count the number of words each of the four main characters (Mark, Helly, Dylan, and Irving) speak for in each minute and visualize them below. Click on the tabs to switch episodes.\n\n\nS1E1S1E2S1E3S1E4S1E5S1E6S1E7S1E8S1E9S2E1S2E2S2E3"
-  },
-  {
-    "objectID": "analysis-whos-talking/index.html#whos-talking",
-    "href": "analysis-whos-talking/index.html#whos-talking",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. For each episode we count the number of words each of the four main characters (Mark, Helly, Dylan, and Irving) speak for in each minute and visualize them below. Click on the tabs to switch episodes."
-  },
-  {
-    "objectID": "about/index.html",
-    "href": "about/index.html",
-    "title": "MDR",
-    "section": "",
-    "text": "This website was build by Lucy D’Agostino McGowan."
-  },
-  {
-    "objectID": "about/index.html#about",
-    "href": "about/index.html#about",
-    "title": "MDR",
-    "section": "",
-    "text": "This website was build by Lucy D’Agostino McGowan."
+    "text": "Care to join us? Get your own badge here:"
   },
   {
     "objectID": "analysis-badges/index.html",
@@ -189,18 +175,67 @@
     "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally."
   },
   {
-    "objectID": "join-us/index.html",
-    "href": "join-us/index.html",
+    "objectID": "about/index.html",
+    "href": "about/index.html",
     "title": "MDR",
     "section": "",
-    "text": "Care to join us? Get your own badge here:\n\n\n\n\nGenerate your own analyses and submit a pull request here."
+    "text": "This website was build by Lucy D’Agostino McGowan."
   },
   {
-    "objectID": "join-us/index.html#join-us",
-    "href": "join-us/index.html#join-us",
+    "objectID": "about/index.html#about",
+    "href": "about/index.html#about",
     "title": "MDR",
     "section": "",
-    "text": "Care to join us? Get your own badge here:"
+    "text": "This website was build by Lucy D’Agostino McGowan."
+  },
+  {
+    "objectID": "analysis-whos-talking/index.html",
+    "href": "analysis-whos-talking/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. For each episode we count the number of words each of the four main characters (Mark, Helly, Dylan, and Irving) speak for in each minute and visualize them below. Click on the tabs to switch episodes.\n\n\nS1E1S1E2S1E3S1E4S1E5S1E6S1E7S1E8S1E9S2E1S2E2S2E3"
+  },
+  {
+    "objectID": "analysis-whos-talking/index.html#whos-talking",
+    "href": "analysis-whos-talking/index.html#whos-talking",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. For each episode we count the number of words each of the four main characters (Mark, Helly, Dylan, and Irving) speak for in each minute and visualize them below. Click on the tabs to switch episodes."
+  },
+  {
+    "objectID": "analysis-innie-sentiment/index.html",
+    "href": "analysis-innie-sentiment/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution.\n\n\n\n\n\n\n\n\n\n\n\nNow lets look at some word frequency by episode. I pulled out the top 5 words per sentiment (and show some ties)."
+  },
+  {
+    "objectID": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
+    "href": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution."
+  },
+  {
+    "objectID": "analysis-helly-or-helena/index.html",
+    "href": "analysis-helly-or-helena/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "In the second season of Severance, there is speculation about who is actually on the severed floor: is it the Helly we got to know during season one or her “outie”, Helena? I decided to try to take a look at the language we’ve seen Helly and Helena use and see if it can help us figure out who this character actually is. I started by tagging every line of dialogue spoken by this actress in season 1 as Helly or Helena. I then went through the season 2 transcript and tagged Helly, Helena, as well as any dialogue on the severed floor as “Unknown”. This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki.\n\n\n\nIn the text analysis space, a common way to examine how words are used by different individuals can be to look at the tf-idf statistic - this statistic looks at the term frequency (in our case how many times the character says a particular word) and the inverse document frequency (how many time the word is used across all three characters: Helly, Helena, and Unknown). Basically, this statistic will help us understand which words are unique to each of our three characters: Helly, Helena, and the third Unknown (which we hope to classify as one of the others). Let’s look at which words are ranked at the top for our three characters below (I’ll show the top 5, with ties, so there may be more).\n\n\n\nCode\nlibrary(mdr)\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(textclean)\nlibrary(widyr)\nlibrary(ggiraph)\nlibrary(quanteda)\nlibrary(quanteda.textstats)\n\ndf &lt;- transcripts |&gt;\n  filter(str_detect(speaker, \"Hel\")) |&gt;\n  mutate(speaker = case_when(\n    season == 1 & episode == 1 &\n      minute(timestamp) &gt; 34 ~ \"Helena\",\n    season == 1 & episode == 2 &\n      minute(timestamp) &lt; 5 ~ \"Helena\",\n    season == 1 & episode == 4 & \n      minute(timestamp) &gt; 21.7 & \n      minute(timestamp) &lt; 23 ~ \"Helena\",\n    season == 1 & episode == 9 & \n      minute(timestamp) &gt; 18 & minute(timestamp) &lt; 20 ~ \"Helena\",\n    episode == 9 & speaker == \"Helly (on video)\" ~ \"Helena\",\n    season == 2 & episode == 1 & minute(timestamp) &lt; 1 ~ \"Helly\",\n    season == 2 & episode == 2 & minute(timestamp) &lt; 2 ~ \"Helly\",\n    season == 2 & episode == 2 & minute(timestamp) &gt; 21 & minute(timestamp) &lt; 23 ~ \"Helly\",\n    season == 2 & episode == 2 ~ \"Helena\",\n    season == 2 & episode == 3 & minute(timestamp) &gt; 40 ~ \"Helena\",\n    season == 2 ~ \"Unknown\",\n    .default = speaker)\n  ) \n\ntidy_df &lt;- df |&gt;\n  mutate(\n    dialogue = str_replace_all(dialogue, \"’\", \"'\"),\n    dialogue = replace_contraction(dialogue)) |&gt;\n  unnest_tokens(word, dialogue) |&gt;\n  anti_join(stop_words, by = \"word\") \n\ntf_idf &lt;- tidy_df |&gt;\n  count(speaker, word, sort = TRUE) |&gt;\n  bind_tf_idf(word, speaker, n)\n\nsimilarity &lt;- tf_idf |&gt;\n  pairwise_similarity(item = speaker, feature = word, value = tf_idf)\n\np &lt;- tf_idf |&gt;\n  group_by(speaker) |&gt;\n  slice_max(tf_idf, n = 5) |&gt;\n  ungroup() |&gt;\n  ggplot(aes(tf_idf, fct_reorder(word, tf_idf), fill = speaker)) +\n  geom_col_interactive(show.legend = FALSE, alpha = 0.9) +\n  scale_fill_manual(values = c(\"#C15C58\", \"#5BA9D0\", \"#898699\")) +\n  facet_wrap(~speaker, ncol = 3, scales = \"free_y\") +\n  labs(x = \"tf-idf\", y = NULL) + \n  theme_mdr() + \n  theme(panel.grid.minor = element_blank(),\n        strip.background = element_rect(fill = \"#CFE0E1\")) \n\np\n\n\n\n\n\n\n\n\n\n\nInteresting, a few things jump out. First, we see that both dad and father show up on Helena’s; this makes sense, she mentions (or speaks with) her father a few times, and this wouldn’t come up on the severed floor. Another interesting one is “Harmony”, this also makes sense since Ms. Cobel would not be reffered to by her first name downstairs. Now, innie Helly, uses the words “scary”, “live”, and “life”, compared to our unknown friend, who uses the words “mushy” and “yeah” more often. Both mention goats (this shows up on each because of the plural in Helly’s and the singular in our Unknown one). Alright, let’s turn these pictures into numbers. We can use cosine similarity to compare our tf-idf vectors for each of our three friends (well, two friends, our third is just one of them, presumably!). Higher numbers would imply that they are more similar, lower less.\n\nHelena and Helly have a similarity score of 0.037.\nHelena and Unknown have a similarity score of 0.001.\nHelly and Unknown have a similarity score of 0.092.\n\nInteresting! So at least in terms of the distinguishing words they use, our unknown friend is closer to Helly than Helena (and in fact closer to Helly than Helly is to her outie-self, Helena!)\nBut alas, this is just one way to look at the data! What about readability?\n\n\n\nLet’s look at four measures:\n\nThe average number of syllables per word\nThe average sentence length\nThe Flesch’s Reading Ease Score\nScrabble score\n\nExamining the plots below, Helena seems to use higher syllabic words and longer sentences; her dialogue has a lower readability score compared to the other two. They look similar in terms of how their vocabulary would score in Scrabble.\n\n\n\nCode\nreadability_df &lt;- df |&gt;\n  mutate(dialogue = str_replace_all(dialogue, \"’\", \"'\")) |&gt;\n  group_by(speaker) |&gt;\n  summarise(text = paste(dialogue, collapse = \". \"))\n\ncorpus &lt;- corpus(readability_df, text_field = \"text\")\n# text1: Helena, text2: Helly, text3: Unknown\n\nreadability_scores &lt;- textstat_readability(corpus,\n                                           measure = c(\"meanWordSyllables\",\n                                                       \"meanSentenceLength\",\n                                                       \"Flesch\",\n                                                       \"Scrabble\"))\n\nreadability_scores$speaker &lt;- c(\"Helena\", \"Helly\", \"Unknown\")\n\nreadability_scores |&gt;\n  select(-document) |&gt;\n  rename(`Avg Syllables` = meanWordSyllables,\n         `Avg Sentence Length` = meanSentenceLength) |&gt; \n  pivot_longer(cols = `Avg Syllables`:Scrabble) |&gt;\n  ggplot(aes(x = speaker, y = value, fill = speaker)) +\n  geom_col() +\n  scale_fill_manual(values = c(\"#C15C58\", \"#5BA9D0\", \"#898699\")) +\n  facet_wrap(~name, scales = \"free\") + \n  labs(x = \"\") +\n  theme_mdr() + \n  theme(legend.position = \"none\",\n        panel.grid.minor = element_blank(),\n        strip.background = element_rect(fill = \"#CFE0E1\"))\n\n\n\n\n\n\n\n\n\n\n\nCode\nsentiment_df &lt;- tidy_df |&gt;\n  inner_join(get_sentiments(\"afinn\"), by = \"word\")\n\nsentiment_summary &lt;- sentiment_df |&gt;\n  group_by(speaker) |&gt;\n  summarise(sentiment = mean(value))\n\n\n\n\n\nOk, let’s try looking at the sentiment of their words. We can use the AFINN sentiment lexicon to classify the words they each use and then examine the average sentiment score, do they tend to speak positively or negatively?\n\nHelena’s average sentiment score is -0.06.\n\nHelly’s average sentiment score is -0.79.\n\nUnknown’s average sentiment score is -0.78.\n\nSo, this makes it look like Helena’s words are fairly neutral, while Helly and our Unknown friend are more negative.\n\n\n\nWhat does this tell us? Probably nothing, Helena was seen watching tapes of the severed floor and certainly could be studying the words that Helly used, or the unknown person could actually just be Helly, like she says (I don’t think so!!). Maybe we need to curate a dataset of facial expressions…stay tuned?"
+  },
+  {
+    "objectID": "analysis-helly-or-helena/index.html#who-is-on-the-severed-floor-helly-or-helena",
+    "href": "analysis-helly-or-helena/index.html#who-is-on-the-severed-floor-helly-or-helena",
+    "title": "MDR",
+    "section": "",
+    "text": "In the second season of Severance, there is speculation about who is actually on the severed floor: is it the Helly we got to know during season one or her “outie”, Helena? I decided to try to take a look at the language we’ve seen Helly and Helena use and see if it can help us figure out who this character actually is. I started by tagging every line of dialogue spoken by this actress in season 1 as Helly or Helena. I then went through the season 2 transcript and tagged Helly, Helena, as well as any dialogue on the severed floor as “Unknown”. This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki."
+  },
+  {
+    "objectID": "analysis-helly-or-helena/index.html#conclusions",
+    "href": "analysis-helly-or-helena/index.html#conclusions",
+    "title": "MDR",
+    "section": "",
+    "text": "What does this tell us? Probably nothing, Helena was seen watching tapes of the severed floor and certainly could be studying the words that Helly used, or the unknown person could actually just be Helly, like she says (I don’t think so!!). Maybe we need to curate a dataset of facial expressions…stay tuned?"
   },
   {
     "objectID": "analysis-feeling-over-time/index.html",
