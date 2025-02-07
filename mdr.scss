@@ -18,3 +18,17 @@ $footer-fg: #CFE0E1;
 .text h2, h3 {
   text-align: center;
 }
+
+.spoiler {
+    background-color: #CFE0E1;
+    color: #CFE0E1;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.spoiler.revealed {
+    color: #CFE0E1;
+    background-color: transparent;
+}

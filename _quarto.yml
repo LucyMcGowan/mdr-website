@@ -22,6 +22,17 @@ format:
     mainfont: 'Noto Sans Mono'
     theme: mdr.scss
     anchor-sections: false
+    include-before-body:
+      text: |
+        <script> document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".spoiler").forEach(spoiler => {
+         spoiler.addEventListener("click", function () {
+            this.classList.toggle("revealed");
+           });
+          });
+          });
+         </script>
+
 
 execute:
   freeze: true
