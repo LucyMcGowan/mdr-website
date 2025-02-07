@@ -52,7 +52,7 @@ data <- transcripts |>
            stat = "identity") +
   scale_x_continuous(expand = c(0, 0)) +
   scale_y_continuous(expand = c(0, 0)) +
-  scale_fill_manual(values = c("#EBCF00", "#A25056", "#00957E",  "#2358A8")) +
+  scale_fill_manual(values = c("#A28248", "#A25056", "#00957E",  "#2358A8")) +
   theme_mdr() +
    guides(fill = guide_legend(position = "inside",
                               direction = "horizontal")) +
@@ -66,7 +66,8 @@ data <- transcripts |>
   ) +
   coord_radial(inner.radius = 0.2) +
   labs(fill = "")
-}
+} 
+
 ```
 
 ::: {.panel-tabset}
@@ -78,7 +79,7 @@ data <- transcripts |>
 #| fig-width: 8
 #| fig-height: 7.96
 
-img <- data.frame(x = 0, y = 0, image = "s1e1.png")
+img <- data.frame(x = 0, y = 0, image = "s1e1-text.png")
 
 p <- make_plot("Season 1 Episode 1") + 
     ggimage::geom_image(data = img, 
@@ -96,7 +97,7 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 7.96
 
-img <- data.frame(x = 0, y = 0, image = "s1e2.png")
+img <- data.frame(x = 0, y = 0, image = "s1e2-text.png")
 
 p <- make_plot("Season 1 Episode 2") + 
     ggimage::geom_image(data = img, 
@@ -112,7 +113,7 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 7.96
 
-img <- data.frame(x = 0, y = 0, image = "s1e3.png")
+img <- data.frame(x = 0, y = 0, image = "s1e3-text.png")
 
 p <- make_plot("Season 1 Episode 3") + 
     ggimage::geom_image(data = img, 
@@ -128,7 +129,7 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 7.96
 
-img <- data.frame(x = 0, y = 0, image = "s1e4.png")
+img <- data.frame(x = 0, y = 0, image = "s1e4-text.png")
 
 p <- make_plot("Season 1 Episode 4") + 
     ggimage::geom_image(data = img, 
@@ -144,7 +145,7 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 7.96
 
-img <- data.frame(x = 0, y = 0, image = "s1e5.png")
+img <- data.frame(x = 0, y = 0, image = "s1e5-text.png")
 
 p <- make_plot("Season 1 Episode 5") + 
     ggimage::geom_image(data = img, 
@@ -160,7 +161,7 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 7.96
 
-img <- data.frame(x = 0, y = 0, image = "s1e6.png")
+img <- data.frame(x = 0, y = 0, image = "s1e6-text.png")
 
 p <- make_plot("Season 1 Episode 6") + 
     ggimage::geom_image(data = img, 
@@ -176,7 +177,7 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 7.96
 
-img <- data.frame(x = 0, y = 0, image = "s1e7.png")
+img <- data.frame(x = 0, y = 0, image = "s1e7-text.png")
 
 p <- make_plot("Season 1 Episode 7") + 
     ggimage::geom_image(data = img, 
@@ -192,7 +193,7 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 7.96
 
-img <- data.frame(x = 0, y = 0, image = "s1e8.png")
+img <- data.frame(x = 0, y = 0, image = "s1e8-text.png")
 
 p <- make_plot("Season 1 Episode 8") + 
     ggimage::geom_image(data = img, 
@@ -208,7 +209,7 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 7.96
 
-img <- data.frame(x = 0, y = 0, image = "s1e9.png")
+img <- data.frame(x = 0, y = 0, image = "s1e9-text.png")
 
 p <- make_plot("Season 1 Episode 9") + 
     ggimage::geom_image(data = img, 
@@ -224,7 +225,7 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 7.96
 
-img <- data.frame(x = 0, y = 0, image = "s2e1.png")
+img <- data.frame(x = 0, y = 0, image = "s2e1-text.png")
 
 p <- make_plot("Season 2 Episode 1") + 
     ggimage::geom_image(data = img, 
@@ -239,7 +240,7 @@ ggiraph::girafe(ggobj = p)
 #| echo: false
 #| fig-width: 8
 #| fig-height: 7.96
-img <- data.frame(x = 0, y = 0, image = "s2e2.png")
+img <- data.frame(x = 0, y = 0, image = "s2e2-text.png")
 
 p <- make_plot("Season 2 Episode 2") + 
     ggimage::geom_image(data = img, 
@@ -255,7 +256,7 @@ ggiraph::girafe(ggobj = p)
 #| fig-width: 8
 #| fig-height: 7.96
 
-img <- data.frame(x = 0, y = 0, image = "s2e3.png")
+img <- data.frame(x = 0, y = 0, image = "s2e3-text.png")
 
 p <- make_plot("Season 2 Episode 3") + 
     ggimage::geom_image(data = img, 
