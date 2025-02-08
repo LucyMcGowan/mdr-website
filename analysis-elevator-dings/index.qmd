@@ -16,34 +16,36 @@ This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) 
 #| echo: false
 #| message: false
 #| warning: false
-#| fig-width: 15
+#| fig-width: 17
 library(mdr)
-library(ggplot2)
 library(ggiraph)
+library(tidyverse)
 
 set.seed(266) # on irving
 
 df <- elevator_dings |>
-  dplyr::mutate(time_in_minutes = as.numeric(time) / 3600) |>
-  dplyr::mutate(episode_time = episode + time_in_minutes / 100) |>
-  dplyr::filter(!is.na(pitch), !is.na(io))
+  mutate(time_in_minutes = as.numeric(time) / 3600) |>
+  mutate(episode_time = season * 10 + episode + time_in_minutes / 100,
+         ep = season * 10 + episode,
+         id = glue::glue("S{season}E{episode}")) |>
+  filter(!is.na(pitch), !is.na(io))
 
 
 p <- ggplot(df, aes(x = episode_time, y = pitch, color = io, shape = action,
-                    tooltip = glue::glue("S{season}E{episode}, {hms::as_hms(time)}<br>{character}<br>{io}<br>{action}"))) +
+                    tooltip = glue::glue("S{season}E{episode}, {hms::as_hms(time)}<br>{character}<br>{note}"))) +
   geom_jitter_interactive(size = 10, alpha = 0.8, height = 0, width = 0.1) +
-  scale_shape_manual(values = c("enters" = 16, "sleeps" = 17, "wakes up" = 15)) +
-  scale_color_manual(values = c("blue", "red")) +
+  scale_shape_manual(values = c("elevator opens" = 16, "sleeps" = 17, "wakes up" = 15)) +
+  scale_color_manual(values = c("#5BA9D0", "#C15C58")) +
   guides(
     shape = guide_legend(override.aes = list(color = "#CFE0E1"))
   ) +
   scale_x_continuous("Episode and Time",
-                     breaks = unique(df$episode),
-                     labels = unique(df$episode)) +
+                     breaks = unique(df$ep),
+                     labels = unique(df$id)) +
   labs(
     y = "Pitch",
     color = "",
-    shape = "Action"
+    shape = ""
   ) +
   theme_mdr() +
   theme(
