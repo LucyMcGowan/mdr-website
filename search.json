@@ -4,14 +4,14 @@
     "href": "analysis-elevator-dings/index.html",
     "title": "MDR",
     "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by Sam_Badi on Reddit. The data consists of all elevator dings in the Severance episodes along with the episode number, time stamp, pitch of the ding, and the action associated. Examining the plot below, we see across all dings the G is associated with both innie and outies going to sleep, the C# is consistently associated with both innies and outies waking up, and in general a Bb plays when they enter the elevator, however there are a few B♮ thrown in there at the beginning of episode 5."
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by Sam_Badi on Reddit. The data consists of all elevator dings in the Severance episodes along with the episode number, time stamp, pitch of the ding, and the action associated. Examining the plot below, we see across all dings the G is associated with both innie and outies going to sleep, the C# is consistently associated with both innies and outies waking up, and in general a Bb plays when they enter the elevator, however there are a few B♮ thrown in there at the beginning of episode 5. (Spoiler: There is one notable exception, at the beginning of episode 4 in season 2, we hear a G when Irving wakes up, not a C# – maybe this is a sign that things are not what they seem for this episode?)"
   },
   {
     "objectID": "analysis-elevator-dings/index.html#elevator-ding-analysis",
     "href": "analysis-elevator-dings/index.html#elevator-ding-analysis",
     "title": "MDR",
     "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by Sam_Badi on Reddit. The data consists of all elevator dings in the Severance episodes along with the episode number, time stamp, pitch of the ding, and the action associated. Examining the plot below, we see across all dings the G is associated with both innie and outies going to sleep, the C# is consistently associated with both innies and outies waking up, and in general a Bb plays when they enter the elevator, however there are a few B♮ thrown in there at the beginning of episode 5."
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by Sam_Badi on Reddit. The data consists of all elevator dings in the Severance episodes along with the episode number, time stamp, pitch of the ding, and the action associated. Examining the plot below, we see across all dings the G is associated with both innie and outies going to sleep, the C# is consistently associated with both innies and outies waking up, and in general a Bb plays when they enter the elevator, however there are a few B♮ thrown in there at the beginning of episode 5. (Spoiler: There is one notable exception, at the beginning of episode 4 in season 2, we hear a G when Irving wakes up, not a C# – maybe this is a sign that things are not what they seem for this episode?)"
   },
   {
     "objectID": "index.html",
