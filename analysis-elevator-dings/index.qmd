@@ -14,11 +14,14 @@ This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) 
 
 :::
 
+</center>
+
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
 #| fig-width: 20
+#| fig-align: center
 library(mdr)
 library(ggiraph)
 library(tidyverse)
@@ -59,9 +62,10 @@ p <- ggplot(df, aes(x = i, y = pitch, color = io, shape = action,
     axis.title = element_text(size = 20),
     axis.title.y = element_text(angle = 0),
     axis.text = element_text(size = 20),
-    axis.text.x = element_text(angle = 45, hjust = 1, size = 20))  
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 20),
+    panel.grid.minor = element_blank())  
 
 ggiraph::girafe(ggobj = p)
 ```
 
-</center>
+

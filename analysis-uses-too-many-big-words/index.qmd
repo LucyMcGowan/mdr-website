@@ -42,9 +42,10 @@ transcripts |>
   mutate(word = gsub("'s", "", word)) |>
   count(word) |>
   filter(n > 2) |>
+  arrange(desc(n)) |>
   wordcloud2(backgroundColor = "#030303",
              fontFamily = "Noto Sans Mono",
-             size = 0.3)
+             size = 0.8)
 ```
 
 <center>
