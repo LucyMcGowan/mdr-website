@@ -1,5 +1,68 @@
 [
   {
+    "objectID": "join-us/index.html",
+    "href": "join-us/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "Care to join us? Get your own badge here:\n\n\n\n\nGenerate your own analyses and submit a pull request here."
+  },
+  {
+    "objectID": "join-us/index.html#join-us",
+    "href": "join-us/index.html#join-us",
+    "title": "MDR",
+    "section": "",
+    "text": "Care to join us? Get your own badge here:"
+  },
+  {
+    "objectID": "analysis-uses-too-many-big-words/index.html",
+    "href": "analysis-uses-too-many-big-words/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "Below is a word cloud of Seth Milchick’s most frequently used words of the past [few] quarter[s] alone. [Lumon] recommended that Mr. Milchick begin simplifying his language so as to achieve clearer comprehension from his subordinates and peers.\nI don’t see evidence of this!\nCode\nlibrary(mdr)\nlibrary(tidytext)\nlibrary(tidyverse)\nlibrary(wordcloud2)\nlibrary(textclean)\nlibrary(ggiraph)\n\ntranscripts |&gt; \n  filter(grepl(\"Mil\", speaker)) |&gt;\n  mutate(\n    dialogue = str_replace_all(dialogue, \"’\", \"'\"),\n    dialogue = replace_contraction(dialogue)\n  ) |&gt;\n  unnest_tokens(word, dialogue) |&gt;\n  anti_join(stop_words) |&gt;\n  filter(!word %in% c(\"ms\", \"miss\")) |&gt;\n  mutate(word == gsub(\"'s\", \"\", word)) |&gt;\n  count(word) |&gt;\n  filter(n &gt; 2) |&gt;\n  wordcloud2(backgroundColor = \"#030303\",\n             fontFamily = \"Noto Sans Mono\")\nCode\nsyllable_df &lt;- transcripts |&gt;\n  mutate(\n    dialogue = str_replace_all(dialogue, \"’\", \"'\"),\n    dialogue = replace_contraction(dialogue),\n    milchick = grepl(\"Mil\", speaker)\n  ) |&gt;\n  unnest_tokens(word, dialogue) \n\nsafe_syllable_count &lt;- possibly(\n  function(x) qdap::syllable_count(x)$syllables, \n  otherwise = NA_real_\n)\n\nsyllable_df$syllables &lt;- map_dbl(syllable_df$word, safe_syllable_count)\n\nmeans_df &lt;- syllable_df |&gt;\n filter(!is.na(syllables)) |&gt;\n group_by(milchick) |&gt;\n summarise(mean_syllables = mean(syllables))\n\np &lt;- syllable_df |&gt;\n  filter(!is.na(syllables)) |&gt;\n  group_by(milchick, syllables) |&gt;\n  summarise(count = n(), .groups = \"drop\") |&gt;\n  group_by(milchick) |&gt;\n  mutate(percent = count/sum(count) * 100) |&gt;\n  mutate(percent = if_else(milchick == TRUE, percent, -percent)) |&gt;\n  ggplot(aes(x = syllables, y = percent, fill = milchick,\n             tooltip = glue::glue(\"{round(abs(percent), 1)}% of the words used by {ifelse(milchick, 'Milchick','everyone else')} had {syllables} {ifelse(syllables !=1, 'syllables', 'syllable')}\"))) +\n  geom_col_interactive() +\n  scale_y_continuous(\n    labels = abs,\n  ) +\n geom_vline(data = means_df,\n            aes(xintercept = mean_syllables, color = milchick),\n            linetype = \"dashed\") +\n  annotate(\"label\", x = 3, y = 30,\n           label = \"Milchick\", hjust = 0.5) +\n  annotate(\"label\", x = 3, y = -30,\n           label = \"Everyone Else\", hjust = 0.5) +\n  labs(\n    x = \"Syllable Count\",\n    y = \"Percentage\",\n  ) +\n  theme_mdr() +\n  theme(\n    legend.position = \"none\",\n  #  panel.grid.minor = element_blank(),\n  ) +\n  scale_color_manual(values = c(\"TRUE\" = \"red\", \"FALSE\" = \"blue\")) +\n  scale_fill_manual(values = c(\"TRUE\" = \"#E84646\", \"FALSE\" = \"#3C8DAD\"))\n\n# girafe(ggobj = p)\n\np"
+  },
+  {
+    "objectID": "analysis-uses-too-many-big-words/index.html#uses-too-many-big-words",
+    "href": "analysis-uses-too-many-big-words/index.html#uses-too-many-big-words",
+    "title": "MDR",
+    "section": "",
+    "text": "Below is a word cloud of Seth Milchick’s most frequently used words of the past [few] quarter[s] alone. [Lumon] recommended that Mr. Milchick begin simplifying his language so as to achieve clearer comprehension from his subordinates and peers.\nI don’t see evidence of this!"
+  },
+  {
+    "objectID": "analysis-uses-too-many-big-words/index.html#syllable-count",
+    "href": "analysis-uses-too-many-big-words/index.html#syllable-count",
+    "title": "MDR",
+    "section": "Syllable count",
+    "text": "Syllable count\nLet’s see if Milchick is really using more syllables than everyone else."
+  },
+  {
+    "objectID": "analysis-whos-talking/index.html",
+    "href": "analysis-whos-talking/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. For each episode we count the number of words each of the four main characters (Mark, Helly, Dylan, and Irving) speak for in each minute and visualize them below. Click on the tabs to switch episodes.\n\n\nS1E1S1E2S1E3S1E4S1E5S1E6S1E7S1E8S1E9S2E1S2E2S2E3"
+  },
+  {
+    "objectID": "analysis-whos-talking/index.html#whos-talking",
+    "href": "analysis-whos-talking/index.html#whos-talking",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. For each episode we count the number of words each of the four main characters (Mark, Helly, Dylan, and Irving) speak for in each minute and visualize them below. Click on the tabs to switch episodes."
+  },
+  {
+    "objectID": "analysis-innie-sentiment/index.html",
+    "href": "analysis-innie-sentiment/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution.\n\n\n\n\n\n\n\n\n\n\n\nNow lets look at some word frequency by episode. I pulled out the top 5 words per sentiment (and show some ties)."
+  },
+  {
+    "objectID": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
+    "href": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution."
+  },
+  {
     "objectID": "analysis-elevator-dings/index.html",
     "href": "analysis-elevator-dings/index.html",
     "title": "MDR",
@@ -14,11 +77,39 @@
     "text": "This analysis was made possible by the mdr R package, which used data originally compiled by Sam_Badi on Reddit. The data consists of all elevator dings in the Severance episodes along with the episode number, time stamp, pitch of the ding, and the action associated. Examining the plot below, we see across all dings the G is associated with both innie and outies going to sleep, the C# is consistently associated with both innies and outies waking up, and in general a Bb plays when they enter the elevator, however there are a few B♮ thrown in there at the beginning of episode 5. (Spoiler: There is one notable exception, at the beginning of episode 4 in season 2, we hear a G when Irving wakes up, not a C# – maybe this is a sign that things are not what they seem for this episode?)"
   },
   {
+    "objectID": "analysis-badges/index.html",
+    "href": "analysis-badges/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally.\nCode\nlibrary(mdr)\nlibrary(tidyverse)\nlibrary(ggiraph)\n\npreds &lt;- tibble(id_numeric = 8039:8988)\n\npreds$joined_predicted &lt;- lm(joined ~ I(id_numeric^30), badges) |&gt;\n  predict(newdata = preds)\n\np &lt;- ggplot(badges, \n            aes(x = id_numeric,\n                y = joined_predicted,\n                tooltip = glue::glue(\"test\"))) +\n  geom_point_interactive(aes(tooltip = glue::glue(\"{name}&lt;br&gt;employee code: {id}&lt;br&gt;predicted start: {round(joined_predicted / 365, 1)} years ago\")),\n                         color = \"#6AF307\",\n                         size = 3) +\n  geom_line(data = preds, aes(y = joined_predicted), color = \"white\",\n            linetype = \"dashed\") + \n  scale_y_continuous(\n    breaks = badges$joined_predicted,\n    labels = badges$name[order(badges$joined_predicted, decreasing = TRUE)],\n    sec.axis = sec_axis(~ ., breaks = badges$joined_predicted,\n                        labels = round(badges$joined_predicted / 365, 1),\n                        name = \"Predicted Start (Years Ago)\")\n  ) +\n  scale_x_continuous(\n    breaks = badges$id_numeric,\n    labels = function(x) glue::glue(\"08-{substr(x, 2, 4)}\")\n  ) +\n  labs(x = \"Employee Code\", y = \"\") +\n  annotate(\"label\", x = 8907, y = 365*2,\n           size = 3,\n           label = \"~2 years\\nsource: S1E1 (40:39)\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  annotate(\"label\", x = 8430, y = 365*9,\n           size = 3,\n           label = \"~9 years\\nsource: Linkedin\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  theme_mdr() +\n  theme(\n    panel.grid.minor = element_blank(),\n    axis.text.x = element_text(angle = 45, hjust = 1)\n  )\n\nggiraph::girafe(ggobj = p)"
+  },
+  {
+    "objectID": "analysis-badges/index.html#when-did-employees-join-lumon",
+    "href": "analysis-badges/index.html#when-did-employees-join-lumon",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally."
+  },
+  {
+    "objectID": "analysis-feeling-over-time/index.html",
+    "href": "analysis-feeling-over-time/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. Here, we create a little sentiment profile for each episode, binning them in three minute increments and calculating the AFINN average sentiment score in each.\nCode\nlibrary(tidytext)\nlibrary(mdr)\nlibrary(tidyverse)\n\ndf &lt;- transcripts |&gt;\n  mutate(timestamp_seconds = as.numeric(timestamp), \n         bin = floor(timestamp_seconds / 180) * 180) |&gt;\n  left_join(episodes, by = c(\"season\", \"episode\"))\n\ndf |&gt;\n  mutate(id = glue::glue(\"Season {season} Episode {episode}\\nWritten by: {writer}\")) |&gt;\n  unnest_tokens(word, dialogue) |&gt;\n  inner_join(get_sentiments(\"afinn\"), by = \"word\") |&gt;\n  group_by(id, bin) |&gt;\n  summarise(sentiment = mean(value)) |&gt;\n  ggplot(aes(x = bin, y = sentiment, fill = sentiment &gt; 0)) + \n  geom_bar(stat = \"identity\", alpha = 0.8) +\n  scale_fill_manual(values = c(\"#C15C58\", \"#5BA9D0\")) +\n  scale_x_time(labels = scales::time_format(\"%M:%S\")) +\n  labs(x = \"\") +\n  facet_wrap(~id) + \n  theme_mdr() + \n  theme(\n    axis.title = element_text(color = \"black\"),\n    axis.text = element_text(color = \"black\"),\n    plot.background = element_rect(fill = \"#CFE0E1\"),\n    panel.background = element_rect(fill = \"white\"),\n    legend.position = \"none\",\n    panel.grid.minor = element_blank())"
+  },
+  {
+    "objectID": "analysis-feeling-over-time/index.html#how-were-feeling-over-time",
+    "href": "analysis-feeling-over-time/index.html#how-were-feeling-over-time",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. Here, we create a little sentiment profile for each episode, binning them in three minute increments and calculating the AFINN average sentiment score in each."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "MDR",
     "section": "",
-    "text": "we analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\nwe analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\n\nA\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\n\nB\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\n\nD\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nF\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\n\nH\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nS\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\n\nW\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;"
+    "text": "we analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\nwe analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\n\nA\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\n\nB\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\n\nD\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nF\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\n\nH\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nS\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\n\nU\n\n\n\nWas Milchick’s performance evaluation accurate? Read More &gt;\n\n\n\nWas Milchick’s performance evaluation accurate? Read More &gt;\n\n\n\n\nW\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;"
   },
   {
     "objectID": "index.html#welcome",
@@ -133,6 +224,20 @@
     "text": "Who is happier: the innies or outies?\nRead More &gt;"
   },
   {
+    "objectID": "index.html#uses-too-many-big-words",
+    "href": "index.html#uses-too-many-big-words",
+    "title": "MDR",
+    "section": "",
+    "text": "Was Milchick’s performance evaluation accurate? Read More &gt;"
+  },
+  {
+    "objectID": "index.html#uses-too-many-big-words-1",
+    "href": "index.html#uses-too-many-big-words-1",
+    "title": "MDR",
+    "section": "",
+    "text": "Was Milchick’s performance evaluation accurate? Read More &gt;"
+  },
+  {
     "objectID": "index.html#whos-talking",
     "href": "index.html#whos-talking",
     "title": "MDR",
@@ -147,34 +252,6 @@
     "text": "Check out these episode profiles color coded by who is speaking Read More &gt;"
   },
   {
-    "objectID": "join-us/index.html",
-    "href": "join-us/index.html",
-    "title": "MDR",
-    "section": "",
-    "text": "Care to join us? Get your own badge here:\n\n\n\n\nGenerate your own analyses and submit a pull request here."
-  },
-  {
-    "objectID": "join-us/index.html#join-us",
-    "href": "join-us/index.html#join-us",
-    "title": "MDR",
-    "section": "",
-    "text": "Care to join us? Get your own badge here:"
-  },
-  {
-    "objectID": "analysis-badges/index.html",
-    "href": "analysis-badges/index.html",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally.\nCode\nlibrary(mdr)\nlibrary(tidyverse)\nlibrary(ggiraph)\n\npreds &lt;- tibble(id_numeric = 8039:8988)\n\npreds$joined_predicted &lt;- lm(joined ~ I(id_numeric^30), badges) |&gt;\n  predict(newdata = preds)\n\np &lt;- ggplot(badges, \n            aes(x = id_numeric,\n                y = joined_predicted,\n                tooltip = glue::glue(\"test\"))) +\n  geom_point_interactive(aes(tooltip = glue::glue(\"{name}&lt;br&gt;employee code: {id}&lt;br&gt;predicted start: {round(joined_predicted / 365, 1)} years ago\")),\n                         color = \"#6AF307\",\n                         size = 3) +\n  geom_line(data = preds, aes(y = joined_predicted), color = \"white\",\n            linetype = \"dashed\") + \n  scale_y_continuous(\n    breaks = badges$joined_predicted,\n    labels = badges$name[order(badges$joined_predicted, decreasing = TRUE)],\n    sec.axis = sec_axis(~ ., breaks = badges$joined_predicted,\n                        labels = round(badges$joined_predicted / 365, 1),\n                        name = \"Predicted Start (Years Ago)\")\n  ) +\n  scale_x_continuous(\n    breaks = badges$id_numeric,\n    labels = function(x) glue::glue(\"08-{substr(x, 2, 4)}\")\n  ) +\n  labs(x = \"Employee Code\", y = \"\") +\n  annotate(\"label\", x = 8907, y = 365*2,\n           size = 3,\n           label = \"~2 years\\nsource: S1E1 (40:39)\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  annotate(\"label\", x = 8430, y = 365*9,\n           size = 3,\n           label = \"~9 years\\nsource: Linkedin\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  theme_mdr() +\n  theme(\n    panel.grid.minor = element_blank(),\n    axis.text.x = element_text(angle = 45, hjust = 1)\n  )\n\nggiraph::girafe(ggobj = p)"
-  },
-  {
-    "objectID": "analysis-badges/index.html#when-did-employees-join-lumon",
-    "href": "analysis-badges/index.html#when-did-employees-join-lumon",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally."
-  },
-  {
     "objectID": "about/index.html",
     "href": "about/index.html",
     "title": "MDR",
@@ -187,34 +264,6 @@
     "title": "MDR",
     "section": "",
     "text": "This website was build by Lucy D’Agostino McGowan."
-  },
-  {
-    "objectID": "analysis-whos-talking/index.html",
-    "href": "analysis-whos-talking/index.html",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. For each episode we count the number of words each of the four main characters (Mark, Helly, Dylan, and Irving) speak for in each minute and visualize them below. Click on the tabs to switch episodes.\n\n\nS1E1S1E2S1E3S1E4S1E5S1E6S1E7S1E8S1E9S2E1S2E2S2E3"
-  },
-  {
-    "objectID": "analysis-whos-talking/index.html#whos-talking",
-    "href": "analysis-whos-talking/index.html#whos-talking",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. For each episode we count the number of words each of the four main characters (Mark, Helly, Dylan, and Irving) speak for in each minute and visualize them below. Click on the tabs to switch episodes."
-  },
-  {
-    "objectID": "analysis-innie-sentiment/index.html",
-    "href": "analysis-innie-sentiment/index.html",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution.\n\n\n\n\n\n\n\n\n\n\n\nNow lets look at some word frequency by episode. I pulled out the top 5 words per sentiment (and show some ties)."
-  },
-  {
-    "objectID": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
-    "href": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution."
   },
   {
     "objectID": "analysis-helly-or-helena/index.html",
@@ -236,19 +285,5 @@
     "title": "MDR",
     "section": "",
     "text": "What does this tell us? Probably nothing, Helena was seen watching tapes of the severed floor and certainly could be studying the words that Helly used, or the unknown person could actually just be Helly, like she says (I don’t think so!!). Maybe we need to curate a dataset of facial expressions…stay tuned?"
-  },
-  {
-    "objectID": "analysis-feeling-over-time/index.html",
-    "href": "analysis-feeling-over-time/index.html",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. Here, we create a little sentiment profile for each episode, binning them in three minute increments and calculating the AFINN average sentiment score in each.\nCode\nlibrary(tidytext)\nlibrary(mdr)\nlibrary(tidyverse)\n\ndf &lt;- transcripts |&gt;\n  mutate(timestamp_seconds = as.numeric(timestamp), \n         bin = floor(timestamp_seconds / 180) * 180) |&gt;\n  left_join(episodes, by = c(\"season\", \"episode\"))\n\ndf |&gt;\n  mutate(id = glue::glue(\"Season {season} Episode {episode}\\nWritten by: {writer}\")) |&gt;\n  unnest_tokens(word, dialogue) |&gt;\n  inner_join(get_sentiments(\"afinn\"), by = \"word\") |&gt;\n  group_by(id, bin) |&gt;\n  summarise(sentiment = mean(value)) |&gt;\n  ggplot(aes(x = bin, y = sentiment, fill = sentiment &gt; 0)) + \n  geom_bar(stat = \"identity\", alpha = 0.8) +\n  scale_fill_manual(values = c(\"#C15C58\", \"#5BA9D0\")) +\n  scale_x_time(labels = scales::time_format(\"%M:%S\")) +\n  labs(x = \"\") +\n  facet_wrap(~id) + \n  theme_mdr() + \n  theme(\n    axis.title = element_text(color = \"black\"),\n    axis.text = element_text(color = \"black\"),\n    plot.background = element_rect(fill = \"#CFE0E1\"),\n    panel.background = element_rect(fill = \"white\"),\n    legend.position = \"none\",\n    panel.grid.minor = element_blank())"
-  },
-  {
-    "objectID": "analysis-feeling-over-time/index.html#how-were-feeling-over-time",
-    "href": "analysis-feeling-over-time/index.html#how-were-feeling-over-time",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. Here, we create a little sentiment profile for each episode, binning them in three minute increments and calculating the AFINN average sentiment score in each."
   }
 ]
