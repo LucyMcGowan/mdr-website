@@ -5,6 +5,7 @@ format: html
 <center>
 
 ::: text
+
 ## Uses too many big words
 
 Below is a word cloud of Seth Milchick's most frequently used words of the past \[*few*\] quarter\[*s*\] alone. \[*Lumon*\] recommended that Mr. Milchick begin simplifying his language so as to achieve clearer comprehension from his subordinates and peers.
@@ -78,45 +79,37 @@ safe_syllable_count <- possibly(
 syllable_df$syllables <- map_dbl(syllable_df$word, safe_syllable_count)
 
 means_df <- syllable_df |>
- filter(!is.na(syllables)) |>
+ filter(!is.na(syllables), syllables != 0) |>
  group_by(milchick) |>
- summarise(mean_syllables = mean(syllables))
+ summarise(mean_syllables = mean(syllables),
+           se_syllables = sd(syllables) / n(),
+           lcl = mean_syllables - 1.96 * se_syllables,
+           ucl = mean_syllables + 1.96 * se_syllables)
 
 p <- syllable_df |>
-  filter(!is.na(syllables)) |>
+  filter(!is.na(syllables), syllables != 0) |>
   group_by(milchick, syllables) |>
   summarise(count = n(), .groups = "drop") |>
   group_by(milchick) |>
-  mutate(percent = count/sum(count) * 100) |>
-  mutate(percent = if_else(milchick == TRUE, percent, -percent)) |>
+  mutate(percent = count/sum(count) * 100) |> 
   ggplot(aes(x = syllables, y = percent, fill = milchick,
-             tooltip = glue::glue("{round(abs(percent), 1)}% of the words used by {ifelse(milchick, 'Milchick','everyone else')} had {syllables} {ifelse(syllables !=1, 'syllables', 'syllable')}"))) +
-  geom_col_interactive() +
-  scale_y_continuous(
-    labels = abs,
-  ) +
- geom_vline(data = means_df,
-            aes(xintercept = mean_syllables, color = milchick),
-            linetype = "dashed",
-            lwd = 2) +
-  annotate("label", x = 3, y = 30,
-           label = "Milchick", hjust = 0.5) +
-  annotate("label", x = 3, y = -30,
-           label = "Everyone Else", hjust = 0.5) +
+             tooltip = glue::glue("{round(percent, 1)}% of the words spoken by {ifelse(milchick, 'Milchick','everyone else')} had {syllables} {ifelse(syllables !=1, 'syllables', 'syllable')}")))+
+  geom_col_interactive(position = "dodge") +
+  scale_fill_manual(values = c("TRUE" = "#E84646", "FALSE" = "#3C8DAD"),
+                    name = "",
+                    labels = c("Everyone Else", "Milchick")) +
+  scale_color_manual(values = c("TRUE" = "red", "FALSE" = "blue")) +
   labs(
     x = "Syllable Count",
-    y = "Percentage",
+    y = "Percentage of Words",
   ) +
   theme_mdr() +
+  scale_x_continuous(breaks = seq(0, 6, 1),
+                    minor_breaks = seq(0, 6, 0.5)) +
   theme(
-    legend.position = "none",
-  #  panel.grid.minor = element_blank(),
-  ) +
-  scale_color_manual(values = c("TRUE" = "red", "FALSE" = "blue")) +
-  scale_fill_manual(values = c("TRUE" = "#E84646", "FALSE" = "#3C8DAD"))
-
-# girafe(ggobj = p)
-
+    legend.position = "bottom"
+  )
+#girafe(ggobj = p)
 p
 ```
 
@@ -124,7 +117,9 @@ p
 <center>
 
 ::: text
-Looking at the distribution above, it looks like no, in general Milchick is in line with the other speakers. Milchick uses an average of `r means_df |> filter(milchick == TRUE) |> pull(mean_syllables) |> round(2)` syllables per word, whereas everyone else is close behind with an average of `r means_df |> filter(milchick == FALSE) |> pull(mean_syllables) |> round(2)`. We will be taking this to the board.
+Looking at the distribution above, it looks like no, in general Milchick is in line with the other speakers. Milchick uses an average of `r means_df |> filter(milchick == TRUE) |> pull(mean_syllables) |> round(2)` (95% CI: `r means_df |> filter(milchick == TRUE) |> pull(lcl) |> round(2)` - `r means_df |> filter(milchick == TRUE) |> pull(ucl) |> round(2)`) syllables per word, whereas everyone else is close behind with an average of `r means_df |> filter(milchick == FALSE) |> pull(mean_syllables) |> round(2)` (95% CI: `r means_df |> filter(milchick == FALSE) |> pull(lcl) |> round(2)` - `r means_df |> filter(milchick == FALSE) |> pull(ucl) |> round(2)`). While this difference is technically statistically significant, we do not think it is scientifically meaningful. We will be taking this to the board.
+
+*This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) R package, which used data originally compiled by [the Severance wiki](https://severance.wiki/). It uses data through season 2 episode 5.*
 :::
 
 </center>
