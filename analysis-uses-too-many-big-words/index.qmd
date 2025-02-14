@@ -27,6 +27,8 @@ library(wordcloud2)
 library(textclean)
 library(ggiraph)
 
+set.seed(266)
+
 transcripts |> 
   filter(grepl("Mil", speaker)) |>
   mutate(
@@ -36,7 +38,7 @@ transcripts |>
   unnest_tokens(word, dialogue) |>
   anti_join(stop_words) |>
   filter(!word %in% c("ms", "miss")) |>
-  mutate(word == gsub("'s", "", word)) |>
+  mutate(word = gsub("'s", "", word)) |>
   count(word) |>
   filter(n > 2) |>
   wordcloud2(backgroundColor = "#030303",
@@ -95,7 +97,8 @@ p <- syllable_df |>
   ) +
  geom_vline(data = means_df,
             aes(xintercept = mean_syllables, color = milchick),
-            linetype = "dashed") +
+            linetype = "dashed",
+            lwd = 2) +
   annotate("label", x = 3, y = 30,
            label = "Milchick", hjust = 0.5) +
   annotate("label", x = 3, y = -30,
