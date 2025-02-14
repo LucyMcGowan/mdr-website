@@ -43,7 +43,8 @@ transcripts |>
   count(word) |>
   filter(n > 2) |>
   wordcloud2(backgroundColor = "#030303",
-             fontFamily = "Noto Sans Mono")
+             fontFamily = "Noto Sans Mono",
+             size = 0.3)
 ```
 
 <center>
