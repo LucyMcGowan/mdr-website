@@ -1,0 +1,127 @@
+---
+format: html
+---
+
+<center>
+
+::: text
+## Uses too many big words
+
+Below is a word cloud of Seth Milchick's most frequently used words of the past \[*few*\] quarter\[*s*\] alone. \[*Lumon*\] recommended that Mr. Milchick begin simplifying his language so as to achieve clearer comprehension from his subordinates and peers.
+
+*I don't see evidence of this!*
+:::
+
+</center>
+
+
+```{r}
+#| code-fold: true
+#| message: false
+#| warning: false
+#| fig-align: center
+library(mdr)
+library(tidytext)
+library(tidyverse)
+library(wordcloud2)
+library(textclean)
+library(ggiraph)
+
+transcripts |> 
+  filter(grepl("Mil", speaker)) |>
+  mutate(
+    dialogue = str_replace_all(dialogue, "’", "'"),
+    dialogue = replace_contraction(dialogue)
+  ) |>
+  unnest_tokens(word, dialogue) |>
+  anti_join(stop_words) |>
+  filter(!word %in% c("ms", "miss")) |>
+  mutate(word == gsub("'s", "", word)) |>
+  count(word) |>
+  filter(n > 2) |>
+  wordcloud2(backgroundColor = "#030303",
+             fontFamily = "Noto Sans Mono")
+```
+
+<center>
+
+::: text
+## Syllable count
+
+Let's see if Milchick is really using more syllables than everyone else.
+:::
+
+</center>
+
+```{r}
+#| fig-align: center
+#| code-fold: true
+#| message: false
+#| warning: false
+#| fig-width: 10
+
+syllable_df <- transcripts |>
+  mutate(
+    dialogue = str_replace_all(dialogue, "’", "'"),
+    dialogue = replace_contraction(dialogue),
+    milchick = grepl("Mil", speaker)
+  ) |>
+  unnest_tokens(word, dialogue) 
+
+safe_syllable_count <- possibly(
+  function(x) qdap::syllable_count(x)$syllables, 
+  otherwise = NA_real_
+)
+
+syllable_df$syllables <- map_dbl(syllable_df$word, safe_syllable_count)
+
+means_df <- syllable_df |>
+ filter(!is.na(syllables)) |>
+ group_by(milchick) |>
+ summarise(mean_syllables = mean(syllables))
+
+p <- syllable_df |>
+  filter(!is.na(syllables)) |>
+  group_by(milchick, syllables) |>
+  summarise(count = n(), .groups = "drop") |>
+  group_by(milchick) |>
+  mutate(percent = count/sum(count) * 100) |>
+  mutate(percent = if_else(milchick == TRUE, percent, -percent)) |>
+  ggplot(aes(x = syllables, y = percent, fill = milchick,
+             tooltip = glue::glue("{round(abs(percent), 1)}% of the words used by {ifelse(milchick, 'Milchick','everyone else')} had {syllables} {ifelse(syllables !=1, 'syllables', 'syllable')}"))) +
+  geom_col_interactive() +
+  scale_y_continuous(
+    labels = abs,
+  ) +
+ geom_vline(data = means_df,
+            aes(xintercept = mean_syllables, color = milchick),
+            linetype = "dashed") +
+  annotate("label", x = 3, y = 30,
+           label = "Milchick", hjust = 0.5) +
+  annotate("label", x = 3, y = -30,
+           label = "Everyone Else", hjust = 0.5) +
+  labs(
+    x = "Syllable Count",
+    y = "Percentage",
+  ) +
+  theme_mdr() +
+  theme(
+    legend.position = "none",
+  #  panel.grid.minor = element_blank(),
+  ) +
+  scale_color_manual(values = c("TRUE" = "red", "FALSE" = "blue")) +
+  scale_fill_manual(values = c("TRUE" = "#E84646", "FALSE" = "#3C8DAD"))
+
+# girafe(ggobj = p)
+
+p
+```
+
+
+<center>
+
+::: text
+Looking at the distribution above, it looks like no, in general Milchick is in line with the other speakers. Milchick uses an average of `r means_df |> filter(milchick == TRUE) |> pull(mean_syllables) |> round(2)` syllables per word, whereas everyone else is close behind with an average of `r means_df |> filter(milchick == FALSE) |> pull(mean_syllables) |> round(2)`. We will be taking this to the board.
+:::
+
+</center>

@@ -222,6 +222,34 @@ Who is happier: the innies or outies?
 
 ::: {.card style="--i: 8;"}
 ::: {.tab}
+U
+:::
+
+::: {.card--front}
+
+## uses too many big words?
+
+Was Milchick's performance evaluation accurate?
+[Read More >](analysis-uses-too-many-big-words)
+
+
+:::
+
+::: {.card--back}  
+
+## uses too many big words?
+
+Was Milchick's performance evaluation accurate?
+[Read More >](analysis-uses-too-many-big-words)
+
+
+
+:::
+:::
+
+
+::: {.card style="--i: 9;"}
+::: {.tab}
 W
 :::
 
