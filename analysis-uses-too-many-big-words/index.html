@@ -135,7 +135,7 @@ document.querySelectorAll(".spoiler").forEach(spoiler => {
 <section id="uses-too-many-big-words" class="level2 text">
 <h2 data-anchor-id="uses-too-many-big-words">Uses too many big words</h2>
 <p>Below is a word cloud of Seth Milchick’s most frequently used words of the past [<em>few</em>] quarter[<em>s</em>] alone. [<em>Lumon</em>] recommended that Mr.&nbsp;Milchick begin simplifying his language so as to achieve clearer comprehension from his subordinates and peers.</p>
-<p><em>I don’t see evidence of this!</em></p>
+<p>Lumon claimed (as detailed above) that Milchick is using too many big words. <em>I don’t see evidence of this!</em></p>
 </section>
 </center>
 <div class="cell" data-layout-align="center">
@@ -147,29 +147,30 @@ document.querySelectorAll(".spoiler").forEach(spoiler => {
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud2)</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(textclean)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggiraph)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">266</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>transcripts <span class="sc">|&gt;</span> </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"Mil"</span>, speaker)) <span class="sc">|&gt;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">dialogue =</span> <span class="fu">str_replace_all</span>(dialogue, <span class="st">"’"</span>, <span class="st">"'"</span>),</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">dialogue =</span> <span class="fu">replace_contraction</span>(dialogue)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, dialogue) <span class="sc">|&gt;</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>word <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"ms"</span>, <span class="st">"miss"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">gsub</span>(<span class="st">"'s"</span>, <span class="st">""</span>, word)) <span class="sc">|&gt;</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word) <span class="sc">|&gt;</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wordcloud2</span>(<span class="at">backgroundColor =</span> <span class="st">"#030303"</span>,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>             <span class="at">fontFamily =</span> <span class="st">"Noto Sans Mono"</span>,</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lexicon)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">266</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>transcripts <span class="sc">|&gt;</span> </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(<span class="st">"Mil"</span>, speaker)) <span class="sc">|&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">dialogue =</span> <span class="fu">str_replace_all</span>(dialogue, <span class="st">"’"</span>, <span class="st">"'"</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">dialogue =</span> <span class="fu">replace_contraction</span>(dialogue)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, dialogue) <span class="sc">|&gt;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(stop_words) <span class="sc">|&gt;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>word <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"ms"</span>, <span class="st">"miss"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">word =</span> <span class="fu">gsub</span>(<span class="st">"'s"</span>, <span class="st">""</span>, word)) <span class="sc">|&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(word) <span class="sc">|&gt;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wordcloud2</span>(<span class="at">backgroundColor =</span> <span class="st">"#030303"</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>             <span class="at">fontFamily =</span> <span class="st">"Noto Sans Mono"</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-2756f79f2ee279509ac0" style="width:100%;height:464px;"></div>
-<script type="application/json" data-for="htmlwidget-2756f79f2ee279509ac0">{"x":{"word":["mark","dylan","helly","irving","time","cobel","innie","office","outie","lumon","morning","day","hey","kier","burt","refiners","scout","feel","severed","huang","party","afraid","experience","floor","happy","hope","milchick","seat","stop","call","company","department","dieter","eagan","enjoy","fire","happened","hollow","life","love","mdr","night","remember","return","special","start","stay","team","told","word","ahead","balloons","brother","called","card","check","choose","doors","evening","eyes","favorite","fourth","gonna","happen","hate","head","hours","marshmallows","meantime","mind","minute","petey","quarter","read","ready","refinement","rest","tonight","waterfall","wife","woe"],"freq":[30,28,20,16,13,11,11,11,11,10,10,9,9,9,8,8,8,7,7,6,6,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"fontFamily":"Noto Sans Mono","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":4.8,"backgroundColor":"#030303","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<script type="application/json" data-for="htmlwidget-2756f79f2ee279509ac0">{"x":{"word":["dylan","mark","irving","helly","outie","time","cobel","innie","office","kier","lumon","morning","day","hey","burt","feel","huang","mdr","refiners","scout","party","severed","eagan","hope","afraid","company","experience","floor","happy","milchick","ready","remember","seat","stop","word","ahead","call","called","department","dieter","enjoy","evening","eyes","fire","happened","hate","head","hollow","life","love","meantime","night","rest","return","special","start","stay","team","told","balloons","brother","card","check","choose","doors","employ","escort","excuse","favorite","forward","fourth","gonna","hair","happen","heard","hours","management","marshmallows","mind","minute","minutes","ortbo","paintings","petey","quarter","question","read","refinement","sound","tonight","understand","waterfall","wife","woe","wonderful","wondering"],"freq":[32,32,23,21,15,15,12,12,12,11,10,10,9,9,8,8,8,8,8,8,7,7,6,6,5,5,5,5,5,5,5,5,5,5,5,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3],"fontFamily":"Noto Sans Mono","fontWeight":"bold","color":"random-dark","minSize":0,"weightFactor":4.5,"backgroundColor":"#030303","gridSize":0,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
 </div>
 </div>
 <center>
@@ -200,7 +201,7 @@ document.querySelectorAll(".spoiler").forEach(spoiler => {
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(syllables), syllables <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a> <span class="fu">group_by</span>(milchick) <span class="sc">|&gt;</span></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a> <span class="fu">summarise</span>(<span class="at">mean_syllables =</span> <span class="fu">mean</span>(syllables),</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">se_syllables =</span> <span class="fu">sd</span>(syllables) <span class="sc">/</span> <span class="fu">n</span>(),</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>           <span class="at">se_syllables =</span> <span class="fu">sd</span>(syllables) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">n</span>()),</span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>           <span class="at">lcl =</span> mean_syllables <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> se_syllables,</span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">ucl =</span> mean_syllables <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> se_syllables)</span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
@@ -240,7 +241,62 @@ document.querySelectorAll(".spoiler").forEach(spoiler => {
 </div>
 <center>
 <div class="text">
-<p>Looking at the distribution above, it looks like no, in general Milchick is in line with the other speakers. Milchick uses an average of 1.34 (95% CI: 1.33 - 1.34) syllables per word, whereas everyone else is close behind with an average of 1.28 (95% CI: 1.28 - 1.28). While this difference is technically statistically significant, we do not think it is scientifically meaningful. We will be taking this to the board.</p>
+<p>Looking at the distribution above, it looks like no, in general Milchick is in line with the other speakers. Milchick uses an average of 1.35 (95% CI: 1.33 - 1.37) syllables per word, whereas everyone else is close behind with an average of 1.28 (95% CI: 1.27 - 1.29). While this difference is technically statistically significant, we do not think it is scientifically meaningful.</p>
+</div>
+<section id="common-words" class="level2 text">
+<h2 data-anchor-id="common-words">Common words</h2>
+<p>Ok, maybe by “big” Lumon meant not that the words were multisyllabic but rather uncommon. We can use Fry’s 1000 word list (Fry (1997)) to help us see if Milchick uses uncommon words more frequently than the other characters. This list claims to contain words that make up 90% of all printed text, let’s see if Milchick is using more uncommon words than his counterparts.</p>
+</section>
+</center>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>words_df <span class="ot">&lt;-</span> transcripts <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">dialogue =</span> <span class="fu">str_replace_all</span>(dialogue, <span class="st">"’"</span>, <span class="st">"'"</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dialogue =</span> <span class="fu">replace_contraction</span>(dialogue),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">milchick =</span> <span class="fu">grepl</span>(<span class="st">"Mil"</span>, speaker)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest_tokens</span>(word, dialogue) </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>fry_words <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">word =</span> <span class="fu">tolower</span>(sw_fry_1000)) <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_common =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>()</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>words_summary <span class="ot">&lt;-</span> words_df <span class="sc">|&gt;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(fry_words, <span class="at">by =</span> <span class="st">"word"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">is_common =</span> <span class="fu">if_else</span>(<span class="fu">is.na</span>(is_common), <span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(milchick) <span class="sc">|&gt;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_words =</span> <span class="fu">n</span>(),</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">common_words =</span> <span class="fu">sum</span>(is_common),</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">p_common =</span> common_words <span class="sc">/</span> total_words,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">se =</span> <span class="fu">sqrt</span>(p_common <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_common) <span class="sc">/</span> <span class="fu">n</span>()),</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">pct_common =</span> p_common <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">lcl =</span> (p_common <span class="sc">-</span> <span class="fl">1.96</span> <span class="sc">*</span> se) <span class="sc">*</span> <span class="dv">100</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">ucl =</span> (p_common <span class="sc">+</span> <span class="fl">1.96</span> <span class="sc">*</span> se) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(words_summary, </span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> milchick, <span class="at">y =</span> pct_common, <span class="at">fill =</span> milchick)) <span class="sc">+</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"#E84646"</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"#3C8DAD"</span>)) <span class="sc">+</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">"Percentage of Common Words"</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="st">""</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Everyone else"</span>, <span class="st">"Milchick"</span>)) <span class="sc">+</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_mdr</span>() <span class="sc">+</span> </span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<center>
+<div class="text">
+<p>Well look at that, Milchick is in line with the rest of the characters! 71.6% of Milchick’s words are “common” (95% CI: 70.3 - 72.8) compared to 72.8% for everyone else 72.3 - 73.3). Notably, these are both much lower than 90%, as (according to Fry) would be expected in written text, so maybe everyone is using weird vocabulary, but it is not at all unique to Milchick! We will be taking this up with the board.</p>
 <p><em>This analysis was made possible by the <a href="https://lucymcgowan.github.io/mdr">mdr</a> R package, which used data originally compiled by <a href="https://severance.wiki/">the Severance wiki</a>. It uses data through season 2 episode 5.</em></p>
 </div>
 </center>
