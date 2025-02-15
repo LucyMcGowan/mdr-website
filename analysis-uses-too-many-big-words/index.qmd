@@ -83,12 +83,12 @@ safe_syllable_count <- possibly(
 syllable_df$syllables <- map_dbl(syllable_df$word, safe_syllable_count)
 
 means_df <- syllable_df |>
- filter(!is.na(syllables), syllables != 0) |>
- group_by(milchick) |>
- summarise(mean_syllables = mean(syllables),
-           se_syllables = sd(syllables) / sqrt(n()),
-           lcl = mean_syllables - 1.96 * se_syllables,
-           ucl = mean_syllables + 1.96 * se_syllables)
+  filter(!is.na(syllables), syllables != 0) |>
+  group_by(milchick) |>
+  summarise(mean_syllables = mean(syllables),
+            se_syllables = sd(syllables) / sqrt(n()),
+            lcl = mean_syllables - 1.96 * se_syllables,
+            ucl = mean_syllables + 1.96 * se_syllables)
 
 p <- syllable_df |>
   filter(!is.na(syllables), syllables != 0) |>
@@ -109,7 +109,7 @@ p <- syllable_df |>
   ) +
   theme_mdr() +
   scale_x_continuous(breaks = seq(0, 6, 1),
-                    minor_breaks = seq(0, 6, 0.5)) +
+                     minor_breaks = seq(0, 6, 0.5)) +
   theme(
     legend.position = "bottom"
   )
@@ -166,7 +166,7 @@ words_summary <- words_df |>
 ggplot(words_summary, 
        aes(x = milchick, y = pct_common, fill = milchick)) +
   geom_col() +
-   scale_fill_manual(values = c("TRUE" = "#E84646", "FALSE" = "#3C8DAD")) +
+  scale_fill_manual(values = c("TRUE" = "#E84646", "FALSE" = "#3C8DAD")) +
   scale_y_continuous("Percentage of Common Words", limits = c(0, 100)) +
   scale_x_discrete("", labels = c("Everyone else", "Milchick")) +
   theme_mdr() + 
@@ -182,4 +182,37 @@ Well look at that, Milchick is in line with the rest of the characters! `r words
 *This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) R package, which used data originally compiled by [the Severance wiki](https://severance.wiki/). It uses data through season 2 episode 5.*
 :::
 
+::: text
+
+## Addendum
+
+Some folks want to see which words are specific to Milchick -- instead of weighting by frequency like in our top word cloud, we could instead weight by the `tf-idf` (term frequency, inverse document frequency). This basically tells us *which* words are uniquely used by Milchick. I would argue this is *not* what Lumon claimed to do as they were trying to say he was using *too many* big words (which implies frequency), but in any case this is fun!!
+
+:::
+
 </center>
+
+```{r}
+#| code-fold: true
+
+tf_idf <- words_df |>
+  mutate(word = case_when(
+    word == "innie's" ~ "innie",
+    .default = word
+  )) |>
+  filter(!str_detect(word, "\\d"), word != "b's") |>
+  anti_join(stop_words, by = "word") |>
+  count(milchick, word, sort = TRUE) |>
+  bind_tf_idf(word, milchick, n) |>
+  filter(milchick) |>
+  mutate(n = round(tf_idf * 10000, 1)) |>
+  select(word, n) |>
+  arrange(desc(n)) 
+
+wordcloud2(tf_idf, 
+           backgroundColor = "#030303",
+           fontFamily = "Noto Sans Mono",
+           size = 0.2)
+```
+
+
