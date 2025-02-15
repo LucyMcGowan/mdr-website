@@ -10,7 +10,7 @@ format: html
 
 Below is a word cloud of Seth Milchick's most frequently used words of the past \[*few*\] quarter\[*s*\] alone. \[*Lumon*\] recommended that Mr. Milchick begin simplifying his language so as to achieve clearer comprehension from his subordinates and peers.
 
-*I don't see evidence of this!*
+Lumon claimed (as detailed above) that Milchick is using too many big words. *I don't see evidence of this!*
 :::
 
 </center>
@@ -27,6 +27,7 @@ library(tidyverse)
 library(wordcloud2)
 library(textclean)
 library(ggiraph)
+library(lexicon)
 
 set.seed(266)
 
@@ -51,6 +52,7 @@ transcripts |>
 <center>
 
 ::: text
+
 ## Syllable count
 
 Let's see if Milchick is really using more syllables than everyone else.
@@ -84,7 +86,7 @@ means_df <- syllable_df |>
  filter(!is.na(syllables), syllables != 0) |>
  group_by(milchick) |>
  summarise(mean_syllables = mean(syllables),
-           se_syllables = sd(syllables) / n(),
+           se_syllables = sd(syllables) / sqrt(n()),
            lcl = mean_syllables - 1.96 * se_syllables,
            ucl = mean_syllables + 1.96 * se_syllables)
 
@@ -115,11 +117,67 @@ p <- syllable_df |>
 p
 ```
 
+<center>
+
+::: text
+Looking at the distribution above, it looks like no, in general Milchick is in line with the other speakers. Milchick uses an average of `r means_df |> filter(milchick == TRUE) |> pull(mean_syllables) |> round(2)` (95% CI: `r means_df |> filter(milchick == TRUE) |> pull(lcl) |> round(2)` - `r means_df |> filter(milchick == TRUE) |> pull(ucl) |> round(2)`) syllables per word, whereas everyone else is close behind with an average of `r means_df |> filter(milchick == FALSE) |> pull(mean_syllables) |> round(2)` (95% CI: `r means_df |> filter(milchick == FALSE) |> pull(lcl) |> round(2)` - `r means_df |> filter(milchick == FALSE) |> pull(ucl) |> round(2)`). While this difference is technically statistically significant, we do not think it is scientifically meaningful.
+:::
+
+::: text
+
+## Common words
+
+Ok, maybe by "big" Lumon meant not that the words were multisyllabic but rather uncommon. We can use Fry's 1000 word list (Fry (1997)) to help us see if Milchick uses uncommon words more frequently than the other characters. This list claims to contain words that make up 90% of all printed text, let's see if Milchick is using more uncommon words than his counterparts. 
+
+:::
+
+</center>
+
+```{r}
+#| code-fold: true
+#| fig-align: center
+
+words_df <- transcripts |>
+  mutate(
+    dialogue = str_replace_all(dialogue, "’", "'"),
+    dialogue = replace_contraction(dialogue),
+    milchick = grepl("Mil", speaker)
+  ) |>
+  unnest_tokens(word, dialogue) 
+
+fry_words <- tibble(word = tolower(sw_fry_1000)) |>
+  mutate(is_common = 1) |>
+  distinct()
+
+words_summary <- words_df |>
+  left_join(fry_words, by = "word") |>
+  mutate(is_common = if_else(is.na(is_common), 0, 1)) |>
+  group_by(milchick) |>
+  summarize(
+    total_words = n(),
+    common_words = sum(is_common),
+    p_common = common_words / total_words,
+    se = sqrt(p_common * (1 - p_common) / n()),
+    pct_common = p_common * 100,
+    lcl = (p_common - 1.96 * se) * 100,
+    ucl = (p_common + 1.96 * se) * 100
+  )
+
+ggplot(words_summary, 
+       aes(x = milchick, y = pct_common, fill = milchick)) +
+  geom_col() +
+   scale_fill_manual(values = c("TRUE" = "#E84646", "FALSE" = "#3C8DAD")) +
+  scale_y_continuous("Percentage of Common Words", limits = c(0, 100)) +
+  scale_x_discrete("", labels = c("Everyone else", "Milchick")) +
+  theme_mdr() + 
+  theme(legend.position = "none")
+```
 
 <center>
 
 ::: text
-Looking at the distribution above, it looks like no, in general Milchick is in line with the other speakers. Milchick uses an average of `r means_df |> filter(milchick == TRUE) |> pull(mean_syllables) |> round(2)` (95% CI: `r means_df |> filter(milchick == TRUE) |> pull(lcl) |> round(2)` - `r means_df |> filter(milchick == TRUE) |> pull(ucl) |> round(2)`) syllables per word, whereas everyone else is close behind with an average of `r means_df |> filter(milchick == FALSE) |> pull(mean_syllables) |> round(2)` (95% CI: `r means_df |> filter(milchick == FALSE) |> pull(lcl) |> round(2)` - `r means_df |> filter(milchick == FALSE) |> pull(ucl) |> round(2)`). While this difference is technically statistically significant, we do not think it is scientifically meaningful. We will be taking this to the board.
+
+Well look at that, Milchick is in line with the rest of the characters! `r words_summary |> filter(milchick == TRUE) |> pull(pct_common) |> round(1)`% of Milchick's words are "common" (95% CI: `r words_summary |> filter(milchick == TRUE) |> pull(lcl) |> round(1)` - `r words_summary |> filter(milchick == TRUE) |> pull(ucl) |> round(1)`) compared to `r words_summary |> filter(milchick == FALSE) |> pull(pct_common) |> round(1)`% for everyone else `r words_summary |> filter(milchick == FALSE) |> pull(lcl) |> round(1)` - `r words_summary |> filter(milchick == FALSE) |> pull(ucl) |> round(1)`). Notably, these are both much lower than 90%, as (according to Fry) would be expected in written text, so maybe everyone is using weird vocabulary, but it is not at all unique to Milchick! We will be taking this up with the board.
 
 *This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) R package, which used data originally compiled by [the Severance wiki](https://severance.wiki/). It uses data through season 2 episode 5.*
 :::
