@@ -1,1 +1,1 @@
-Sitemap: https://LucyMcGowan.github.io/mdr-website/sitemap.xml
+Sitemap: https://mdr.lucymcgowan.com/sitemap.xml
