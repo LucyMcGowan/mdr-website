@@ -38,8 +38,8 @@ transcripts |>
     dialogue = replace_contraction(dialogue)
   ) |>
   unnest_tokens(word, dialogue) |>
-  anti_join(stop_words) |>
-  filter(!word %in% c("ms", "miss")) |>
+  anti_join(stop_words, by = "word") |>
+  filter(!word %in% c("ms", "miss", "b's"), !str_detect(word, "\\d")) |>
   mutate(word = gsub("'s", "", word)) |>
   count(word) |>
   filter(n > 2) |>
@@ -52,6 +52,44 @@ transcripts |>
 <center>
 
 ::: text
+
+Hmm, I'm not seeing that many big words! Maybe we should remove proper names.
+
+:::
+
+</center>
+
+```{r}
+#| code-fold: true
+#| fig-align: center
+transcripts |> 
+  filter(grepl("Mil", speaker)) |>
+  mutate(
+    dialogue = str_replace_all(dialogue, "’", "'"),
+    dialogue = replace_contraction(dialogue)
+  ) |>
+  unnest_tokens(word, dialogue) |>
+  anti_join(stop_words, by = "word") |>
+  mutate(word = gsub("'s", "", word)) |>
+    filter(!word %in% c("ms", "miss", "b's", 
+                      "cobel", "mark", "dylan", "helly", "irving",
+                      "bailiff", "casey", "dr", "eagan", "gretchen",
+                      "harmony", "huang", "irv", "kier", "lawrence",
+                      "milchick", "petey", "rwanda", "siena", "burt", "lumon", "scout", "mdr", "dieter"),
+         !str_detect(word, "\\d")) |>
+  count(word) |>
+  filter(n > 1) |>
+  arrange(desc(n)) |>
+  wordcloud2(backgroundColor = "#030303",
+             fontFamily = "Noto Sans Mono",
+             size = 0.6)
+```
+
+
+<center>
+::: text
+
+Here's the thing, I don't think there are that many big words! We are of course making some assumptions here (mainly that the words we see in the on screen dialogue are representative of how he speaks off screen), but I think this is reasonable. Ok, maybe the word cloud is not the best way to see this (although we are just doing the same analysis Lumon claims to!), let's instead compare the percentage of multisyllabic words Milchick uses compared to the rest of the characters.
 
 ## Syllable count
 
