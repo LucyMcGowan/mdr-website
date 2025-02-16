@@ -259,7 +259,7 @@ wordcloud2(tf_idf,
 
 ## Zipf Frequency
 
-Our refiner [Leopold](https://github.com/LeopoldTal) pointed out that we could use the `Zipf frequency` of the words to get a more granular look at whether Milchick is using common language (compared to our Fry approach which just dichotomized as common/not common). As the title of my main blog, [livefreeordichotomize](https://livefreeordichotomize.com), would suggest, I am ALWAYS here to avoid dichotomizing. The `Zipf frequency` is the log (base 10) of the number of times a word appears per billion words (i.e., a word with `Zipf frequency` of 3 appears once per million words). Ok, let's try that! We've calculated this for our main guy, Milchick, along with some other characters to compare him to and plotted the density. The dashed lines represent the medians.
+Our refiner of the quarter, [Leopold](https://github.com/LeopoldTal), pointed out that we could use the `Zipf frequency` of the words to get a more granular look at whether Milchick is using common language (compared to our Fry approach which just dichotomized as common/not common). As the title of my main blog, [livefreeordichotomize](https://livefreeordichotomize.com), would suggest, I am ALWAYS here to avoid dichotomizing. The `Zipf frequency` is the log (base 10) of the number of times a word appears per billion words (i.e., a word with `Zipf frequency` of 3 appears once per million words). Ok, let's try that! We've calculated this for our main guy, Milchick, along with some other characters to compare him to and plotted the density. The dashed lines represent the medians.
 
 :::
 

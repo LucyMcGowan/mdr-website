@@ -11,11 +11,12 @@ format: html
 This website was build by [Lucy D'Agostino McGowan](https://lucymcgowan.com).
 
 ![](../images/id-card.png)
+
 ## Refiners
 
 The following refiners have made our analyses so much better:
 
-* [Leopold T.](https://github.com/LeopoldTal) [[Uses too many big words?](analysis-uses-too-many-big-words)]]
+* [Leopold T.](https://github.com/LeopoldTal) [[Uses too many big words?](analysis-uses-too-many-big-words)]
 
 :::
 
