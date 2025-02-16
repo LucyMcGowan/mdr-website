@@ -71,11 +71,11 @@ transcripts |>
   unnest_tokens(word, dialogue) |>
   anti_join(stop_words, by = "word") |>
   mutate(word = gsub("'s", "", word)) |>
-    filter(!word %in% c("ms", "miss", "b's", 
+    filter(!word %in% c("ms", "miss", "b", 
                       "cobel", "mark", "dylan", "helly", "irving",
                       "bailiff", "casey", "dr", "eagan", "gretchen",
                       "harmony", "huang", "irv", "kier", "lawrence",
-                      "milchick", "petey", "rwanda", "siena", "burt", "lumon", "scout", "mdr", "dieter"),
+                      "milchick", "petey", "rwanda", "siena", "burt", "lumon", "scout", "mdr", "dieter", "seth"),
          !str_detect(word, "\\d")) |>
   count(word) |>
   filter(n > 1) |>
@@ -224,7 +224,7 @@ Well look at that, Milchick is in line with the rest of the characters! `r words
 
 ## Addendum
 
-Some folks want to see which words are specific to Milchick -- instead of weighting by frequency like in our top word cloud, we could instead weight by the `tf-idf` (term frequency, inverse document frequency). This basically tells us *which* words are uniquely used by Milchick. I would argue this is *not* what Lumon claimed to do as they were trying to say he was using *too many* big words (which implies frequency), but in any case this is fun!!
+Some folks want to see which words are specific to Milchick -- instead of weighting by frequency like in our top word cloud, we could instead weight by the `tf-idf` (term frequency, inverse document frequency). This basically tells us *which* words are uniquely used by Milchick. I would argue this is *not* what Lumon claimed to do as they were trying to say he was using *too many* big words (which implies frequency), but in any case this is fun!
 
 :::
 
@@ -253,4 +253,99 @@ wordcloud2(tf_idf,
            size = 0.2)
 ```
 
+<center>
 
+::: text
+
+## Zipf Frequency
+
+Our refiner [Leopold](https://github.com/LeopoldTal) pointed out that we could use the `Zipf frequency` of the words to get a more granular look at whether Milchick is using common language (compared to our Fry approach which just dichotomized as common/not common). As the title of my main blog, [livefreeordichotomize](https://livefreeordichotomize.com), would suggest, I am ALWAYS here to avoid dichotomizing. The `Zipf frequency` is the log (base 10) of the number of times a word appears per billion words (i.e., a word with `Zipf frequency` of 3 appears once per million words). Ok, let's try that! We've calculated this for our main guy, Milchick, along with some other characters to compare him to and plotted the density. The dashed lines represent the medians.
+
+:::
+
+</center>
+
+```{r}
+#| code-fold: true
+#| message: false
+#| warning: false
+
+library(reticulate)
+words_df <- transcripts |> 
+  mutate(
+    dialogue = str_replace_all(dialogue, "’", "'"),
+    dialogue = replace_contraction(dialogue),
+    character = case_when(
+      grepl("Mil", speaker) ~ "Milchick",
+      grepl("Cob", speaker) ~ "Cobel",
+      grepl("Mark", speaker) ~ "Mark",
+      grepl("Hel", speaker) ~ "Helly/Helena",
+      grepl("Irv", speaker) ~ "Irving",
+      grepl("Huang", speaker) ~ "Ms. Huang",
+      grepl("Dylan", speaker) ~ "Dylan",
+      .default = "Everyone else"
+    )
+  ) |>
+  unnest_tokens(word, dialogue) |>
+  anti_join(stop_words, by = "word") |>
+  mutate(word = gsub("'s", "", word))
+```
+
+```{python}
+#| code-fold: true
+from wordfreq import zipf_frequency
+
+df = r.words_df
+zipf = df['word'].apply(lambda word: zipf_frequency(word, 'en'))
+r.zipf = zipf.tolist()
+```
+
+```{r}
+#| code-fold: true
+#| fig-align: center
+#| fig-width: 10
+
+words_df$zipf <- as.numeric(zipf)
+
+words_df <- words_df |>
+  filter(zipf > 0)
+
+zipf_medians <- words_df |>
+  group_by(character) |>
+  summarize(median_zipf = median(zipf))
+
+ggplot(words_df, aes(x = zipf, fill = character)) +
+  geom_density(alpha = 0.5) +
+  geom_vline(data = zipf_medians, 
+             aes(xintercept = median_zipf,
+                 color = character), 
+             linetype = "dashed") +
+  geom_label(data = zipf_medians, aes(label = glue::glue("Median: {round(median_zipf,1)}"),
+                                      x = 2, y = 0.5),
+             inherit.aes = FALSE) +
+  facet_wrap(~character) +
+  labs(
+    x = "Zipf frequency (log10 occurances per a billion words)",
+    y = "Density"
+  ) +
+  theme_mdr() + 
+  theme(legend.position = "none")
+```
+
+<center>
+
+::: text
+Fascinating, this is a great view of the language! Of the ones we examined, most of our main characters have a median Zipf frequency between `r zipf_medians |> filter(character == "Cobel") |> pull(median_zipf) |> round(1)` (Cobel) and `r zipf_medians |> filter(character == "Ms. Huang") |> pull(median_zipf) |> round(1)` (Ms. Huang), with the exception of Milchick (`r zipf_medians |> filter(character == "Milchick") |> pull(median_zipf) |> round(1)`) and Irving (`r zipf_medians |> filter(character == "Irving") |> pull(median_zipf) |> round(1)`). Now, one angle is that Milchick is using too big of words, but another is that Ms. Huang, his likely accuser, is just using too basic of words compared to the others. Or maybe she is onto something, his Zipf frequency distribution is (statistically) significantly different from everyone else (p = `r scales::pvalue_format()(ks.test(words_df$zipf[words_df$character == "Milchick"], words_df$zipf[words_df$character != "Milchick"])$p.value)`).
+
+:::
+
+</center>
+
+```{r}
+#| echo: false
+#| eval: false
+
+ks.test(words_df$zipf[words_df$character == "Ms. Huang"], words_df$zipf[words_df$character != "Ms. Huang"])$p.value
+ks.test(words_df$zipf[words_df$character == "Milchick"], words_df$zipf[words_df$character != "Milchick"])
+ks.test(words_df$zipf[words_df$character == "Milchick"], words_df$zipf[words_df$character == "Cobel"])
+```
