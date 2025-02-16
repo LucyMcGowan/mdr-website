@@ -53,7 +53,7 @@
     "href": "analysis-uses-too-many-big-words/index.html#zipf-frequency",
     "title": "MDR",
     "section": "Zipf Frequency",
-    "text": "Zipf Frequency\nOur refiner Leopold pointed out that we could use the Zipf frequency of the words to get a more granular look at whether Milchick is using common language (compared to our Fry approach which just dichotomized as common/not common). As the title of my main blog, livefreeordichotomize, would suggest, I am ALWAYS here to avoid dichotomizing. The Zipf frequency is the log (base 10) of the number of times a word appears per billion words (i.e., a word with Zipf frequency of 3 appears once per million words). Ok, let’s try that! We’ve calculated this for our main guy, Milchick, along with some other characters to compare him to and plotted the density. The dashed lines represent the medians."
+    "text": "Zipf Frequency\nOur refiner of the quarter, Leopold, pointed out that we could use the Zipf frequency of the words to get a more granular look at whether Milchick is using common language (compared to our Fry approach which just dichotomized as common/not common). As the title of my main blog, livefreeordichotomize, would suggest, I am ALWAYS here to avoid dichotomizing. The Zipf frequency is the log (base 10) of the number of times a word appears per billion words (i.e., a word with Zipf frequency of 3 appears once per million words). Ok, let’s try that! We’ve calculated this for our main guy, Milchick, along with some other characters to compare him to and plotted the density. The dashed lines represent the medians."
   },
   {
     "objectID": "analysis-whos-talking/index.html",
@@ -277,14 +277,21 @@
     "href": "about/index.html",
     "title": "MDR",
     "section": "",
-    "text": "This website was build by Lucy D’Agostino McGowan.\n ## Refiners\nThe following refiners have made our analyses so much better:\n\nLeopold T. [Uses too many big words?]]"
+    "text": "This website was build by Lucy D’Agostino McGowan.\n\n\n\n\nThe following refiners have made our analyses so much better:\n\nLeopold T. [Uses too many big words?]"
   },
   {
     "objectID": "about/index.html#about",
     "href": "about/index.html#about",
     "title": "MDR",
     "section": "",
-    "text": "This website was build by Lucy D’Agostino McGowan.\n ## Refiners\nThe following refiners have made our analyses so much better:\n\nLeopold T. [Uses too many big words?]]"
+    "text": "This website was build by Lucy D’Agostino McGowan."
+  },
+  {
+    "objectID": "about/index.html#refiners",
+    "href": "about/index.html#refiners",
+    "title": "MDR",
+    "section": "",
+    "text": "The following refiners have made our analyses so much better:\n\nLeopold T. [Uses too many big words?]"
   },
   {
     "objectID": "analysis-helly-or-helena/index.html",
