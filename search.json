@@ -112,6 +112,20 @@
     "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally."
   },
   {
+    "objectID": "analysis-locker/index.html",
+    "href": "analysis-locker/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "We have been curating a database of the contents of Mark’s locker and would like to point out the first observed anomoly: in season 1 episode 1, we see Mark’s innie watch inside his locker, set around 9:03:20 but interestingly the second hand is fixed! It isn’t ticking. He swaps this for his outie watch, set at 9:05 (with the day marked the 4th). When he returns at the end of the day the innie watch is now 5:25 (as is the outie watch, althought interestingly the date is now the fifth?); the second hand still isn’t moving UNTIL he places his new badge in the locker, then it begins to move."
+  },
+  {
+    "objectID": "analysis-locker/index.html#marks-locker",
+    "href": "analysis-locker/index.html#marks-locker",
+    "title": "MDR",
+    "section": "",
+    "text": "We have been curating a database of the contents of Mark’s locker and would like to point out the first observed anomoly: in season 1 episode 1, we see Mark’s innie watch inside his locker, set around 9:03:20 but interestingly the second hand is fixed! It isn’t ticking. He swaps this for his outie watch, set at 9:05 (with the day marked the 4th). When he returns at the end of the day the innie watch is now 5:25 (as is the outie watch, althought interestingly the date is now the fifth?); the second hand still isn’t moving UNTIL he places his new badge in the locker, then it begins to move."
+  },
+  {
     "objectID": "analysis-feeling-over-time/index.html",
     "href": "analysis-feeling-over-time/index.html",
     "title": "MDR",
@@ -130,7 +144,7 @@
     "href": "index.html",
     "title": "MDR",
     "section": "",
-    "text": "we analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\nwe analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\n\nA\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\n\nB\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\n\nD\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nF\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\n\nH\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nS\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\n\nU\n\n\n\nWas Milchick’s performance evaluation accurate?\nRead More &gt;\n\n\n\nWas Milchick’s performance evaluation accurate?\nRead More &gt;\n\n\n\n\nW\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;"
+    "text": "we analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\nwe analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\n\nA\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\n\nB\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\n\nD\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nF\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\n\nH\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\n\nL\n\n\n\nWhat is going on with Mark’s locker?\nRead More &gt;\n\n\n\nWhat is going on with Mark’s locker?\nRead More &gt;\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nS\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\n\nU\n\n\n\nWas Milchick’s performance evaluation accurate?\nRead More &gt;\n\n\n\nWas Milchick’s performance evaluation accurate?\nRead More &gt;\n\n\n\n\nW\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;"
   },
   {
     "objectID": "index.html#welcome",
@@ -215,6 +229,20 @@
     "title": "MDR",
     "section": "",
     "text": "Who is really on the severed floor? Read More &gt;"
+  },
+  {
+    "objectID": "index.html#locker",
+    "href": "index.html#locker",
+    "title": "MDR",
+    "section": "",
+    "text": "What is going on with Mark’s locker?\nRead More &gt;"
+  },
+  {
+    "objectID": "index.html#locker-1",
+    "href": "index.html#locker-1",
+    "title": "MDR",
+    "section": "",
+    "text": "What is going on with Mark’s locker?\nRead More &gt;"
   },
   {
     "objectID": "index.html#check-out-our-r-package",
