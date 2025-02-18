@@ -170,9 +170,33 @@ Who is really on the severed floor?
 :::
 :::
 
-
-
 ::: {.card style="--i: 6;"}
+::: {.tab}
+L
+:::
+
+::: {.card--front}
+
+## locker
+
+What is going on with Mark's locker?  
+[Read More >](analysis-locker)
+
+
+:::
+
+::: {.card--back}  
+
+## locker
+
+What is going on with Mark's locker?  
+[Read More >](analysis-locker)
+
+
+:::
+:::
+
+::: {.card style="--i: 7;"}
 ::: {.tab}
 R
 :::
@@ -194,7 +218,7 @@ R
 :::
     
     
-::: {.card style="--i: 7;"}
+::: {.card style="--i: 8;"}
 ::: {.tab}
 S
 :::
@@ -220,7 +244,7 @@ Who is happier: the innies or outies?
 :::
 :::
 
-::: {.card style="--i: 8;"}
+::: {.card style="--i: 9;"}
 ::: {.tab}
 U
 :::
@@ -248,7 +272,7 @@ Was Milchick's performance evaluation accurate?
 :::
 
 
-::: {.card style="--i: 9;"}
+::: {.card style="--i: 10;"}
 ::: {.tab}
 W
 :::
