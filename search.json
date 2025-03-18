@@ -1,17 +1,66 @@
 [
   {
-    "objectID": "join-us/index.html",
-    "href": "join-us/index.html",
+    "objectID": "analysis-locker/index.html",
+    "href": "analysis-locker/index.html",
     "title": "MDR",
     "section": "",
-    "text": "Care to join us? Get your own badge here:\n\n\n\n\nGenerate your own analyses and submit a pull request here."
+    "text": "We have been curating a database of the contents of Mark’s locker and would like to point out the first observed anomoly: in season 1 episode 1, we see Mark’s innie watch inside his locker, set around 9:03:20 but interestingly the second hand is fixed! It isn’t ticking. He swaps this for his outie watch, set at 9:05 (with the day marked the 4th). When he returns at the end of the day the innie watch is now 5:25 (as is the outie watch, althought interestingly the date is now the fifth?); the second hand still isn’t moving UNTIL he places his new badge in the locker, then it begins to move."
   },
   {
-    "objectID": "join-us/index.html#join-us",
-    "href": "join-us/index.html#join-us",
+    "objectID": "analysis-locker/index.html#marks-locker",
+    "href": "analysis-locker/index.html#marks-locker",
     "title": "MDR",
     "section": "",
-    "text": "Care to join us? Get your own badge here:"
+    "text": "We have been curating a database of the contents of Mark’s locker and would like to point out the first observed anomoly: in season 1 episode 1, we see Mark’s innie watch inside his locker, set around 9:03:20 but interestingly the second hand is fixed! It isn’t ticking. He swaps this for his outie watch, set at 9:05 (with the day marked the 4th). When he returns at the end of the day the innie watch is now 5:25 (as is the outie watch, althought interestingly the date is now the fifth?); the second hand still isn’t moving UNTIL he places his new badge in the locker, then it begins to move."
+  },
+  {
+    "objectID": "analysis-badges/index.html",
+    "href": "analysis-badges/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally.\nCode\nlibrary(mdr)\nlibrary(tidyverse)\nlibrary(ggiraph)\n\npreds &lt;- tibble(id_numeric = 8039:8988)\n\npreds$joined_predicted &lt;- lm(joined ~ I(id_numeric^30), badges) |&gt;\n  predict(newdata = preds)\n\np &lt;- ggplot(badges, \n            aes(x = id_numeric,\n                y = joined_predicted,\n                tooltip = glue::glue(\"test\"))) +\n  geom_point_interactive(aes(tooltip = glue::glue(\"{name}&lt;br&gt;employee code: {id}&lt;br&gt;predicted start: {round(joined_predicted / 365, 1)} years ago\")),\n                         color = \"#6AF307\",\n                         size = 3) +\n  geom_line(data = preds, aes(y = joined_predicted), color = \"white\",\n            linetype = \"dashed\") + \n  scale_y_continuous(\n    breaks = badges$joined_predicted,\n    labels = badges$name[order(badges$joined_predicted, decreasing = TRUE)],\n    sec.axis = sec_axis(~ ., breaks = badges$joined_predicted,\n                        labels = round(badges$joined_predicted / 365, 1),\n                        name = \"Predicted Start (Years Ago)\")\n  ) +\n  scale_x_continuous(\n    breaks = badges$id_numeric,\n    labels = function(x) glue::glue(\"08-{substr(x, 2, 4)}\")\n  ) +\n  labs(x = \"Employee Code\", y = \"\") +\n  annotate(\"label\", x = 8907, y = 365*2,\n           size = 3,\n           label = \"~2 years\\nsource: S1E1 (40:39)\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  annotate(\"label\", x = 8430, y = 365*9,\n           size = 3,\n           label = \"~9 years\\nsource: Linkedin\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  theme_mdr() +\n  theme(\n    panel.grid.minor = element_blank(),\n    axis.text.x = element_text(angle = 45, hjust = 1)\n  )\n\nggiraph::girafe(ggobj = p)"
+  },
+  {
+    "objectID": "analysis-badges/index.html#when-did-employees-join-lumon",
+    "href": "analysis-badges/index.html#when-did-employees-join-lumon",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally."
+  },
+  {
+    "objectID": "analysis-b-natural/index.html",
+    "href": "analysis-b-natural/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "As loyal readers may know, we have been following the elevator dings for quite some time. G almost always denotes a transition from one state to another, C# almost always denotes waking up in a new state, and Bb indicates the elevator doors are opening. A key anomaly we’ve noted is when we hear B♮ thrown in there at the beginning of episode 5 and again in season 2 episode 2 when Helena descends (Spoiler: Perhaps a nod to the audience that this is not actually Helly). Well hold onto your ukulele tuners because in season 2 episode 9 we get another B♮ – that’s right friends I am fairly certain that we have Helena back on the severed floor and this time it looks like she’s back to rescue Gemma!\nOf course, here is some data to back the claim. Let’s examine just the elevator dings we hear on the severed floor, mapped by episode.\nCode\nlibrary(mdr)\nlibrary(ggiraph)\nlibrary(tidyverse)\n\nset.seed(266) # on irving\n\ndf &lt;- elevator_dings |&gt;\n  filter(location == \"severed floor\") |&gt;\n  mutate(\n    i = 1:n(),\n    ep = season*10 + episode,\n    id = glue::glue(\"S{season}E{episode}\"),\n    hel = case_when(\n      character == \"Helena\" & episode == 9 & season == 2 ~ \"?\",\n      character == \"Helena\" ~ \"Helena\",\n      character == \"Helly\" ~ \"Helly\",\n      .default = \"Other\")\n    )|&gt;\n  filter(!is.na(pitch), !is.na(action))\n\nfirst_i &lt;- df |&gt;\n  group_by(season, episode) |&gt;\n  slice(1) |&gt;\n  pull(i)\n\np &lt;- ggplot(df, aes(x = i, y = pitch, color = hel,\n                    tooltip = glue::glue(\"S{season}E{episode}, {hms::as_hms(time)}&lt;br&gt;{character}&lt;br&gt;{note}\"))) +\n  geom_point_interactive(size = 10, alpha = 0.8) +\n  scale_color_manual(values = c(\"yellow\", \"#C15C58\", \"#5BA9D0\", \"grey\")) +\n  guides(\n    shape = guide_legend(override.aes = list(color = \"#CFE0E1\"))\n  ) +\n  scale_x_continuous(\"Episode and Time\",\n                     breaks = first_i,\n                     labels = unique(df$id)) +\n  labs(\n    y = \"Pitch\",\n    color = \"\",\n  ) +\n  theme_mdr() +\n  theme(\n    text = element_text(size = 20),\n    axis.title = element_text(size = 20),\n    axis.title.y = element_text(angle = 0),\n    axis.text = element_text(size = 20),\n    axis.text.x = element_text(angle = 45, hjust = 1, size = 20),\n    panel.grid.minor = element_blank())  \n\nggiraph::girafe(ggobj = p)"
+  },
+  {
+    "objectID": "analysis-b-natural/index.html#b-natural-helena-on-the-severed-floor",
+    "href": "analysis-b-natural/index.html#b-natural-helena-on-the-severed-floor",
+    "title": "MDR",
+    "section": "",
+    "text": "As loyal readers may know, we have been following the elevator dings for quite some time. G almost always denotes a transition from one state to another, C# almost always denotes waking up in a new state, and Bb indicates the elevator doors are opening. A key anomaly we’ve noted is when we hear B♮ thrown in there at the beginning of episode 5 and again in season 2 episode 2 when Helena descends (Spoiler: Perhaps a nod to the audience that this is not actually Helly). Well hold onto your ukulele tuners because in season 2 episode 9 we get another B♮ – that’s right friends I am fairly certain that we have Helena back on the severed floor and this time it looks like she’s back to rescue Gemma!\nOf course, here is some data to back the claim. Let’s examine just the elevator dings we hear on the severed floor, mapped by episode."
+  },
+  {
+    "objectID": "analysis-helly-or-helena/index.html",
+    "href": "analysis-helly-or-helena/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "In the second season of Severance, there is speculation about who is actually on the severed floor: is it the Helly we got to know during season one or her “outie”, Helena? I decided to try to take a look at the language we’ve seen Helly and Helena use and see if it can help us figure out who this character actually is (SPOILER: I’m basically positive it’s Helena and have been so since the first episode of the second season, no amount of text analysis will change my mind because it’s all in her mannerisms! And her voice! And the weird way she points out the lack of cameras and microphones…). I started by tagging every line of dialogue spoken by this actress in season 1 as Helly or Helena. I then went through the season 2 transcript and tagged Helly, Helena, as well as any dialogue on the severed floor as “Unknown”. This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki.\n\n\n\nIn the text analysis space, a common way to examine how words are used by different individuals can be to look at the tf-idf statistic - this statistic looks at the term frequency (in our case how many times the character says a particular word) and the inverse document frequency (how many time the word is used across all three characters: Helly, Helena, and Unknown). Basically, this statistic will help us understand which words are unique to each of our three characters: Helly, Helena, and the third Unknown (which we hope to classify as one of the others). Let’s look at which words are ranked at the top for our three characters below (I’ll show the top 5, with ties, so there may be more).\n\n\n\nCode\nlibrary(mdr)\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(textclean)\nlibrary(widyr)\nlibrary(ggiraph)\nlibrary(quanteda)\nlibrary(quanteda.textstats)\n\ndf &lt;- transcripts |&gt;\n  filter(str_detect(speaker, \"Hel\")) |&gt;\n  mutate(speaker = case_when(\n    season == 1 & episode == 1 &\n      minute(timestamp) &gt; 34 ~ \"Helena\",\n    season == 1 & episode == 2 &\n      minute(timestamp) &lt; 5 ~ \"Helena\",\n    season == 1 & episode == 4 & \n      minute(timestamp) &gt; 21.7 & \n      minute(timestamp) &lt; 23 ~ \"Helena\",\n    season == 1 & episode == 9 & \n      minute(timestamp) &gt; 18 & minute(timestamp) &lt; 20 ~ \"Helena\",\n    episode == 9 & speaker == \"Helly (on video)\" ~ \"Helena\",\n    season == 2 & episode == 1 & minute(timestamp) &lt; 1 ~ \"Helly\",\n    season == 2 & episode == 2 & minute(timestamp) &lt; 2 ~ \"Helly\",\n    season == 2 & episode == 2 & minute(timestamp) &gt; 21 & minute(timestamp) &lt; 23 ~ \"Helly\",\n    season == 2 & episode == 2 ~ \"Helena\",\n    season == 2 & episode == 3 & minute(timestamp) &gt; 40 ~ \"Helena\",\n    season == 2 ~ \"Unknown\",\n    .default = speaker)\n  ) \n\ntidy_df &lt;- df |&gt;\n  mutate(\n    dialogue = str_replace_all(dialogue, \"’\", \"'\"),\n    dialogue = replace_contraction(dialogue)) |&gt;\n  unnest_tokens(word, dialogue) |&gt;\n  anti_join(stop_words, by = \"word\") \n\ntf_idf &lt;- tidy_df |&gt;\n  count(speaker, word, sort = TRUE) |&gt;\n  bind_tf_idf(word, speaker, n)\n\nsimilarity &lt;- tf_idf |&gt;\n  pairwise_similarity(item = speaker, feature = word, value = tf_idf)\n\np &lt;- tf_idf |&gt;\n  group_by(speaker) |&gt;\n  slice_max(tf_idf, n = 5) |&gt;\n  ungroup() |&gt;\n  ggplot(aes(tf_idf, fct_reorder(word, tf_idf), fill = speaker)) +\n  geom_col_interactive(show.legend = FALSE, alpha = 0.9) +\n  scale_fill_manual(values = c(\"#C15C58\", \"#5BA9D0\", \"#898699\")) +\n  facet_wrap(~speaker, ncol = 3, scales = \"free_y\") +\n  labs(x = \"tf-idf\", y = NULL) + \n  theme_mdr() + \n  theme(panel.grid.minor = element_blank(),\n        strip.background = element_rect(fill = \"#CFE0E1\")) \n\np\n\n\n\n\n\n\n\n\n\n\nInteresting, a few things jump out. First, we see that both dad and father show up on Helena’s; this makes sense, she mentions (or speaks with) her father a few times, and this wouldn’t come up on the severed floor. Another interesting one is “Harmony”, this also makes sense since Ms. Cobel would not be reffered to by her first name downstairs. Now, innie Helly, uses the words “scary”, “live”, and “life”, compared to our unknown friend, who uses the words “mushy” and “yeah” more often. Both mention goats (this shows up on each because of the plural in Helly’s and the singular in our Unknown one). Alright, let’s turn these pictures into numbers. We can use cosine similarity to compare our tf-idf vectors for each of our three friends (well, two friends, our third is just one of them, presumably!). Higher numbers would imply that they are more similar, lower less.\n\nHelena and Helly have a similarity score of 0.037.\nHelena and Unknown have a similarity score of 0.001.\nHelly and Unknown have a similarity score of 0.092.\n\nInteresting! So at least in terms of the distinguishing words they use, our unknown friend is closer to Helly than Helena (and in fact closer to Helly than Helly is to her outie-self, Helena!)\nBut alas, this is just one way to look at the data! What about readability?\n\n\n\nLet’s look at four measures:\n\nThe average number of syllables per word\nThe average sentence length\nThe Flesch’s Reading Ease Score\nScrabble score\n\nExamining the plots below, Helena seems to use higher syllabic words and longer sentences; her dialogue has a lower readability score compared to the other two. They look similar in terms of how their vocabulary would score in Scrabble.\n\n\n\nCode\nreadability_df &lt;- df |&gt;\n  mutate(dialogue = str_replace_all(dialogue, \"’\", \"'\")) |&gt;\n  group_by(speaker) |&gt;\n  summarise(text = paste(dialogue, collapse = \". \"))\n\ncorpus &lt;- corpus(readability_df, text_field = \"text\")\n# text1: Helena, text2: Helly, text3: Unknown\n\nreadability_scores &lt;- textstat_readability(corpus,\n                                           measure = c(\"meanWordSyllables\",\n                                                       \"meanSentenceLength\",\n                                                       \"Flesch\",\n                                                       \"Scrabble\"))\n\nreadability_scores$speaker &lt;- c(\"Helena\", \"Helly\", \"Unknown\")\n\nreadability_scores |&gt;\n  select(-document) |&gt;\n  rename(`Avg Syllables` = meanWordSyllables,\n         `Avg Sentence Length` = meanSentenceLength) |&gt; \n  pivot_longer(cols = `Avg Syllables`:Scrabble) |&gt;\n  ggplot(aes(x = speaker, y = value, fill = speaker)) +\n  geom_col() +\n  scale_fill_manual(values = c(\"#C15C58\", \"#5BA9D0\", \"#898699\")) +\n  facet_wrap(~name, scales = \"free\") + \n  labs(x = \"\") +\n  theme_mdr() + \n  theme(legend.position = \"none\",\n        panel.grid.minor = element_blank(),\n        strip.background = element_rect(fill = \"#CFE0E1\"))\n\n\n\n\n\n\n\n\n\n\n\nCode\nsentiment_df &lt;- tidy_df |&gt;\n  inner_join(get_sentiments(\"afinn\"), by = \"word\")\n\nsentiment_summary &lt;- sentiment_df |&gt;\n  group_by(speaker) |&gt;\n  summarise(sentiment = mean(value))\n\n\n\n\n\nOk, let’s try looking at the sentiment of their words. We can use the AFINN sentiment lexicon to classify the words they each use and then examine the average sentiment score, do they tend to speak positively or negatively?\n\nHelena’s average sentiment score is -0.06.\n\nHelly’s average sentiment score is -0.79.\n\nUnknown’s average sentiment score is -0.78.\n\nSo, this makes it look like Helena’s words are fairly neutral, while Helly and our Unknown friend are more negative.\n\n\n\nWhat does this tell us? Probably nothing, Helena was seen watching tapes of the severed floor and certainly could be studying the words that Helly used, or the unknown person could actually just be Helly, like she says (I don’t think so!!). Maybe we need to curate a dataset of facial expressions…stay tuned?"
+  },
+  {
+    "objectID": "analysis-helly-or-helena/index.html#who-is-on-the-severed-floor-helly-or-helena",
+    "href": "analysis-helly-or-helena/index.html#who-is-on-the-severed-floor-helly-or-helena",
+    "title": "MDR",
+    "section": "",
+    "text": "In the second season of Severance, there is speculation about who is actually on the severed floor: is it the Helly we got to know during season one or her “outie”, Helena? I decided to try to take a look at the language we’ve seen Helly and Helena use and see if it can help us figure out who this character actually is (SPOILER: I’m basically positive it’s Helena and have been so since the first episode of the second season, no amount of text analysis will change my mind because it’s all in her mannerisms! And her voice! And the weird way she points out the lack of cameras and microphones…). I started by tagging every line of dialogue spoken by this actress in season 1 as Helly or Helena. I then went through the season 2 transcript and tagged Helly, Helena, as well as any dialogue on the severed floor as “Unknown”. This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki."
+  },
+  {
+    "objectID": "analysis-helly-or-helena/index.html#conclusions",
+    "href": "analysis-helly-or-helena/index.html#conclusions",
+    "title": "MDR",
+    "section": "",
+    "text": "What does this tell us? Probably nothing, Helena was seen watching tapes of the severed floor and certainly could be studying the words that Helly used, or the unknown person could actually just be Helly, like she says (I don’t think so!!). Maybe we need to curate a dataset of facial expressions…stay tuned?"
   },
   {
     "objectID": "analysis-uses-too-many-big-words/index.html",
@@ -70,62 +119,6 @@
     "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. For each episode we count the number of words each of the four main characters (Mark, Helly, Dylan, and Irving) speak for in each minute and visualize them below. Click on the tabs to switch episodes."
   },
   {
-    "objectID": "analysis-innie-sentiment/index.html",
-    "href": "analysis-innie-sentiment/index.html",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution.\n\n\n\n\n\n\n\n\n\n\n\nNow lets look at some word frequency by episode. I pulled out the top 5 words per sentiment (and show some ties)."
-  },
-  {
-    "objectID": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
-    "href": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution."
-  },
-  {
-    "objectID": "analysis-elevator-dings/index.html",
-    "href": "analysis-elevator-dings/index.html",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by Sam_Badi on Reddit. The data consists of all elevator dings in the Severance episodes along with the episode number, time stamp, pitch of the ding, and the action associated. Examining the plot below, we see across all dings the G is associated with both innie and outies going to sleep, the C# is consistently associated with both innies and outies waking up. (Spoiler: There is one notable exception, at the beginning of episode 4 in season 2, we hear a G when Irving wakes up, not a C# – maybe this is a sign that things are not what they seem for this episode?). In general a Bb plays when they enter the elevator, however there are a few B♮ thrown in there at the beginning of episode 5 and again in season 2 episode 2 when Helena descends (Spoiler: Perhaps a nod to the audience that this is not actually Helly)."
-  },
-  {
-    "objectID": "analysis-elevator-dings/index.html#elevator-ding-analysis",
-    "href": "analysis-elevator-dings/index.html#elevator-ding-analysis",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by Sam_Badi on Reddit. The data consists of all elevator dings in the Severance episodes along with the episode number, time stamp, pitch of the ding, and the action associated. Examining the plot below, we see across all dings the G is associated with both innie and outies going to sleep, the C# is consistently associated with both innies and outies waking up. (Spoiler: There is one notable exception, at the beginning of episode 4 in season 2, we hear a G when Irving wakes up, not a C# – maybe this is a sign that things are not what they seem for this episode?). In general a Bb plays when they enter the elevator, however there are a few B♮ thrown in there at the beginning of episode 5 and again in season 2 episode 2 when Helena descends (Spoiler: Perhaps a nod to the audience that this is not actually Helly)."
-  },
-  {
-    "objectID": "analysis-badges/index.html",
-    "href": "analysis-badges/index.html",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally.\nCode\nlibrary(mdr)\nlibrary(tidyverse)\nlibrary(ggiraph)\n\npreds &lt;- tibble(id_numeric = 8039:8988)\n\npreds$joined_predicted &lt;- lm(joined ~ I(id_numeric^30), badges) |&gt;\n  predict(newdata = preds)\n\np &lt;- ggplot(badges, \n            aes(x = id_numeric,\n                y = joined_predicted,\n                tooltip = glue::glue(\"test\"))) +\n  geom_point_interactive(aes(tooltip = glue::glue(\"{name}&lt;br&gt;employee code: {id}&lt;br&gt;predicted start: {round(joined_predicted / 365, 1)} years ago\")),\n                         color = \"#6AF307\",\n                         size = 3) +\n  geom_line(data = preds, aes(y = joined_predicted), color = \"white\",\n            linetype = \"dashed\") + \n  scale_y_continuous(\n    breaks = badges$joined_predicted,\n    labels = badges$name[order(badges$joined_predicted, decreasing = TRUE)],\n    sec.axis = sec_axis(~ ., breaks = badges$joined_predicted,\n                        labels = round(badges$joined_predicted / 365, 1),\n                        name = \"Predicted Start (Years Ago)\")\n  ) +\n  scale_x_continuous(\n    breaks = badges$id_numeric,\n    labels = function(x) glue::glue(\"08-{substr(x, 2, 4)}\")\n  ) +\n  labs(x = \"Employee Code\", y = \"\") +\n  annotate(\"label\", x = 8907, y = 365*2,\n           size = 3,\n           label = \"~2 years\\nsource: S1E1 (40:39)\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  annotate(\"label\", x = 8430, y = 365*9,\n           size = 3,\n           label = \"~9 years\\nsource: Linkedin\",\n           hjust = 1,\n           fill = \"#CFE0E1\",\n           family = \"mono\") +\n  theme_mdr() +\n  theme(\n    panel.grid.minor = element_blank(),\n    axis.text.x = element_text(angle = 45, hjust = 1)\n  )\n\nggiraph::girafe(ggobj = p)"
-  },
-  {
-    "objectID": "analysis-badges/index.html#when-did-employees-join-lumon",
-    "href": "analysis-badges/index.html#when-did-employees-join-lumon",
-    "title": "MDR",
-    "section": "",
-    "text": "This analysis was made possible by the mdr R package. It estimates when the employees joined Lumon based on their employee codes printed on their badges. In episode 1 of the first season (around forty minutes and thirty nine seconds into the episode), Mark mentions that he has been at Lumon for around 2 years. A Linkedin ad campaign mentioned that Irving joined Lumon 9 years ago. Indexing off of Helly’s start date (Day 0), we predicted days since joining Lumon using the employee code by fitting a polynomial regression model to these data where their employee code was raised to the 30th power to account for the potential non-linear relationship. While this approach likely does not generalize well beyond the observed data, nevertheless we have made a plot of the predicted values.\nPlease enjoy all predictions equally."
-  },
-  {
-    "objectID": "analysis-locker/index.html",
-    "href": "analysis-locker/index.html",
-    "title": "MDR",
-    "section": "",
-    "text": "We have been curating a database of the contents of Mark’s locker and would like to point out the first observed anomoly: in season 1 episode 1, we see Mark’s innie watch inside his locker, set around 9:03:20 but interestingly the second hand is fixed! It isn’t ticking. He swaps this for his outie watch, set at 9:05 (with the day marked the 4th). When he returns at the end of the day the innie watch is now 5:25 (as is the outie watch, althought interestingly the date is now the fifth?); the second hand still isn’t moving UNTIL he places his new badge in the locker, then it begins to move."
-  },
-  {
-    "objectID": "analysis-locker/index.html#marks-locker",
-    "href": "analysis-locker/index.html#marks-locker",
-    "title": "MDR",
-    "section": "",
-    "text": "We have been curating a database of the contents of Mark’s locker and would like to point out the first observed anomoly: in season 1 episode 1, we see Mark’s innie watch inside his locker, set around 9:03:20 but interestingly the second hand is fixed! It isn’t ticking. He swaps this for his outie watch, set at 9:05 (with the day marked the 4th). When he returns at the end of the day the innie watch is now 5:25 (as is the outie watch, althought interestingly the date is now the fifth?); the second hand still isn’t moving UNTIL he places his new badge in the locker, then it begins to move."
-  },
-  {
     "objectID": "analysis-feeling-over-time/index.html",
     "href": "analysis-feeling-over-time/index.html",
     "title": "MDR",
@@ -144,7 +137,7 @@
     "href": "index.html",
     "title": "MDR",
     "section": "",
-    "text": "we analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\nwe analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\n\nA\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\n\nB\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\n\nD\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nF\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\n\nH\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\n\nL\n\n\n\nWhat is going on with Mark’s locker?\nRead More &gt;\n\n\n\nWhat is going on with Mark’s locker?\nRead More &gt;\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nS\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\n\nU\n\n\n\nWas Milchick’s performance evaluation accurate?\nRead More &gt;\n\n\n\nWas Milchick’s performance evaluation accurate?\nRead More &gt;\n\n\n\n\nW\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;"
+    "text": "we analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\nwe analyse data from the Severance TV show. please enjoy all analyses equally. get your Lumon badge here &gt;\n\n\n\n\nA\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\nThis site was built by Lucy D.\nRead More &gt;\n\n\n\n\nB\n\n\n\nBe natural Helly, or should I say Helena…an elevator ding analysis\nRead More &gt;\n\n\n\nBe natural Helly, or should I say Helena……an elevator ding analysis\nRead More &gt;\n\n\n\n\nD\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\nC#, G, or Bb? the pitch alone tells the story.\nRead More &gt;\n\n\n\n\nF\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\nThis analysis creates a little sentiment profile for each episode.\nRead More &gt;\n\n\n\n\nH\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\nWho is really on the severed floor? Read More &gt;\n\n\n\n\nJ\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\nThis analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;\n\n\n\n\nL\n\n\n\nWhat is going on with Mark’s locker?\nRead More &gt;\n\n\n\nWhat is going on with Mark’s locker?\nRead More &gt;\n\n\n\n\nR\n\n\n\nmdr\n\n\n\nmdr\n\n\n\n\nS\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\nWho is happier: the innies or outies?\nRead More &gt;\n\n\n\n\nU\n\n\n\nWas Milchick’s performance evaluation accurate?\nRead More &gt;\n\n\n\nWas Milchick’s performance evaluation accurate?\nRead More &gt;\n\n\n\n\nW\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;\n\n\n\nCheck out these episode profiles color coded by who is speaking Read More &gt;"
   },
   {
     "objectID": "index.html#welcome",
@@ -175,18 +168,18 @@
     "text": "This site was built by Lucy D.\nRead More &gt;"
   },
   {
-    "objectID": "index.html#badge-analysis",
-    "href": "index.html#badge-analysis",
+    "objectID": "index.html#b-natural",
+    "href": "index.html#b-natural",
     "title": "MDR",
     "section": "",
-    "text": "This analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;"
+    "text": "Be natural Helly, or should I say Helena…an elevator ding analysis\nRead More &gt;"
   },
   {
-    "objectID": "index.html#badge-analysis-1",
-    "href": "index.html#badge-analysis-1",
+    "objectID": "index.html#b-natural-1",
+    "href": "index.html#b-natural-1",
     "title": "MDR",
     "section": "",
-    "text": "This analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;"
+    "text": "Be natural Helly, or should I say Helena……an elevator ding analysis\nRead More &gt;"
   },
   {
     "objectID": "index.html#elevator-ding-analysis",
@@ -229,6 +222,20 @@
     "title": "MDR",
     "section": "",
     "text": "Who is really on the severed floor? Read More &gt;"
+  },
+  {
+    "objectID": "index.html#join-analysis",
+    "href": "index.html#join-analysis",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;"
+  },
+  {
+    "objectID": "index.html#join-analysis-1",
+    "href": "index.html#join-analysis-1",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.\nRead More &gt;"
   },
   {
     "objectID": "index.html#locker",
@@ -322,24 +329,45 @@
     "text": "The following refiners have made our analyses so much better:\n\nLeopold T. [Uses too many big words?]"
   },
   {
-    "objectID": "analysis-helly-or-helena/index.html",
-    "href": "analysis-helly-or-helena/index.html",
+    "objectID": "analysis-elevator-dings/index.html",
+    "href": "analysis-elevator-dings/index.html",
     "title": "MDR",
     "section": "",
-    "text": "In the second season of Severance, there is speculation about who is actually on the severed floor: is it the Helly we got to know during season one or her “outie”, Helena? I decided to try to take a look at the language we’ve seen Helly and Helena use and see if it can help us figure out who this character actually is (SPOILER: I’m basically positive it’s Helena and have been so since the first episode of the second season, no amount of text analysis will change my mind because it’s all in her mannerisms! And her voice! And the weird way she points out the lack of cameras and microphones…). I started by tagging every line of dialogue spoken by this actress in season 1 as Helly or Helena. I then went through the season 2 transcript and tagged Helly, Helena, as well as any dialogue on the severed floor as “Unknown”. This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki.\n\n\n\nIn the text analysis space, a common way to examine how words are used by different individuals can be to look at the tf-idf statistic - this statistic looks at the term frequency (in our case how many times the character says a particular word) and the inverse document frequency (how many time the word is used across all three characters: Helly, Helena, and Unknown). Basically, this statistic will help us understand which words are unique to each of our three characters: Helly, Helena, and the third Unknown (which we hope to classify as one of the others). Let’s look at which words are ranked at the top for our three characters below (I’ll show the top 5, with ties, so there may be more).\n\n\n\nCode\nlibrary(mdr)\nlibrary(tidyverse)\nlibrary(tidytext)\nlibrary(textclean)\nlibrary(widyr)\nlibrary(ggiraph)\nlibrary(quanteda)\nlibrary(quanteda.textstats)\n\ndf &lt;- transcripts |&gt;\n  filter(str_detect(speaker, \"Hel\")) |&gt;\n  mutate(speaker = case_when(\n    season == 1 & episode == 1 &\n      minute(timestamp) &gt; 34 ~ \"Helena\",\n    season == 1 & episode == 2 &\n      minute(timestamp) &lt; 5 ~ \"Helena\",\n    season == 1 & episode == 4 & \n      minute(timestamp) &gt; 21.7 & \n      minute(timestamp) &lt; 23 ~ \"Helena\",\n    season == 1 & episode == 9 & \n      minute(timestamp) &gt; 18 & minute(timestamp) &lt; 20 ~ \"Helena\",\n    episode == 9 & speaker == \"Helly (on video)\" ~ \"Helena\",\n    season == 2 & episode == 1 & minute(timestamp) &lt; 1 ~ \"Helly\",\n    season == 2 & episode == 2 & minute(timestamp) &lt; 2 ~ \"Helly\",\n    season == 2 & episode == 2 & minute(timestamp) &gt; 21 & minute(timestamp) &lt; 23 ~ \"Helly\",\n    season == 2 & episode == 2 ~ \"Helena\",\n    season == 2 & episode == 3 & minute(timestamp) &gt; 40 ~ \"Helena\",\n    season == 2 ~ \"Unknown\",\n    .default = speaker)\n  ) \n\ntidy_df &lt;- df |&gt;\n  mutate(\n    dialogue = str_replace_all(dialogue, \"’\", \"'\"),\n    dialogue = replace_contraction(dialogue)) |&gt;\n  unnest_tokens(word, dialogue) |&gt;\n  anti_join(stop_words, by = \"word\") \n\ntf_idf &lt;- tidy_df |&gt;\n  count(speaker, word, sort = TRUE) |&gt;\n  bind_tf_idf(word, speaker, n)\n\nsimilarity &lt;- tf_idf |&gt;\n  pairwise_similarity(item = speaker, feature = word, value = tf_idf)\n\np &lt;- tf_idf |&gt;\n  group_by(speaker) |&gt;\n  slice_max(tf_idf, n = 5) |&gt;\n  ungroup() |&gt;\n  ggplot(aes(tf_idf, fct_reorder(word, tf_idf), fill = speaker)) +\n  geom_col_interactive(show.legend = FALSE, alpha = 0.9) +\n  scale_fill_manual(values = c(\"#C15C58\", \"#5BA9D0\", \"#898699\")) +\n  facet_wrap(~speaker, ncol = 3, scales = \"free_y\") +\n  labs(x = \"tf-idf\", y = NULL) + \n  theme_mdr() + \n  theme(panel.grid.minor = element_blank(),\n        strip.background = element_rect(fill = \"#CFE0E1\")) \n\np\n\n\n\n\n\n\n\n\n\n\nInteresting, a few things jump out. First, we see that both dad and father show up on Helena’s; this makes sense, she mentions (or speaks with) her father a few times, and this wouldn’t come up on the severed floor. Another interesting one is “Harmony”, this also makes sense since Ms. Cobel would not be reffered to by her first name downstairs. Now, innie Helly, uses the words “scary”, “live”, and “life”, compared to our unknown friend, who uses the words “mushy” and “yeah” more often. Both mention goats (this shows up on each because of the plural in Helly’s and the singular in our Unknown one). Alright, let’s turn these pictures into numbers. We can use cosine similarity to compare our tf-idf vectors for each of our three friends (well, two friends, our third is just one of them, presumably!). Higher numbers would imply that they are more similar, lower less.\n\nHelena and Helly have a similarity score of 0.037.\nHelena and Unknown have a similarity score of 0.001.\nHelly and Unknown have a similarity score of 0.092.\n\nInteresting! So at least in terms of the distinguishing words they use, our unknown friend is closer to Helly than Helena (and in fact closer to Helly than Helly is to her outie-self, Helena!)\nBut alas, this is just one way to look at the data! What about readability?\n\n\n\nLet’s look at four measures:\n\nThe average number of syllables per word\nThe average sentence length\nThe Flesch’s Reading Ease Score\nScrabble score\n\nExamining the plots below, Helena seems to use higher syllabic words and longer sentences; her dialogue has a lower readability score compared to the other two. They look similar in terms of how their vocabulary would score in Scrabble.\n\n\n\nCode\nreadability_df &lt;- df |&gt;\n  mutate(dialogue = str_replace_all(dialogue, \"’\", \"'\")) |&gt;\n  group_by(speaker) |&gt;\n  summarise(text = paste(dialogue, collapse = \". \"))\n\ncorpus &lt;- corpus(readability_df, text_field = \"text\")\n# text1: Helena, text2: Helly, text3: Unknown\n\nreadability_scores &lt;- textstat_readability(corpus,\n                                           measure = c(\"meanWordSyllables\",\n                                                       \"meanSentenceLength\",\n                                                       \"Flesch\",\n                                                       \"Scrabble\"))\n\nreadability_scores$speaker &lt;- c(\"Helena\", \"Helly\", \"Unknown\")\n\nreadability_scores |&gt;\n  select(-document) |&gt;\n  rename(`Avg Syllables` = meanWordSyllables,\n         `Avg Sentence Length` = meanSentenceLength) |&gt; \n  pivot_longer(cols = `Avg Syllables`:Scrabble) |&gt;\n  ggplot(aes(x = speaker, y = value, fill = speaker)) +\n  geom_col() +\n  scale_fill_manual(values = c(\"#C15C58\", \"#5BA9D0\", \"#898699\")) +\n  facet_wrap(~name, scales = \"free\") + \n  labs(x = \"\") +\n  theme_mdr() + \n  theme(legend.position = \"none\",\n        panel.grid.minor = element_blank(),\n        strip.background = element_rect(fill = \"#CFE0E1\"))\n\n\n\n\n\n\n\n\n\n\n\nCode\nsentiment_df &lt;- tidy_df |&gt;\n  inner_join(get_sentiments(\"afinn\"), by = \"word\")\n\nsentiment_summary &lt;- sentiment_df |&gt;\n  group_by(speaker) |&gt;\n  summarise(sentiment = mean(value))\n\n\n\n\n\nOk, let’s try looking at the sentiment of their words. We can use the AFINN sentiment lexicon to classify the words they each use and then examine the average sentiment score, do they tend to speak positively or negatively?\n\nHelena’s average sentiment score is -0.06.\n\nHelly’s average sentiment score is -0.79.\n\nUnknown’s average sentiment score is -0.78.\n\nSo, this makes it look like Helena’s words are fairly neutral, while Helly and our Unknown friend are more negative.\n\n\n\nWhat does this tell us? Probably nothing, Helena was seen watching tapes of the severed floor and certainly could be studying the words that Helly used, or the unknown person could actually just be Helly, like she says (I don’t think so!!). Maybe we need to curate a dataset of facial expressions…stay tuned?"
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by Sam_Badi on Reddit. The data consists of all elevator dings in the Severance episodes along with the episode number, time stamp, pitch of the ding, and the action associated. Examining the plot below, we see across all dings the G is associated with both innie and outies going to sleep, the C# is consistently associated with both innies and outies waking up. (Spoiler: There is one notable exception, at the beginning of episode 4 in season 2, we hear a G when Irving wakes up, not a C# – maybe this is a sign that things are not what they seem for this episode?). In general a Bb plays when they enter the elevator, however there are a few B♮ thrown in there at the beginning of episode 5 and again in season 2 episode 2 when Helena descends (Spoiler: Perhaps a nod to the audience that this is not actually Helly)."
   },
   {
-    "objectID": "analysis-helly-or-helena/index.html#who-is-on-the-severed-floor-helly-or-helena",
-    "href": "analysis-helly-or-helena/index.html#who-is-on-the-severed-floor-helly-or-helena",
+    "objectID": "analysis-elevator-dings/index.html#elevator-ding-analysis",
+    "href": "analysis-elevator-dings/index.html#elevator-ding-analysis",
     "title": "MDR",
     "section": "",
-    "text": "In the second season of Severance, there is speculation about who is actually on the severed floor: is it the Helly we got to know during season one or her “outie”, Helena? I decided to try to take a look at the language we’ve seen Helly and Helena use and see if it can help us figure out who this character actually is (SPOILER: I’m basically positive it’s Helena and have been so since the first episode of the second season, no amount of text analysis will change my mind because it’s all in her mannerisms! And her voice! And the weird way she points out the lack of cameras and microphones…). I started by tagging every line of dialogue spoken by this actress in season 1 as Helly or Helena. I then went through the season 2 transcript and tagged Helly, Helena, as well as any dialogue on the severed floor as “Unknown”. This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki."
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by Sam_Badi on Reddit. The data consists of all elevator dings in the Severance episodes along with the episode number, time stamp, pitch of the ding, and the action associated. Examining the plot below, we see across all dings the G is associated with both innie and outies going to sleep, the C# is consistently associated with both innies and outies waking up. (Spoiler: There is one notable exception, at the beginning of episode 4 in season 2, we hear a G when Irving wakes up, not a C# – maybe this is a sign that things are not what they seem for this episode?). In general a Bb plays when they enter the elevator, however there are a few B♮ thrown in there at the beginning of episode 5 and again in season 2 episode 2 when Helena descends (Spoiler: Perhaps a nod to the audience that this is not actually Helly)."
   },
   {
-    "objectID": "analysis-helly-or-helena/index.html#conclusions",
-    "href": "analysis-helly-or-helena/index.html#conclusions",
+    "objectID": "join-us/index.html",
+    "href": "join-us/index.html",
     "title": "MDR",
     "section": "",
-    "text": "What does this tell us? Probably nothing, Helena was seen watching tapes of the severed floor and certainly could be studying the words that Helly used, or the unknown person could actually just be Helly, like she says (I don’t think so!!). Maybe we need to curate a dataset of facial expressions…stay tuned?"
+    "text": "Care to join us? Get your own badge here:\n\n\n\n\nGenerate your own analyses and submit a pull request here."
+  },
+  {
+    "objectID": "join-us/index.html#join-us",
+    "href": "join-us/index.html#join-us",
+    "title": "MDR",
+    "section": "",
+    "text": "Care to join us? Get your own badge here:"
+  },
+  {
+    "objectID": "analysis-innie-sentiment/index.html",
+    "href": "analysis-innie-sentiment/index.html",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution.\n\n\n\n\n\n\n\n\n\n\n\nNow lets look at some word frequency by episode. I pulled out the top 5 words per sentiment (and show some ties)."
+  },
+  {
+    "objectID": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
+    "href": "analysis-innie-sentiment/index.html#sentiment-analysis-innies-vs-outies",
+    "title": "MDR",
+    "section": "",
+    "text": "This analysis was made possible by the mdr R package, which used data originally compiled by the Severance wiki. I looked at the first two episodes of season two, the first, which consists of just time with the innies, and the second with the outies. I was interested in the difference in sentiment, using the AFINN sentiment lexicon. It looks like the innies are far more negative, in terms of language, compared to the outies, with the innies having a negative average sentiment score (-0.26) and the outies a positive score (0.26). We can look at the distribution."
   }
 ]
