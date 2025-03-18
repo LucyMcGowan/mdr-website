@@ -76,20 +76,20 @@ B
 
 ::: {.card--front}
 
-## badge analysis
+## B natural
 
-This analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.
+Be natural Helly, or should I say *Helena*...an elevator ding analysis
 
-[Read More >](analysis-badges)
+[Read More >](analysis-b-natural)
 :::
 
 ::: {.card--back}  
 
-## badge analysis
+## B natural
 
-This analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.
+Be natural Helly, or should I say *Helena*......an elevator ding analysis
 
-[Read More >](analysis-badges)
+[Read More >](analysis-b-natural)
 
 :::
 :::
@@ -172,6 +172,31 @@ Who is really on the severed floor?
 
 ::: {.card style="--i: 6;"}
 ::: {.tab}
+J
+:::
+
+::: {.card--front}
+
+## join analysis
+
+This analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.
+
+[Read More >](analysis-badges)
+:::
+
+::: {.card--back}  
+
+## join analysis
+
+This analysis estimates when the employees joined Lumon based on their employee codes printed on their badges.
+
+[Read More >](analysis-badges)
+
+:::
+:::
+
+::: {.card style="--i: 7;"}
+::: {.tab}
 L
 :::
 
@@ -196,7 +221,7 @@ What is going on with Mark's locker?
 :::
 :::
 
-::: {.card style="--i: 7;"}
+::: {.card style="--i: 8;"}
 ::: {.tab}
 R
 :::
@@ -218,7 +243,7 @@ R
 :::
     
     
-::: {.card style="--i: 8;"}
+::: {.card style="--i: 9;"}
 ::: {.tab}
 S
 :::
@@ -244,7 +269,7 @@ Who is happier: the innies or outies?
 :::
 :::
 
-::: {.card style="--i: 9;"}
+::: {.card style="--i: 10;"}
 ::: {.tab}
 U
 :::
@@ -272,7 +297,7 @@ Was Milchick's performance evaluation accurate?
 :::
 
 
-::: {.card style="--i: 10;"}
+::: {.card style="--i: 11;"}
 ::: {.tab}
 W
 :::

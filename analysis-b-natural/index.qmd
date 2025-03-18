@@ -1,0 +1,73 @@
+---
+format: html
+---
+
+<center>
+::: text
+
+## B Natural: Helena on the Severed Floor
+
+As loyal readers may know, we have been following the [elevator dings for quite some time](analysis-elevator-dings). `G` almost always denotes a transition from one state to another, `C#` almost always denotes waking up in a new state, and `Bb` indicates the elevator doors are opening. A key anomaly we've noted is when we hear `B♮` thrown in there at the beginning of episode 5 and again in season 2 episode 2 when *Helena* descends (Spoiler: <span class="spoiler">Perhaps a nod to the audience that this is not actually Helly</span>). Well hold onto your ukulele tuners because in season 2 episode 9 we get another `B♮` -- that's right friends I am fairly certain that <span class="spoiler">we have Helena back on the severed floor</span> and this time it looks like she's back to rescue Gemma!
+
+Of course, here is some data to back the claim. Let's examine just the elevator dings we hear on the severed floor, mapped by episode.
+:::
+
+</center>
+
+```{r}
+#| code-fold: true
+#| message: false
+#| warning: false
+#| fig-width: 15
+#| fig-align: center
+library(mdr)
+library(ggiraph)
+library(tidyverse)
+
+set.seed(266) # on irving
+
+df <- elevator_dings |>
+  filter(location == "severed floor") |>
+  mutate(
+    i = 1:n(),
+    ep = season*10 + episode,
+    id = glue::glue("S{season}E{episode}"),
+    hel = case_when(
+      character == "Helena" & episode == 9 & season == 2 ~ "?",
+      character == "Helena" ~ "Helena",
+      character == "Helly" ~ "Helly",
+      .default = "Other")
+    )|>
+  filter(!is.na(pitch), !is.na(action))
+
+first_i <- df |>
+  group_by(season, episode) |>
+  slice(1) |>
+  pull(i)
+
+p <- ggplot(df, aes(x = i, y = pitch, color = hel,
+                    tooltip = glue::glue("S{season}E{episode}, {hms::as_hms(time)}<br>{character}<br>{note}"))) +
+  geom_point_interactive(size = 10, alpha = 0.8) +
+  scale_color_manual(values = c("yellow", "#C15C58", "#5BA9D0", "grey")) +
+  guides(
+    shape = guide_legend(override.aes = list(color = "#CFE0E1"))
+  ) +
+  scale_x_continuous("Episode and Time",
+                     breaks = first_i,
+                     labels = unique(df$id)) +
+  labs(
+    y = "Pitch",
+    color = "",
+  ) +
+  theme_mdr() +
+  theme(
+    text = element_text(size = 20),
+    axis.title = element_text(size = 20),
+    axis.title.y = element_text(angle = 0),
+    axis.text = element_text(size = 20),
+    axis.text.x = element_text(angle = 45, hjust = 1, size = 20),
+    panel.grid.minor = element_blank())  
+
+ggiraph::girafe(ggobj = p)
+```
+
