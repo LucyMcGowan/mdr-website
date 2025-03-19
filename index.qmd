@@ -306,8 +306,7 @@ V
 
 ## voice analysis
 
-Let's apply k-Nearest Neighbors to audio samples of Helly vs. Helena to guess who is on the severed floor, shall we?
-
+Let's apply KNN to audio samples to guess who is on the severed floor, shall we?  
 [Read More >](analysis-helly-voice)
 
 
@@ -317,8 +316,7 @@ Let's apply k-Nearest Neighbors to audio samples of Helly vs. Helena to guess wh
 
 ## voice analysis
 
-Let's apply k-Nearest Neighbors to audio samples of Helly vs. Helena to guess who is on the severed floor, shall we?
-
+Let's apply KNN to audio samples to guess who is on the severed floor, shall we?  
 [Read More >](analysis-helly-voice)
 
 
