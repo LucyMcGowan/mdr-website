@@ -130,12 +130,12 @@ ggplot(data, aes(x = mean, y = class, fill = class, color = class)) +
            y = 3.2, yend = 3, 
            curvature = 0.3,
            arrow = arrow(length = unit(0.2, "inches"), type = "closed"), 
-           color = "yellow", size = 1.2) +
+           color = "yellow", linewidth = 1.2) +
   annotate("curve", x = 13, xend = 12.3, 
            y = 3, yend = 1.5, 
            curvature = 0.3,
            arrow = arrow(length = unit(0.2, "inches"), type = "closed"), 
-           color = "yellow", size = 1.2) +
+           color = "yellow", linewidth = 1.2) +
   scale_fill_manual(values = c("#C15C58", "#5BA9D0", "yellow")) + 
   scale_color_manual(values = c("#C15C58", "#5BA9D0", "yellow")) +
   theme_mdr() + 
