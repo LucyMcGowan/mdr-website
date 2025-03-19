@@ -38,15 +38,14 @@ helena_sample <- transcripts |>
   filter(grepl("Helly", speaker),
          nchar(dialogue) > 100,
          season == 2, episode %in% c(1, 4)) |>
-  arrange(season, episode) |>
-  slice(1:5)
+  arrange(season, episode)
 
 helly_sample
 ```
 
 <center>
 ::: text
-I then sampled the same from the episodes we know are Helena. After filtering to only lines of dialogue that were at least 100 characters, we ended up with 5 such samples.
+I then sampled the same from the episodes we know are Helena. After filtering to only lines of dialogue that were at least 100 characters, we ended up with 6 such samples.
 :::
 
 </center>
@@ -102,7 +101,7 @@ get_avg_pitch <- function(n, who = "helly") {
          class = who)
 }
 helly_pitch <- purrr::map_df(1:9, get_avg_pitch, who = "helly") 
-helena_pitch <- purrr::map_df(1:5, get_avg_pitch, who = "helena")
+helena_pitch <- purrr::map_df(1:6, get_avg_pitch, who = "helena")
 
 audio <- readWave(glue("data/q1.wav"))
 pitch_values <- fund(audio, f = audio@samp.rate, from = 0, 
@@ -121,20 +120,29 @@ data <- bind_rows(helly_pitch, helena_pitch, unknown)
 #| fig-align: center
 #| fig-width: 10
 ggplot(data, aes(x = mean, y = class, fill = class, color = class)) +
-  geom_boxplot(alpha = 0.75) +
+  geom_boxplot(alpha = 0.75, linewidth = 1.5) +
   labs(x = "Average pitch (fundamental frequency in kHz)", y = "") + 
-    annotate("text", x = 9, y = 3.1, 
-           label = "unknown falls in\nthe Helena distribution", color = "yellow", size = 6,
-           hjust = -0.4) +
-  annotate("segment", x = 11, xend = 11.5, 
-           y = 3.1, yend = 3, 
-           arrow = arrow(length = unit(0.2, "inches")), color = "yellow") +
+  annotate("text", x = 12.2, y = 3.2, 
+           label = "\"unknown\" matches Helena's\ncentral tendency, not Helly's", 
+           color = "yellow", size = 4.5,
+           fontface = "bold", hjust = 0) +
+  annotate("curve", x = 12.2, xend = 11.7, 
+           y = 3.2, yend = 3, 
+           curvature = 0.3,
+           arrow = arrow(length = unit(0.2, "inches"), type = "closed"), 
+           color = "yellow", size = 1.2) +
+  annotate("curve", x = 13, xend = 12.3, 
+           y = 3, yend = 1.5, 
+           curvature = 0.3,
+           arrow = arrow(length = unit(0.2, "inches"), type = "closed"), 
+           color = "yellow", size = 1.2) +
   scale_fill_manual(values = c("#C15C58", "#5BA9D0", "yellow")) + 
   scale_color_manual(values = c("#C15C58", "#5BA9D0", "yellow")) +
   theme_mdr() + 
   theme(legend.position = "none",
         axis.text = element_text(size = 20),
-        axis.title = element_text(size = 20))
+        axis.title = element_text(size = 20),
+        panel.grid = element_blank())
 
 ```
 
