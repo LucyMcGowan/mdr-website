@@ -299,6 +299,35 @@ Was Milchick's performance evaluation accurate?
 
 ::: {.card style="--i: 11;"}
 ::: {.tab}
+V
+:::
+
+::: {.card--front}
+
+## voice analysis
+
+Let's apply k-Nearest Neighbors to audio samples of Helly vs. Helena to guess who is on the severed floor, shall we?
+
+[Read More >](analysis-helly-voice)
+
+
+:::
+
+::: {.card--back}  
+
+## voice analysis
+
+Let's apply k-Nearest Neighbors to audio samples of Helly vs. Helena to guess who is on the severed floor, shall we?
+
+[Read More >](analysis-helly-voice)
+
+
+:::
+:::
+
+
+::: {.card style="--i: 12;"}
+::: {.tab}
 W
 :::
 
