@@ -46,7 +46,7 @@ helly_sample
 
 <center>
 ::: text
-I then sampled the same from the episodes we known are Helena. After filtering to only lines of dialogue that were at least 100 characters, we ended up with 5 such samples.
+I then sampled the same from the episodes we know are Helena. After filtering to only lines of dialogue that were at least 100 characters, we ended up with 5 such samples.
 :::
 
 </center>
@@ -141,7 +141,7 @@ ggplot(data, aes(x = mean, y = class, fill = class, color = class)) +
 <center>
 
 ::: text
-I extracted pitch feactures including the mean, standard deviation, median, skewness, and kurtosis of the fundamental frequencies. I fit a k-Nearest Neighbors (k-NN) model using these features. The model was trained on the known audio samples from Helly and Helena. I then classified the unknown sample based on its proximity to the two groups. And look at that, it predicted that the unknown audio was from *Helena* not Helly.
+I extracted pitch features including the mean, standard deviation, median, skewness, and kurtosis of the fundamental frequencies. I fit a k-Nearest Neighbors (k-NN) model using these features. The model was trained on the known audio samples from Helly and Helena. I then classified the unknown sample based on its proximity to the two groups. And look at that, it predicted that the unknown audio was from *Helena* not Helly.
 
 :::
 
