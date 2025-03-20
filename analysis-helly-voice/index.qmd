@@ -24,28 +24,34 @@ To my ear, Helena's voice has always sounded deeper to me compared to Helly's. I
 #| message: false
 #| warning: false
 library(mdr)
+library(glue)
+library(voice)
 library(tidyverse)
+library(tidymodels)
+
 set.seed(2938)
+
 helly_sample <- transcripts |>
   filter(grepl("Helly", speaker),
          nchar(dialogue) > 100,
-         (season == 1 & episode != 9 | season == 2 & !episode < 5),
+         (season == 1 & episode != 9 | season == 2 & episode == 5),
          !(season == 1 & episode == 1 & minute(timestamp) == 30)) |>
-  sample_n(10) |>
+  slice_sample(n = 10) |>
   arrange(season, episode)
 
 helena_sample <- transcripts |>
   filter(grepl("Helly", speaker),
          nchar(dialogue) > 100,
          season == 2, episode %in% c(1, 4)) |>
-  arrange(season, episode)
+  arrange(season, episode) |>
+  slice(1:5)
 
 helly_sample
 ```
 
 <center>
 ::: text
-I then sampled the same from the episodes we know are Helena. After filtering to only lines of dialogue that were at least 100 characters, we ended up with 6 such samples.
+I then sampled the same from the episodes we know are Helena. After filtering to only lines of dialogue that were at least 100 characters, excluding one where she and Mark are laughing (so the audio is messy), we ended up with 5 such samples.
 :::
 
 </center>
@@ -80,38 +86,50 @@ purrr::walk(1:5, convert)
 av_audio_convert(glue("analysis-helly-voice/data/q1.m4a"), glue("analysis-helly-voice/data/q1.wav"))
 ```
 
+
 ```{r}
 #| code-fold: true
-#| message: false
-#| warning: false
-library(tuneR)
-library(seewave)
-library(glue)
 
-get_avg_pitch <- function(n, who = "helly") {
-  audio <- readWave(glue("data/o{n}_{who}.wav"))
-  pitch_values <- fund(audio, f = audio@samp.rate, from = 0, 
-                       to = duration(audio), plot = FALSE)
-  tibble(mean = mean(pitch_values[,2], na.rm = TRUE),
-         sd = sd(pitch_values[,2], na.rm = TRUE),
-         median = median(pitch_values[,2], na.rm = TRUE),
-         skewness = moments::skewness(pitch_values[,2], na.rm = TRUE),
-         kurtosis = moments::kurtosis(pitch_values[,2], na.rm = TRUE),
-         class = who)
+get_path <- function(n, who) {
+  glue("data/o{n}_{who}.wav")
 }
-helly_pitch <- purrr::map_df(1:9, get_avg_pitch, who = "helly") 
-helena_pitch <- purrr::map_df(1:6, get_avg_pitch, who = "helena")
+get_pitch <- function(path, i) {
+  pitch_values <- extract_features(path, stereo2mono = TRUE) |>
+    as_tibble()
+  max_seconds <- max(pitch_values$section_seq_file)
+  pitch_values$norm_section <- pitch_values$section_seq_file / max_seconds
+  pitch_values |>
+    mutate(i = i) |>
+    select(norm_section, f0:f8, i)
+}
 
-audio <- readWave(glue("data/q1.wav"))
-pitch_values <- fund(audio, f = audio@samp.rate, from = 0, 
-                     to = duration(audio), plot = FALSE)
-unknown <- tibble(mean = mean(pitch_values[,2], na.rm = TRUE),
-                  sd = sd(pitch_values[,2], na.rm = TRUE),
-                  median = median(pitch_values[,2], na.rm = TRUE),
-                  skewness = moments::skewness(pitch_values[,2], na.rm = TRUE),
-                  kurtosis = moments::kurtosis(pitch_values[,2], na.rm = TRUE),
-                  class = "unknown")
-data <- bind_rows(helly_pitch, helena_pitch, unknown)
+get_avg_pitch <- function(pitch_values, what = "f0") {
+  pitch_values <- pitch_values |> filter(f0 < 300)
+  tibble(mean = mean(pitch_values[[what]], na.rm = TRUE),
+         sd = sd(pitch_values[[what]], na.rm = TRUE),
+         median = median(pitch_values[[what]], na.rm = TRUE),
+         skewness = moments::skewness(pitch_values[[what]], na.rm = TRUE),
+         kurtosis = moments::kurtosis(pitch_values[[what]], na.rm = TRUE))
+}
+
+helly_path <- purrr::map(1:9, get_path, who = "helly")
+helly_pitch <- purrr::imap(helly_path, get_pitch) 
+helly_pitch_df <- helly_pitch |> bind_rows()
+
+helena_path <- purrr::map(1:5, get_path, who = "helena")
+helena_pitch <- purrr::imap(helena_path, get_pitch) 
+helena_pitch_df <- helena_pitch |> bind_rows()
+
+unknown_pitch <- get_pitch("data/q1.wav", 1) 
+
+
+helly_avg <- purrr::map_df(helly_pitch, get_avg_pitch)
+helly_avg$class <- "helly"
+helena_avg <- purrr::map_df(helena_pitch, get_avg_pitch)
+helena_avg$class <- "helena"
+unknown_avg <- get_avg_pitch(unknown_pitch)
+unknown_avg$class <- "unknown"
+data <- bind_rows(helly_avg, helena_avg, unknown_avg)
 ```
 
 ```{r}
@@ -119,19 +137,20 @@ data <- bind_rows(helly_pitch, helena_pitch, unknown)
 #| fig-align: center
 #| fig-width: 10
 ggplot(data, aes(x = mean, y = class, fill = class, color = class)) +
+  geom_vline(xintercept = data$mean[data$class == "unknown"], linetype = "dashed", color = "white") +
   geom_boxplot(alpha = 0.75, linewidth = 1.5) +
-  labs(x = "Average pitch (fundamental frequency in kHz)", y = "") + 
-  annotate("text", x = 12.2, y = 3.2, 
+  labs(x = "Average pitch (fundamental frequency in Hz)", y = "") + 
+  annotate("text", x = 60, y = 3.2, 
            label = "\"unknown\" matches Helena's\ncentral tendency, not Helly's", 
            color = "yellow", size = 4.5,
            fontface = "bold", hjust = 0) +
-  annotate("curve", x = 12.2, xend = 11.7, 
-           y = 3.2, yend = 3, 
+  annotate("curve", x = 80, xend = 130, 
+           y = 3, yend = 2.8, 
            curvature = 0.3,
            arrow = arrow(length = unit(0.2, "inches"), type = "closed"), 
            color = "yellow", linewidth = 1.2) +
-  annotate("curve", x = 13, xend = 12.3, 
-           y = 3, yend = 1.5, 
+  annotate("curve", x = 80, xend = 130, 
+           y = 3, yend = 1.1, 
            curvature = 0.3,
            arrow = arrow(length = unit(0.2, "inches"), type = "closed"), 
            color = "yellow", linewidth = 1.2) +
@@ -148,27 +167,27 @@ ggplot(data, aes(x = mean, y = class, fill = class, color = class)) +
 <center>
 
 ::: text
-I extracted pitch features including the mean, standard deviation, median, skewness, and kurtosis of the fundamental frequencies. I fit a k-Nearest Neighbors (k-NN) model using these features. The model was trained on the known audio samples from Helly and Helena. I then classified the unknown sample based on its proximity to the two groups. And look at that, it predicted that the unknown audio was from *Helena* not Helly.
+I extracted pitch features including the mean, standard deviation, median, skewness, and kurtosis of the fundamental frequencies. I fit a logistic regression model using these features. The model was trained on the known audio samples from Helly and Helena. I then classified the unknown sample based on the model. And look at that, it predicted that the unknown audio was from *Helena* not Helly.
 
 :::
 
 </center>
+
 ```{r}
-train_data <- data |>
-  filter(class != "unknown")
+#| message: false
+#| warning: false
+library(tidymodels)
 
-train_class <- train_data$class
+model <- fit(logistic_reg(), 
+             factor(class) ~ ., 
+             data = data |> filter(class != "unknown"))
 
-train_data <- train_data |>
-  select(-class)
-
-unknown_data <- data |> 
-  filter(class == "unknown") |>
-  select(-class)
-
-class::knn(train = train_data, 
-           test = unknown_data, 
-           cl = train_class, k = 3)
-
+predict(model, new_data = data |> filter(class == "unknown"), type = "prob")
 ```
+<center>
+::: text
 
+The output suggests that based on the model I fit the probability that the unknown source was actually Helena is essentially 100% (*Note: as a statistician I feel the need to make some clarifications, this model is silly, this application is silly, we have a very small number of observations, etc.*).
+
+:::
+</center>
