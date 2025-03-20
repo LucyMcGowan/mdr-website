@@ -16,7 +16,7 @@ This analysis was made possible by the [mdr](https://lucymcgowan.github.io/mdr) 
 #| code-fold: true
 #| fig-align: center
 #| fig-width: 10
-#| fig-height: 7
+#| fig-height: 15
 #| message: false
 #| warning: false
 library(tidytext)
@@ -39,14 +39,12 @@ df |>
   scale_fill_manual(values = c("#C15C58", "#5BA9D0")) +
   scale_x_time(labels = scales::time_format("%M:%S")) +
   labs(x = "") +
-  facet_wrap(~id) + 
+  facet_wrap(~id, ncol = 3) + 
   theme_mdr() + 
   theme(
-    axis.title = element_text(color = "black"),
-    axis.text = element_text(color = "black"),
-    plot.background = element_rect(fill = "#CFE0E1"),
-    panel.background = element_rect(fill = "white"),
+    strip.text = element_text(size = 8),
     legend.position = "none",
-    panel.grid.minor = element_blank())
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank())
 ```
 
